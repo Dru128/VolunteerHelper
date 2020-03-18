@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">helper</string>
+    <string name="title_home">Главное</string>
+    <string name="title_dashboard">Отзывы</string>
+    <string name="title_notifications">Наша команда</string>
+    <string name="household">Помощь по хозяйству</string>
+    <string name="date_help">Насколько срочно необходима помощь</string>
+</resources>
