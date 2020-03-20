@@ -9,15 +9,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.R
 
-enum class Category(val nam: String){
-    HELP("Помощь по хозяйству"),
-    HELP1("Прогулка с питомцем"),
-    HELP2("Поход за прогулками"),
-    HELP3("Душевное общение"),
-    HELP5("Помощь по хозяйству")
+enum class Category(val nam: String, val img : Int){
+    HELP("Помощь по хозяйству", R.drawable.ic_local_florist_black_24dp),
+    PETS("Прогулка с питомцем", R.drawable.ic_pets_black_24dp),
+    PRODUCT("Поход за продуктами", R.drawable.ic_shopping_cart_black_24dp),
+    COMMUNITY("Душевное общение, детские утренники", R.drawable.ic_cake_black_24dp),
+
 }
 
-class CategoryWidget (val iconCategory : Int, val text : String, val choise : Boolean) {
+class CategoryWidget (val category: Category, var choise : Boolean) {
+
 }
 
 class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryViewHolder>(){
@@ -40,9 +41,11 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryVi
             val checkBox = view.findViewById<CheckBox>(R.id.check)
 
             fun bind(category: CategoryWidget){
-                iconCategory.setImageResource(category.iconCategory)
-                label.setText(category.text)
-                checkBox.isChecked = category.choise
+                iconCategory.setImageResource(category.category.img)
+                label.setText(category.category.nam)
+                checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
+                    category.choise = isChecked
+                }
             }
         }
     }
