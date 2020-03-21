@@ -2,7 +2,6 @@ package com.arbonik.helper.ui.dashboard
 
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,19 +9,15 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.FireDatabase
 import com.arbonik.helper.HelpRequest.DataHelpRequest
 import com.arbonik.helper.R
-import com.arbonik.helper.ui.home.AuthFragment
-import com.arbonik.helper.ui.home.Category
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
-import org.w3c.dom.Text
 
 class RequestFragment: Fragment() {
     private lateinit var dashboardViewModel: DashboardViewModel

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+        <PreferenceCategory
+            app:key="user_category"
+            app:title="Личные данные"
+            >
+            <EditTextPreference
+                app:dialogTitle="Your name"
+                app:dialogMessage="Enter you full name"
+                app:key="key_name"
+                app:title="Name"
+                app:summary="QVAQ WQWE"
+                >
+            </EditTextPreference>
+            <EditTextPreference
+                app:dialogTitle="Your phone"
+                app:dialogMessage="Enter you phone"
+                app:key="key_phone"
+                app:title="Phone"
+                app:summary="QVAQ WQWE"
+                >
+
+            </EditTextPreference>
+            <EditTextPreference
+                app:dialogTitle="Your address"
+                app:dialogMessage="Enter you address"
+                app:key="key_address"
+                app:title="Address"
+                app:summary="QVAQ WQWE"
+                >
+            </EditTextPreference>
+        </PreferenceCategory>
+    <PreferenceCategory
+        app:title="Account">
+        <SwitchPreferenceCompat
+            app:key="key_role"
+            app:title="Волонтер">
+        </SwitchPreferenceCompat>
+    </PreferenceCategory>
+</PreferenceScreen>
