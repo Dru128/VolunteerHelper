@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.FireDatabase
 import com.arbonik.helper.HelpRequest.DataHelpRequest
+import com.arbonik.helper.Profile
 import com.arbonik.helper.R
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -48,8 +49,10 @@ class RequestFragment: Fragment() {
             override fun onChildRemoved(p0: DataSnapshot) {
             }
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                requestAdapter.requestioons.add(DataHelpRequest.fromBD(p0))
-                requestAdapter.notifyDataSetChanged()
+                if (Profile.type == true) {
+                    requestAdapter.requestioons.add(DataHelpRequest.fromBD(p0))
+                    requestAdapter.notifyDataSetChanged()
+                }
             }
         })
 

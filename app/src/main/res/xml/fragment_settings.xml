@@ -11,7 +11,7 @@
                 app:dialogMessage="Enter you full name"
                 app:key="key_name"
                 app:title="Name"
-                app:summary="QVAQ WQWE"
+                app:summary="Фамилия Имя"
                 >
             </EditTextPreference>
             <EditTextPreference
@@ -19,7 +19,7 @@
                 app:dialogMessage="Enter you phone"
                 app:key="key_phone"
                 app:title="Phone"
-                app:summary="QVAQ WQWE"
+                app:summary="88005553535"
                 >
 
             </EditTextPreference>
@@ -28,7 +28,7 @@
                 app:dialogMessage="Enter you address"
                 app:key="key_address"
                 app:title="Address"
-                app:summary="QVAQ WQWE"
+                app:summary="Улица Пошкина дом Колотушкина"
                 >
             </EditTextPreference>
         </PreferenceCategory>
