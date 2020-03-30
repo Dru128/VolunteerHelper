@@ -1,6 +1,6 @@
 <resources>
     <string name="answ_accept">Заявка принята!</string>
-    <string name="app_name">helper</string>
+    <string name="app_name">Helper</string>
     <string name="title_home">Создать заявку</string>
     <string name="title_requestion">Заявки</string>
     <string name="title_notifications">Настройки профиля</string>
