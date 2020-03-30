@@ -37,14 +37,14 @@
         android:layout_below="@+id/address_data"
         android:layout_toRightOf="@+id/img_data"
         tools:text = "NUMBER PHOME"/>
+
     <Button
         android:id="@+id/button_data"
-        android:layout_below="@id/number_data"
-        android:layout_toRightOf="@id/img_data"
-        android:layout_alignParentEnd="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Откликнуться на заявку"
-            />
+        android:layout_below="@id/number_data"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@id/img_data"
+        android:text="Принять/удалить заявку" />
 
 </RelativeLayout>

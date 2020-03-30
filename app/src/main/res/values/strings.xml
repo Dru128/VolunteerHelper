@@ -1,9 +1,9 @@
 <resources>
     <string name="answ_accept">Заявка принята!</string>
     <string name="app_name">helper</string>
-    <string name="title_home">Главное</string>
+    <string name="title_home">Создать заявку</string>
     <string name="title_requestion">Заявки</string>
-    <string name="title_notifications">Наша команда</string>
+    <string name="title_notifications">Настройки профиля</string>
     <string name="household">Помощь по хозяйству</string>
     <string name="date_help">Насколько срочно необходима помощь</string>
 </resources>

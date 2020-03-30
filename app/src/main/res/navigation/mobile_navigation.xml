@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_request"
-        android:name="com.arbonik.helper.ui.dashboard.RequestFragment"
+        android:name="com.arbonik.helper.ui.requestFragments.RequestFragment"
         android:label="@string/title_requestion"
         tools:layout="@layout/fragment_reqest" />
 

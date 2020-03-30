@@ -19,8 +19,6 @@ import com.arbonik.helper.R
 
 class HomeFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true // сохранение сострояния при перевороте
@@ -31,8 +29,6 @@ class HomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        homeViewModel =
-            ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         val data: RecyclerView = root.findViewById(R.id.fragmentRecycler)
@@ -58,12 +54,8 @@ class HomeFragment : Fragment() {
                         Profile?.number ?: "Телефон не указан",
                         Profile?.address ?: "Адресс не указан",
                         c.category))
-
             }
         }
-
-//        homeViewModel.text.observe(this, Observer {
-//        })
         return root
     }
 }

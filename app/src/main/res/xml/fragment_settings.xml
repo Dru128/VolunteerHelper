@@ -1,39 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
     <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        app:key="main_screen"
     >
         <PreferenceCategory
             app:key="user_category"
             app:title="Личные данные"
             >
             <EditTextPreference
-                app:dialogTitle="Your name"
-                app:dialogMessage="Enter you full name"
+                app:dialogTitle="Ваше имя"
+                app:dialogMessage="Введите ваше полное имя"
                 app:key="key_name"
-                app:title="Name"
+                app:title="Имя"
                 app:summary="Фамилия Имя"
                 >
             </EditTextPreference>
             <EditTextPreference
-                app:dialogTitle="Your phone"
-                app:dialogMessage="Enter you phone"
+                app:dialogTitle="Ваш телефон"
+                app:dialogMessage="Введите ваш телефон"
                 app:key="key_phone"
-                app:title="Phone"
+                app:title="Телефон"
                 app:summary="88005553535"
                 >
 
             </EditTextPreference>
             <EditTextPreference
-                app:dialogTitle="Your address"
-                app:dialogMessage="Enter you address"
+                app:dialogTitle="Ваш адресс"
+                app:dialogMessage="Введите ваш адрес"
                 app:key="key_address"
-                app:title="Address"
+                app:title="Адрес"
                 app:summary="Улица Пошкина дом Колотушкина"
                 >
             </EditTextPreference>
         </PreferenceCategory>
     <PreferenceCategory
-        app:title="Account">
+        app:title="Аккаунт">
         <SwitchPreferenceCompat
             app:key="key_role"
             app:title="Волонтер">

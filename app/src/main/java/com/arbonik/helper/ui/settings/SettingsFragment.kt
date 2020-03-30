@@ -1,13 +1,8 @@
 package com.arbonik.helper.ui.settings
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.preference.*
+import com.arbonik.helper.HelperApplication
 import com.arbonik.helper.Profile
 import com.arbonik.helper.R
 
@@ -20,6 +15,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
         setPreferenceListener(findPreference<EditTextPreference>(key_address)!!)
         setPreferenceListener(findPreference<SwitchPreferenceCompat>(key_role)!!)
     }
+
     companion object{
         val key_name = "key_name"
         val key_phone = "key_phone"
@@ -31,9 +27,13 @@ class SettingsFragment : PreferenceFragmentCompat() {
             if (p is EditTextPreference) {
                 listener.onPreferenceChange(
                     p,
-                    PreferenceManager.getDefaultSharedPreferences(p.context)
+                    PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
                         .getString(p.key, "")
                 )
+            if (p is SwitchPreferenceCompat){
+                listener.onPreferenceChange(p, PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
+                    .getBoolean(key_role, false))
+            }
             }
         }
         val listener = Preference.OnPreferenceChangeListener { preference, newValue ->
@@ -50,7 +50,6 @@ class SettingsFragment : PreferenceFragmentCompat() {
                         Profile.type = preference.isEnabled
                     }
                 }
-
             return@OnPreferenceChangeListener true
         }
     }
