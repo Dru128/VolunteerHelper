@@ -43,9 +43,12 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryVi
             fun bind(category: CategoryWidget){
                 iconCategory.setImageResource(category.category.img)
                 label.setText(category.category.nam)
+                checkBox.isChecked = category.choise
+
                 checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
                     category.choise = isChecked
                 }
+                    
             }
         }
     }
