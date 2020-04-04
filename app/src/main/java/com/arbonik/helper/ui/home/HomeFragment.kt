@@ -48,7 +48,7 @@ class HomeFragment : Fragment() {
         root.findViewById<Button>(R.id.toAuth).setOnClickListener {
             v ->
             if(PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getBoolean(
-                    SettingsFragment.key_role, true)) {
+                    SettingsFragment.key_role, false)) {
                 val t = Toast.makeText(
                     HelperApplication.globalContext,
                     "Волонтер не может размещать заявки :(", Toast.LENGTH_LONG

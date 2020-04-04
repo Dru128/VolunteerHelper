@@ -48,7 +48,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryVi
                 checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
                     category.choise = isChecked
                 }
-                    
+
             }
         }
     }
