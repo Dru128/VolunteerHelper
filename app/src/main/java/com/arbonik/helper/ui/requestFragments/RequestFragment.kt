@@ -9,7 +9,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.*
-import com.arbonik.helper.HelpRequest.DataHelpRequest
+import com.arbonik.helper.HelpRequest.DataRequest
 import com.arbonik.helper.ui.settings.SettingsFragment
 import com.google.firebase.database.ChildEventListener
 import com.google.firebase.database.DataSnapshot
@@ -42,7 +42,7 @@ class RequestFragment: Fragment() {
             override fun onChildRemoved(p0: DataSnapshot) {
             }
             override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val request = DataHelpRequest.fromBD(p0)
+                val request = DataRequest.fromBD(p0)
                 if (!PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getBoolean(
                         SettingsFragment.key_role, false)) // if mode volonteer = of, view filter = on
                 {

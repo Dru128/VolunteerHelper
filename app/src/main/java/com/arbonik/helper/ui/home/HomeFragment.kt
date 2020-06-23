@@ -8,14 +8,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
-import androidx.preference.Preference
 import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.*
-import com.arbonik.helper.HelpRequest.DataHelpRequest
+import com.arbonik.helper.HelpRequest.DataRequest
 import com.arbonik.helper.ui.settings.SettingsFragment
 
 class HomeFragment : Fragment() {
@@ -60,7 +57,7 @@ class HomeFragment : Fragment() {
                 for (c in ca.categories) {
                     if (c.choise)
                         FireDatabase.createReques(
-                            DataHelpRequest(
+                            DataRequest(
                                 Profile?.name ?: "Имя не указано",
                                 Profile?.number ?: "Телефон не указан",
                                 Profile?.address ?: "Адресс не указан",

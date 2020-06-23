@@ -32,51 +32,37 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
         android:hint="Пароль"/>
-
-    <EditText
+    <TextView
         app:layout_constraintTop_toBottomOf="@id/password"
         android:layout_marginTop="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/name"
+        android:id="@+id/forgott_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
-        android:hint="Ваше имя"
-        />
-    <EditText
-        android:hint="Ваш адрес "
-        app:layout_constraintTop_toBottomOf="@id/name"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:backgroundTint="@color/colorAccent"
-        android:id="@+id/adress"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-    <EditText
-        android:hint="Ваш телефон"
-        app:layout_constraintTop_toBottomOf="@id/adress"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/colorAccent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/phone"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
-
+        android:text="Забыли пароль?"/>
     <Button
         android:id="@+id/button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Зарегестрировать"
+        android:text="Войти"
+        android:radius="10dp"
+        android:textColor="#FFF"
+        android:background="@drawable/button_yellow_radius"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="40dp"
+        app:layout_constraintBottom_toTopOf="@id/registration"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+    <Button
+        android:id="@+id/registration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Создать аккаунт"
         android:radius="10dp"
         android:textColor="#FFF"
         android:background="@drawable/button_yellow_radius"
@@ -87,27 +73,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <RadioGroup
-        android:id="@+id/role_radio_group"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone">
 
-        <RadioButton
-            android:id="@+id/radioButtonVeteran"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Ветеран" />
-
-        <RadioButton
-            android:id="@+id/radioButtonVolonteer"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Волонтер" />
-    </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
