@@ -12,8 +12,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.*
-import com.arbonik.helper.HelpRequest.DataRequest
-import com.arbonik.helper.ui.settings.SettingsFragment
+import com.arbonik.helper.auth.User
 
 class HomeFragment : Fragment() {
 
@@ -45,7 +44,7 @@ class HomeFragment : Fragment() {
         root.findViewById<Button>(R.id.toAuth).setOnClickListener {
             v ->
             if(PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getBoolean(
-                    SettingsFragment.key_role, false)) {
+                     User.TAG_AUTH, false)) {
                 val t = Toast.makeText(
                     HelperApplication.globalContext,
                     "Волонтер не может размещать заявки :(", Toast.LENGTH_LONG
@@ -56,14 +55,14 @@ class HomeFragment : Fragment() {
                 // if user - veteeran
                 for (c in ca.categories) {
                     if (c.choise)
-                        FireDatabase.createReques(
-                            DataRequest(
-                                Profile?.name ?: "Имя не указано",
-                                Profile?.number ?: "Телефон не указан",
-                                Profile?.address ?: "Адресс не указан",
-                                c.category
-                            )
-                        )
+//                        FireDatabase.createRequest(
+//                            DataRequest(
+//                                LocalUserData?.name ?: "Имя не указано",
+//                                LocalUserData?.number ?: "Телефон не указан",
+//                                LocalUserData?.address ?: "Адресс не указан",
+//                                c.category
+//                            )
+//                        )
                     c.choise = false
                 }
                 ca.notifyDataSetChanged()

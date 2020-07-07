@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:accessibilityPaneTitle="@string/app_name"
     android:background="#FFF"
-    tools:context=".RegistrationActivity">
+    tools:context=".auth.RegistrationActivity">
     <EditText
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp"
@@ -73,7 +73,7 @@
         android:layout_height="wrap_content"/>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/singInBotton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Зарегестрировать"

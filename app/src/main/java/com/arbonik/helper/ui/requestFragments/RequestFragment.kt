@@ -31,33 +31,33 @@ class RequestFragment: Fragment() {
 
         val requestAdapter = RequestAdapter()
 
-        FireDatabase.requestReference.addChildEventListener(object : ChildEventListener {
-            override fun onCancelled(p0: DatabaseError) {
-            }
-            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-            }
-            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-                requestAdapter.notifyDataSetChanged()
-            }
-            override fun onChildRemoved(p0: DataSnapshot) {
-            }
-            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-                val request = DataRequest.fromBD(p0)
-                if (!PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getBoolean(
-                        SettingsFragment.key_role, false)) // if mode volonteer = of, view filter = on
-                {
-                    if (PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getString(
-                            SettingsFragment.key_phone, ""
-                        ) == request.phone
-                    ) // if number user != number reques, done it
-                    requestAdapter.requestioons.add(request)
-                }
-                else{
-                    requestAdapter.requestioons.add(request)
-                }
-                    requestAdapter.notifyDataSetChanged()
-            }
-        })
+//        FireDatabase.requestReference.addChildEventListener(object : ChildEventListener {
+//            override fun onCancelled(p0: DatabaseError) {
+//            }
+//            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
+//            }
+//            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
+//                requestAdapter.notifyDataSetChanged()
+//            }
+//            override fun onChildRemoved(p0: DataSnapshot) {
+//            }
+//            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
+//                val request = DataRequest.fromBD(p0)
+//                if (!PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getBoolean(
+//                        SettingsFragment.key_role, false)) // if mode volonteer = of, view filter = on
+//                {
+//                    if (PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getString(
+//                            SettingsFragment.key_phone, ""
+//                        ) == request.phone
+//                    ) // if number user != number reques, done it
+//                    requestAdapter.requestioons.add(request)
+//                }
+//                else{
+//                    requestAdapter.requestioons.add(request)
+//                }
+//                    requestAdapter.notifyDataSetChanged()
+//            }
+//        })
             recycler.adapter = requestAdapter
                 return root
     }

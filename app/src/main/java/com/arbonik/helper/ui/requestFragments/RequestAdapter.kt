@@ -14,6 +14,7 @@ import com.arbonik.helper.FireDatabase
 import com.arbonik.helper.HelpRequest.DataRequest
 import com.arbonik.helper.HelperApplication
 import com.arbonik.helper.R
+import com.arbonik.helper.auth.User
 import com.arbonik.helper.ui.settings.SettingsFragment
 
 class RequestAdapter : RecyclerView.Adapter<RequestAdapter.Companion.RequestHolder>(){
@@ -34,7 +35,7 @@ class RequestAdapter : RecyclerView.Adapter<RequestAdapter.Companion.RequestHold
                     }
 
                     if (PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
-                        .getBoolean(SettingsFragment.key_role, false))
+                        .getBoolean(User.TAG_AUTH, false))
                     {
                         button.setOnClickListener { v ->
                             button.setBackgroundColor(Color.GREEN)
@@ -53,7 +54,7 @@ class RequestAdapter : RecyclerView.Adapter<RequestAdapter.Companion.RequestHold
                     categiryImage.setImageResource(request.category.img)
 
                 Log.d("WHAT", "${PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getString(
-                    SettingsFragment.key_phone, "")}" )
+                    User.TAG_PHONE, "")}" )
             }
         }
     }

@@ -10,7 +10,7 @@
             <EditTextPreference
                 app:dialogTitle="Ваше имя"
                 app:dialogMessage="Введите ваше полное имя"
-                app:key="key_name"
+                app:key="NAME"
                 app:title="Имя"
                 app:summary="Фамилия Имя"
                 >
@@ -18,7 +18,7 @@
             <EditTextPreference
                 app:dialogTitle="Ваш телефон"
                 app:dialogMessage="Введите ваш телефон"
-                app:key="key_phone"
+                app:key="PHONE"
                 app:title="Телефон"
                 app:summary="88005553535"
                 >
@@ -27,7 +27,7 @@
             <EditTextPreference
                 app:dialogTitle="Ваш адресс"
                 app:dialogMessage="Введите ваш адрес"
-                app:key="key_address"
+                app:key="ADDRESS"
                 app:title="Адрес"
                 app:summary="Улица Пошкина дом Колотушкина"
                 >
@@ -35,9 +35,9 @@
         </PreferenceCategory>
     <PreferenceCategory
         app:title="Аккаунт">
-        <SwitchPreferenceCompat
-            app:key="key_role"
-            app:title="Волонтер">
-        </SwitchPreferenceCompat>
+        <EditTextPreference
+            app:key="CATEGORY"
+            app:title="ТИП АККАУНТА">
+        </EditTextPreference>
     </PreferenceCategory>
 </PreferenceScreen>

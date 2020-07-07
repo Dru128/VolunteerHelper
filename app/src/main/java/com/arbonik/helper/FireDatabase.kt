@@ -2,27 +2,26 @@ package com.arbonik.helper
 
 
 import com.arbonik.helper.HelpRequest.DataRequest
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.arbonik.helper.auth.SharedPreferenceUser
+import com.google.firebase.database.*
+import com.google.firebase.firestore.FirebaseFirestore
 
 object FireDatabase {
+    var db = FirebaseFirestore.getInstance()
 
-    var database : FirebaseDatabase
-    val requestReference : DatabaseReference
+//    var database : FirebaseDatabase
+//    val requestReference : DatabaseReference
+//
+//    fun userFromDB(p0 : DataSnapshot):User =
+//        User(
+//            p0.child("${SharedPreferenceUser.NAME_TAG}").toString(),
+//            p0.child("${SharedPreferenceUser.TAG_PHONE}").toString(),
+//            p0.child("${SharedPreferenceUser.TAG_ADDRESS}").toString(),
+//            USER_CATEGORY_CREATER(p0.child("${SharedPreferenceUser.TAG_CATEGORY}").toString()),
+//            p0.child("${SharedPreferenceUser.TAG_UID}").toString()
+//        )
 
-    init {
-        database = FirebaseDatabase.getInstance()
-        requestReference = database.getReference("REQUESTION")
-
-    }
-
-    fun addUser(user : User){
-        val usersReference : DatabaseReference = database.getReference("USERS")
-        usersReference.push().setValue(user)
-        usersReference.lis
-    }
-
-    fun createReques(dataHelpRequest: DataRequest){
-        requestReference.push().setValue(dataHelpRequest)
+    fun createRequest(dataHelpRequest: DataRequest){
+//        requestReference.push().setValue(dataHelpRequest)
     }
 }
