@@ -23,10 +23,9 @@ class VeteranFragmentRequest : Fragment() {
         val linear = LinearLayoutManager(context)
         recycler.layoutManager = linear
 
-        val requestAdapter = RequestAdapter(
-        )
+//        val requestAdapter = RequestAdapter(requestManager.requests)
 
-        recycler.adapter = requestAdapter
+//        recycler.adapter = requestAdapter
         return root
 
     }

@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.arbonik.helper.ui.home.HomeFragment"
+        android:name="com.arbonik.helper.ui.home.VeteranRequestFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_veteran_request" />
 
     <fragment
         android:id="@+id/navigation_request"

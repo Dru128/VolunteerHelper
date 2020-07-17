@@ -4,62 +4,69 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.*
-import com.arbonik.helper.HelpRequest.DataRequest
-import com.arbonik.helper.ui.settings.SettingsFragment
-import com.google.firebase.database.ChildEventListener
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
+import com.arbonik.helper.databinding.DataRequestBinding
+import com.arbonik.helper.databinding.FragmentReqestBinding
+import com.arbonik.helper.helprequest.RequestData
+import com.arbonik.helper.helprequest.RequestManager
+import com.arbonik.helper.helprequest.RequestViewModel
+import com.google.firebase.firestore.FirebaseFirestore
 
 class RequestFragment: Fragment() {
+    val REQUEST_TAG = "requests"
+
+    val db = FirebaseFirestore.getInstance()
+
+    var requests : Array<RequestData> = arrayOf()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_reqest, container, false)
+        val binding : FragmentReqestBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_reqest, container, false)
 
-        val recycler : RecyclerView =  root.findViewById(R.id.request_recycler_view)
+        binding.requestRecyclerView.layoutManager = LinearLayoutManager(context)
+        binding.requestRecyclerView.adapter = RequestAdapter(requests)
 
-        val linear = LinearLayoutManager(context)
-        recycler.layoutManager = linear
+        db.collection(REQUEST_TAG).get().addOnCompleteListener {
+            var result = it.result?.documents
+            requests =
+                Array(result?.size ?: 0) {i ->
+                    result!![i].toObject(RequestData::class.java)!!
+                }
+            binding.requestRecyclerView.adapter = RequestAdapter(requests)
+        }
 
-        val requestAdapter = RequestAdapter()
+        return binding.root
+    }
+    inner class RequestHolder(var binding: DataRequestBinding) : RecyclerView.ViewHolder(binding.root){
+        init {
+            binding.request = RequestViewModel(RequestManager())
+        }
+        fun bind(request : RequestData){
+            binding.request?.request = request
+            binding.executePendingBindings()
+        }
+    }
+    inner class RequestAdapter(var requests: Array<RequestData>) : RecyclerView.Adapter<RequestHolder>(){
 
-//        FireDatabase.requestReference.addChildEventListener(object : ChildEventListener {
-//            override fun onCancelled(p0: DatabaseError) {
-//            }
-//            override fun onChildMoved(p0: DataSnapshot, p1: String?) {
-//            }
-//            override fun onChildChanged(p0: DataSnapshot, p1: String?) {
-//                requestAdapter.notifyDataSetChanged()
-//            }
-//            override fun onChildRemoved(p0: DataSnapshot) {
-//            }
-//            override fun onChildAdded(p0: DataSnapshot, p1: String?) {
-//                val request = DataRequest.fromBD(p0)
-//                if (!PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getBoolean(
-//                        SettingsFragment.key_role, false)) // if mode volonteer = of, view filter = on
-//                {
-//                    if (PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext).getString(
-//                            SettingsFragment.key_phone, ""
-//                        ) == request.phone
-//                    ) // if number user != number reques, done it
-//                    requestAdapter.requestioons.add(request)
-//                }
-//                else{
-//                    requestAdapter.requestioons.add(request)
-//                }
-//                    requestAdapter.notifyDataSetChanged()
-//            }
-//        })
-            recycler.adapter = requestAdapter
-                return root
+        override fun onBindViewHolder(holder: RequestHolder, position: Int) {
+            holder.bind(requests[position])
+        }
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestHolder {
+            val inflater = LayoutInflater.from(activity)
+            val binding : DataRequestBinding = DataBindingUtil.inflate(inflater, R.layout.data_request, parent, false)
+            return RequestHolder(binding)
+        }
+
+        override fun getItemCount(): Int = requests.size
     }
 }
 

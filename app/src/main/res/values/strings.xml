@@ -5,5 +5,5 @@
     <string name="title_requestion">Заявки</string>
     <string name="title_notifications">Настройки профиля</string>
     <string name="household">Помощь по хозяйству</string>
-    <string name="date_help">Насколько срочно необходима помощь</string>
+    <string name="date_help">Выберите время</string>
 </resources>

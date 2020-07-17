@@ -10,10 +10,21 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.arbonik.helper.helprequest.RequestData
+import com.arbonik.helper.helprequest.RequestManager
 import com.arbonik.helper.auth.SharedPreferenceUser
+import com.arbonik.helper.auth.SignIn
+import com.arbonik.helper.auth.User
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
+    var sharedPreferenceUser = SharedPreferenceUser()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        if (!sharedPreferenceUser.checkAuth()){
+            startActivity(Intent(this, SignIn::class.java))
+            finish()
+        }
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -42,8 +53,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
             when(item.itemId){
                 R.id.logout -> {
-                //add logout
+                    sharedPreferenceUser.loginOut()
                     startActivity(Intent(this, SignIn::class.java))
+                    finish()
                 }
                 R.id.logCheck -> {
 

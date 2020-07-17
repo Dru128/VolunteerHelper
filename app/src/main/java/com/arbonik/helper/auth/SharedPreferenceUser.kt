@@ -5,23 +5,24 @@ import androidx.preference.PreferenceManager
 import com.arbonik.helper.HelperApplication
 
 class SharedPreferenceUser {
-
+    companion object{
+        var currentUser :User? = null
+    }
     var editor = PreferenceManager
         .getDefaultSharedPreferences(HelperApplication.globalContext)
         .edit()
 
-    fun authInDevice(user: User?){
-        user?.let {
-            with(editor) {
-                putBoolean(User.TAG_AUTH, true)
-                putString(User.NAME_TAG, user.name)
-                putString(User.TAG_UID, user.UID)
-                putString(User.TAG_ADDRESS, user.address)
-                putString(User.TAG_PHONE, user.phone)
-                putString(User.TAG_CATEGORY, user.CATEGORY.toString())
-                Log.d("AUTH", user.CATEGORY.toString())
-                apply()
-            }
+    fun authInDevice(user: User){
+        currentUser = user
+        with(editor) {
+            putBoolean(User.TAG_AUTH, true)
+            putString(User.NAME_TAG, user.name)
+            putString(User.TAG_UID, user.uid)
+            putString(User.TAG_ADDRESS, user.address)
+            putString(User.TAG_PHONE, user.phone)
+            putString(User.TAG_CATEGORY, user.category.toString())
+            Log.d("TESTTEXT", user.category.toString())
+            apply()
         }
     }
 
@@ -31,7 +32,8 @@ class SharedPreferenceUser {
     }
 
     fun loginOut(){
-            editor.putBoolean(User.TAG_AUTH, true)
+        currentUser = null
+            editor.putBoolean(User.TAG_AUTH, false)
             editor.apply()
     }
 

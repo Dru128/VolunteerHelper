@@ -1,12 +1,9 @@
 package com.arbonik.helper
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.arbonik.helper.auth.Authefication
 
 import org.junit.Test
 import org.junit.runner.RunWith
-
-import org.junit.Assert.*
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -18,7 +15,6 @@ class ExampleInstrumentedTest {
     @Test
     fun useAppContext() {
         // Context of the app under test.
-   var authefication : Authefication
 
 //        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
 //        assertEquals("com.arbonik.helper", appContext.packageName)
