@@ -2,20 +2,29 @@ package com.arbonik.helper.helprequest
 
 import android.app.Activity
 import android.util.Log
+import com.arbonik.helper.auth.SharedPreferenceUser
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RequestManager {
 
-    val REQUEST_TAG = "requests"
-    val MY_REQUEST_TAG = "myrequests"
+    companion object {
+        val USERS_TAG = "USERS"
+        const val REQUEST_TAG = "requests"
+        const val MY_REQUEST_TAG = "myrequests"
+    }
 
     val db = FirebaseFirestore.getInstance()
-
 
     var requests: Array<RequestData> = arrayOf()
 
     fun addRequest(request: RequestData) {
-        db.collection(REQUEST_TAG).document().set(request)
+         db.collection(REQUEST_TAG).add(request).addOnSuccessListener {
+              var id = it.id
+         db.collection(USERS_TAG)
+             .document(SharedPreferenceUser.currentUser?.uid!!)
+             .collection(MY_REQUEST_TAG)
+             .add(mapOf(id to id))
+         }
     }
 
     fun deleteRequest(uid: String) {
