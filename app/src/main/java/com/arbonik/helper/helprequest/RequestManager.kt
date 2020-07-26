@@ -20,10 +20,10 @@ class RequestManager {
     fun addRequest(request: RequestData) {
          db.collection(REQUEST_TAG).add(request).addOnSuccessListener {
               var id = it.id
-         db.collection(USERS_TAG)
-             .document(SharedPreferenceUser.currentUser?.uid!!)
-             .collection(MY_REQUEST_TAG)
-             .add(mapOf(id to id))
+//         db.collection(USERS_TAG)
+//             .document(SharedPreferenceUser.currentUser?.uid!!)
+//             .collection(MY_REQUEST_TAG)
+//             .add(mapOf(id to id))
          }
     }
 

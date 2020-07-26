@@ -1,52 +1,51 @@
 package com.arbonik.helper.ui.requestFragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.arbonik.helper.*
+import com.arbonik.helper.R
 import com.arbonik.helper.auth.SharedPreferenceUser
-import com.arbonik.helper.auth.SignIn
 import com.arbonik.helper.auth.USER_CATEGORY
-import com.arbonik.helper.auth.UserDataFirebase
-import com.arbonik.helper.databinding.DataRequestBinding
-import com.arbonik.helper.databinding.FragmentReqestBinding
-import com.arbonik.helper.helprequest.RequestData
+import com.arbonik.helper.helprequest.RequestAdapter
 import com.arbonik.helper.helprequest.RequestManager
-import com.arbonik.helper.helprequest.RequestManager.Companion.MY_REQUEST_TAG
-import com.arbonik.helper.helprequest.RequestManager.Companion.REQUEST_TAG
-import com.arbonik.helper.helprequest.RequestViewModel
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.QuerySnapshot
+import com.google.firebase.firestore.Query
 
-class RequestFragment: Fragment() {
+class RequestFragment : Fragment(),
+RequestAdapter.OnRequestSelectedListener{
 
-    val db = FirebaseFirestore.getInstance()
+    private var firestore: FirebaseFirestore? = null
+    private var query: Query? = null
 
-    var requests : Array<RequestData> = arrayOf()
-    var requestsId : Array<String> = arrayOf()
+    private var requestRecycler: RecyclerView? = null
+    private var adapter: RequestAdapter? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        var userRequestQuery =
-            db.collection(RequestManager.USERS_TAG)
-                .document(SharedPreferenceUser.currentUser?.uid!!)
-                .collection(MY_REQUEST_TAG)
-                .get().addOnCompleteListener {task ->
-                    var res = task.result?.documents
-                    requestsId = Array(res?.size!!){
-                        Log.d("TESTTEXT", res[it].toString())
-                        res[it].toString()
-                    }
-                }
+    init {
+        initFirestore()
+    }
+
+    private fun initFirestore(){
+        firestore = FirebaseFirestore.getInstance()
+        val fieldPath = FieldPath.of("master", "phone")
+        val phone = SharedPreferenceUser.currentUser?.phone
+        query = when (SharedPreferenceUser.currentUser?.category) {
+            USER_CATEGORY.VETERAN -> {
+                firestore!!.collection(RequestManager.REQUEST_TAG)
+                    .whereEqualTo(fieldPath, phone!!)
+            }
+            USER_CATEGORY.VOLONTEER -> {
+                firestore!!.collection(RequestManager.REQUEST_TAG)
+
+            }
+            USER_CATEGORY.ADMIN -> TODO()
+            null -> TODO()
+        }
     }
 
     override fun onCreateView(
@@ -54,65 +53,32 @@ class RequestFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding : FragmentReqestBinding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_reqest, container, false)
+        val root = inflater.inflate(R.layout.fragment_reqest, container, false)
 
-        binding.requestRecyclerView.layoutManager = LinearLayoutManager(context)
-        binding.requestRecyclerView.adapter = RequestAdapter(requests)
+        requestRecycler =  root.findViewById(R.id.request_recycler_view)
+        initRecyclerView()
 
-
-        var query = when (SharedPreferenceUser.currentUser?.category){
-            USER_CATEGORY.VETERAN -> {
-                db.collection(REQUEST_TAG)
-                    .document(SharedPreferenceUser.currentUser?.uid!!)
-                    .collection(MY_REQUEST_TAG)
-            }
-
-            USER_CATEGORY.VOLONTEER -> db.collection(REQUEST_TAG)
-
-            USER_CATEGORY.ADMIN -> db.collection(REQUEST_TAG)
-                .endAt(SharedPreferenceUser.currentUser?.uid)
-            else -> throw Exception()
-                //.endAt(SharedPreferenceUser.currentUser?.uid)
-        }
-
-        query.get().addOnCompleteListener { it : Task<QuerySnapshot> ->
-
-            var result = it.result?.documents
-            requests =
-                Array(result?.size ?: 0) {i ->
-                    result!![i].toObject(RequestData::class.java)!!
-                }
-            requests.forEach { Log.d("TESTTEXT", it.toString()) }
-            binding.requestRecyclerView.adapter = RequestAdapter(requests)
-        }
-
-        return binding.root
+        return root
     }
 
-    inner class RequestHolder(var binding: DataRequestBinding) : RecyclerView.ViewHolder(binding.root){
-        init {
-            binding.request = RequestViewModel(RequestManager())
-        }
-        fun bind(request : RequestData){
-            binding.request?.request = request
-            binding.executePendingBindings()
-        }
+    private fun initRecyclerView(){
+        adapter = RequestAdapter(query!!, this)
+        val linear = LinearLayoutManager(context)
+        requestRecycler?.layoutManager = linear
+        requestRecycler?.adapter = adapter
     }
-    inner class RequestAdapter(var requests: Array<RequestData>) : RecyclerView.Adapter<RequestHolder>(){
 
-        override fun onBindViewHolder(holder: RequestHolder, position: Int) {
-            holder.bind(requests[position])
-        }
+    override fun onStart() {
+        super.onStart()
+        adapter?.startListening()
+    }
 
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RequestHolder {
-            val inflater = LayoutInflater.from(activity)
-            val binding : DataRequestBinding = DataBindingUtil.inflate(inflater, R.layout.data_request, parent, false)
-            return RequestHolder(binding)
-        }
+    override fun onStop() {
+        super.onStop()
+        adapter?.stopListening()
+    }
 
-        override fun getItemCount(): Int = requests.size
+    override fun onRequestSelectedListener(requestData: DocumentSnapshot) {
+
     }
 }
-
-
