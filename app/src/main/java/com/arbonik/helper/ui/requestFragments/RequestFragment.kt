@@ -17,21 +17,21 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-class RequestFragment : Fragment(),
+open class RequestFragment : Fragment(),
 RequestAdapter.OnRequestSelectedListener{
 
-    private var firestore: FirebaseFirestore? = null
-    private var query: Query? = null
+    protected var firestore: FirebaseFirestore? = null
+    protected var query: Query? = null
 
     private var requestRecycler: RecyclerView? = null
     private var adapter: RequestAdapter? = null
 
     init {
+        firestore = FirebaseFirestore.getInstance()
         initFirestore()
     }
 
-    private fun initFirestore(){
-        firestore = FirebaseFirestore.getInstance()
+    protected open fun initFirestore(){
         val fieldPath = FieldPath.of("master", "phone")
         val phone = SharedPreferenceUser.currentUser?.phone
         query = when (SharedPreferenceUser.currentUser?.category) {
@@ -41,12 +41,14 @@ RequestAdapter.OnRequestSelectedListener{
             }
             USER_CATEGORY.VOLONTEER -> {
                 firestore!!.collection(RequestManager.REQUEST_TAG)
+                    .whereEqualTo("status", false)
 
             }
             USER_CATEGORY.ADMIN -> TODO()
             null -> TODO()
         }
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -79,6 +81,16 @@ RequestAdapter.OnRequestSelectedListener{
     }
 
     override fun onRequestSelectedListener(requestData: DocumentSnapshot) {
+
+    }
+}
+
+class RequestVolonteerFragment : RequestFragment() {
+    override fun initFirestore() {
+        val fieldPath = FieldPath.of("accepter")
+        val phone = SharedPreferenceUser.currentUser?.phone
+        query = firestore!!.collection(RequestManager.REQUEST_TAG)
+                    .whereEqualTo(fieldPath, SharedPreferenceUser.currentUser?.uid)
 
     }
 }

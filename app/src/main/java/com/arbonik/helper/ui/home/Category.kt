@@ -40,5 +40,4 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryVi
             }
         }
     }
-
 }

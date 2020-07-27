@@ -2,23 +2,22 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    android:id="@+id/mobile_navigation_volonteer"
+    app:startDestination="@id/navigation_request_vol">
+    <fragment
+        android:id="@+id/navigation_volonteer_fragment"
+        android:name="com.arbonik.helper.ui.requestFragments.RequestVolonteerFragment"
+        android:label="@string/title_requestion"
+        tools:layout="@layout/fragment_reqest" />
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.arbonik.helper.ui.home.VeteranRequestFragment"
-        android:label="@string/title_home"
-        tools:layout="@layout/fragment_veteran_request" />
-
-    <fragment
-        android:id="@+id/navigation_request"
+        android:id="@+id/navigation_request_vol"
         android:name="com.arbonik.helper.ui.requestFragments.RequestFragment"
         android:label="@string/title_requestion"
         tools:layout="@layout/fragment_reqest" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_notifications_vol"
         android:name="com.arbonik.helper.ui.settings.SettingsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />

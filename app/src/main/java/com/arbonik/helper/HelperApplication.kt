@@ -12,7 +12,5 @@ class HelperApplication : Application() {
     companion object{
         lateinit var globalContext : Context
     }
-    fun qwer(){
 
-    }
 }
