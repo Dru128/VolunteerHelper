@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:accessibilityPaneTitle="@string/app_name"
     android:background="#FFF"
-    tools:context=".auth.RegistrationActivity">
+    tools:context=".auth.RegistrationActivity"
+    android:id="@+id/viewGroupRegistration">
     <EditText
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp"
@@ -101,13 +102,15 @@
             android:id="@+id/radioButtonVeteran"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ветеран" />
+            android:text="@string/veteran"
+            android:checked="true"
+            />
 
         <RadioButton
             android:id="@+id/radioButtonVolonteer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Волонтер" />
+            android:text="@string/volonteer" />
     </RadioGroup>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

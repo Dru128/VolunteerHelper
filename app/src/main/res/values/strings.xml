@@ -1,7 +1,16 @@
 <resources>
+    <array name="help_variant">
+        <item>Помощь по хозяйству</item>
+        <item>Прогулка с питомцем / уход</item>
+        <item>Поход в магазин</item>
+        <item>Душевное общение</item>
+        <item>Детские утренники</item>
+    </array>
+
     <string name="answ_accept">Заявка принята!</string>
-    <string name="app_name">Helper</string>
+    <string name="app_name">Help</string>
     <string name="title_home">Создать заявку</string>
+    <string name="title_requests_volonteer">Мои заявки</string>
     <string name="title_requestion">Заявки</string>
     <string name="title_notifications">Настройки профиля</string>
     <string name="date_help">Выберите время</string>
@@ -12,4 +21,7 @@
     <string name="accept_request">Принять заявку</string>
     <string name="delete_request">Удалить заявку</string>
     <string name="success_request">Заявка выполненна</string>
+    <string name="inputAllView">Заполните все поля</string>
+    <string name="veteran">Ветеран</string>
+    <string name="volonteer">Волонтер</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.arbonik.helper.ui.home
+package com.arbonik.helper.ui.veteran
 
 import android.os.Bundle
 import android.view.Gravity
@@ -35,9 +35,8 @@ class VeteranRequestFragment : Fragment() {
         data.layoutManager = linear
 
         var ca = CategoryAdapter().apply {
-            categories = mutableListOf(CategoryWidget("SOTEXT"),
-                CategoryWidget("wefweg"),
-                CategoryWidget("SwewegOTEXT"))
+            val helpArray = resources.getStringArray(R.array.help_variant)
+            categories = MutableList(helpArray.size) { CategoryWidget(helpArray[it]) }
         }
         data.adapter = ca
 

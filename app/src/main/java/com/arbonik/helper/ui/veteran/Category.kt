@@ -1,9 +1,8 @@
-package com.arbonik.helper.ui.home
+package com.arbonik.helper.ui.veteran
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import android.widget.CheckBox
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -32,7 +31,6 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryVi
             fun bind(category: CategoryWidget){
                 label.setText(category.category)
                 checkBox.isChecked = category.choise
-
                 checkBox.setOnCheckedChangeListener { buttonView, isChecked ->
                     category.choise = isChecked
                 }

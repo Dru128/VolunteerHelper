@@ -1,8 +1,12 @@
 package com.arbonik.helper.auth
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.view.children
 import com.arbonik.helper.R
 import kotlinx.android.synthetic.main.activity_registration.*
 
@@ -14,8 +18,24 @@ class RegistrationActivity : AuthActivity() {
         setContentView(R.layout.activity_registration)
 
         singInBotton.setOnClickListener { v ->
-            registerUser()
+            if (checkDataInput()) {
+                registerUser()
+
+            }
         }
+    }
+
+    fun checkDataInput() : Boolean{
+        val allView = viewGroupRegistration.children
+        for (i in allView){
+            if (i is EditText){
+                if (i.text.isEmpty()) {
+                    Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
+                    return false
+                }
+            }
+        }
+        return true
     }
 
     fun registerUser(){
@@ -24,9 +44,12 @@ class RegistrationActivity : AuthActivity() {
                 if (p0.isSuccessful) {
                     Toast.makeText(this, mAuth.currentUser?.uid!!, Toast.LENGTH_LONG).show()
                     userDataFirebase.addUser(createUser(mAuth.currentUser?.uid!!))
-                } else {
-                    Toast.makeText(this, p0.exception.toString(), Toast.LENGTH_LONG).show()
+                    startActivity(Intent(this, SignIn::class.java))
+                    finish()
                 }
+            }
+            .addOnFailureListener {it ->
+                Toast.makeText(this, "Ошибка регестации: ${it.message}", Toast.LENGTH_LONG).show()
             }
     }
 
@@ -50,12 +73,4 @@ class RegistrationActivity : AuthActivity() {
             R.id.radioButtonVolonteer -> USER_CATEGORY.VOLONTEER
             else -> USER_CATEGORY.ADMIN
         }
-
-    fun clearAllTextView(){
-        email.text.clear()
-        password.text.clear()
-        name.text.clear()
-        phone.text.clear()
-        adress.text.clear()
-    }
 }

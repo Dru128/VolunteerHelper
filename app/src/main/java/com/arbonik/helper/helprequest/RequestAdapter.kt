@@ -68,7 +68,7 @@ open class RequestAdapter(_query : Query, _listener : OnRequestSelectedListener)
                                 statusView.text = if (it.status) "Заявка принята" else "Заявка обрабатывается"
                                 button.text = if (it.status) "Отказаться от заявки" else "Принять заявку"
                                 button.setOnClickListener { v->
-                                    if (!requestData.status){
+                                    if (!it.status){
                                         snapshot.reference.update(
                                             mapOf("status" to true,
                                                 "accepter" to SharedPreferenceUser.currentUser?.uid))
@@ -87,8 +87,5 @@ open class RequestAdapter(_query : Query, _listener : OnRequestSelectedListener)
                     listener.onRequestSelectedListener(snapshot)
                 }
             }
-
-
     }
-
 }
