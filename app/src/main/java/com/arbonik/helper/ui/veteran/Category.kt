@@ -14,7 +14,7 @@ class CategoryAdapter: RecyclerView.Adapter<CategoryAdapter.Companion.CategoryVi
     var categories : MutableList<CategoryWidget> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        var view = LayoutInflater.from(parent.context).inflate(R.layout.category, parent, false)
+        var view = LayoutInflater.from(parent.context).inflate(R.layout.category_item, parent, false)
         return CategoryViewHolder(view)
     }
 

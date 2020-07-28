@@ -4,8 +4,8 @@
         android:id="@+id/logout"
         android:title="Выйти из аккаунта"
         />
-    <item
-        android:id="@+id/logCheck"
-        android:title="check"
-        />
+<!--    <item-->
+<!--        android:id="@+id/logCheck"-->
+<!--        android:title="check"-->
+<!--        />-->
 </menu>

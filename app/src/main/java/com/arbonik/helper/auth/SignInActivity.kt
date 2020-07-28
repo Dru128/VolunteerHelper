@@ -4,14 +4,17 @@ import android.content.Intent
 import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
+import androidx.core.view.children
 import com.arbonik.helper.FirebaseFun
 import com.arbonik.helper.MainActivity
 import com.arbonik.helper.R
 import com.arbonik.helper.helprequest.RequestManager.Companion.USERS_TAG
+import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_auth.*
 
-class SignIn : AuthActivity() {
+class SignInActivity : AuthBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +23,11 @@ class SignIn : AuthActivity() {
         forgott_pass.setOnClickListener {
         }
         singInBotton.setOnClickListener { v ->
-            signIn(email.text.toString(), password.text.toString())
+            val allView = auth_activity_container.children
+            if (checkDataInput(allView)) {
+                signIn(email.text.toString(), password.text.toString())
+            } else
+                Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
         }
 
         registration.setOnClickListener { v ->
@@ -29,19 +36,18 @@ class SignIn : AuthActivity() {
     }
 
 
-    fun signIn(login : String, password : String):Boolean {
-        mAuth.signInWithEmailAndPassword(login, password).addOnCompleteListener(this) {
+    fun signIn(login : String, password : String) {
+        mAuth.signInWithEmailAndPassword(login, password)
+            .addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 val currentUser = mAuth.currentUser!!
                 getDataUser(currentUser.uid)
-                true
-            } else {
-                false
             }
         }
-        return false
+            .addOnFailureListener { p0 ->
+                Toast.makeText(this, "Ошибка: ${p0.message}", Toast.LENGTH_LONG).show()
+            }
     }
-
 
     var db = FirebaseFirestore.getInstance()
 

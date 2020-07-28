@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.arbonik.helper.MainActivity
 import com.google.firebase.auth.FirebaseAuth
 
-open class AuthActivity : AppCompatActivity() {
+abstract class AuthBase : AppCompatActivity() {
     val mAuth = FirebaseAuth.getInstance()
     val sharedPreferenceUser = SharedPreferenceUser()
     val userDataFirebase = UserDataFirebase()

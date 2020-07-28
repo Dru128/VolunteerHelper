@@ -8,17 +8,17 @@
         android:id="@+id/navigation_volonteer_fragment"
         android:name="com.arbonik.helper.ui.requestFragments.RequestVolonteerFragment"
         android:label="@string/title_requestion"
-        tools:layout="@layout/fragment_reqest" />
+        tools:layout="@layout/fragment_reqests" />
 
     <fragment
         android:id="@+id/navigation_request_vol"
         android:name="com.arbonik.helper.ui.requestFragments.RequestFragment"
         android:label="@string/title_requestion"
-        tools:layout="@layout/fragment_reqest" />
+        tools:layout="@layout/fragment_reqests" />
 
     <fragment
         android:id="@+id/navigation_notifications_vol"
         android:name="com.arbonik.helper.ui.settings.SettingsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+     />
 </navigation>

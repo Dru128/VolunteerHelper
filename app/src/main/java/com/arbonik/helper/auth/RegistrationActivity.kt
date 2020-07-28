@@ -3,39 +3,26 @@ package com.arbonik.helper.auth
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import androidx.core.view.children
 import com.arbonik.helper.R
+import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import kotlinx.android.synthetic.main.activity_registration.*
 
 
-class RegistrationActivity : AuthActivity() {
+class RegistrationActivity : AuthBase() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
         singInBotton.setOnClickListener { v ->
-            if (checkDataInput()) {
+            val allView = viewGroupRegistration.children
+            if (checkDataInput(allView)) {
                 registerUser()
-
-            }
+            } else
+                Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
         }
-    }
-
-    fun checkDataInput() : Boolean{
-        val allView = viewGroupRegistration.children
-        for (i in allView){
-            if (i is EditText){
-                if (i.text.isEmpty()) {
-                    Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
-                    return false
-                }
-            }
-        }
-        return true
     }
 
     fun registerUser(){
@@ -44,7 +31,7 @@ class RegistrationActivity : AuthActivity() {
                 if (p0.isSuccessful) {
                     Toast.makeText(this, mAuth.currentUser?.uid!!, Toast.LENGTH_LONG).show()
                     userDataFirebase.addUser(createUser(mAuth.currentUser?.uid!!))
-                    startActivity(Intent(this, SignIn::class.java))
+                    startActivity(Intent(this, SignInActivity::class.java))
                     finish()
                 }
             }

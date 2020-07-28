@@ -1,5 +1,6 @@
 package com.arbonik.helper.ui.veteran
 
+import android.os.Build
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
@@ -27,7 +28,7 @@ class VeteranRequestFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_veteran_request, container, false)
+        val root = inflater.inflate(R.layout.fragment_create_request, container, false)
 
         val data: RecyclerView = root.findViewById(R.id.fragmentRecycler)
 
@@ -41,20 +42,24 @@ class VeteranRequestFragment : Fragment() {
         data.adapter = ca
 
         val commentText = root.findViewById<TextView>(R.id.comment)
-        val timeHelp = root.findViewById<TextView>(R.id.timeHelp)
+        val timeHelp = root.findViewById<TimePicker>(R.id.timeHelp)
         val datePicker = root.findViewById<DatePicker>(R.id.calendarView)
-
+        timeHelp.setIs24HourView(true)
         root.findViewById<Button>(R.id.toAuth).setOnClickListener {
             v ->
                 for (c in ca.categories) {
                     if (c.choise) {
-                        var request = RequestData(
-                            c.category,
-                            commentText.text.toString(),
-                            SharedPreferenceUser.currentUser!!,
-                            "${datePicker.dayOfMonth} числа.${datePicker.month} месяца в ${timeHelp.text}",
-                            false
-                        )
+                        var request = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                            RequestData(
+                                c.category,
+                                commentText.text.toString(),
+                                SharedPreferenceUser.currentUser!!,
+                                "${datePicker.dayOfMonth}.${datePicker.month} в ${timeHelp.hour}:${timeHelp.minute}",
+                                false
+                            )
+                        } else {
+                            TODO("VERSION.SDK_INT < M")
+                        }
                         requestManager.addRequest(request)
                         c.choise = false
                     }

@@ -6,7 +6,9 @@
     android:layout_height="match_parent"
     android:accessibilityPaneTitle="@string/app_name"
     android:background="#FFF"
-    tools:context=".auth.RegistrationActivity">
+    tools:context=".auth.RegistrationActivity"
+    android:id="@+id/auth_activity_container"
+    >
     <EditText
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp"
@@ -31,6 +33,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
+        android:inputType="textPassword"
         android:hint="Пароль"/>
     <TextView
         app:layout_constraintTop_toBottomOf="@id/password"

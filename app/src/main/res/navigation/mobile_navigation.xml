@@ -9,17 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.arbonik.helper.ui.veteran.VeteranRequestFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_veteran_request" />
+        tools:layout="@layout/fragment_create_request" />
 
     <fragment
         android:id="@+id/navigation_request"
         android:name="com.arbonik.helper.ui.requestFragments.RequestFragment"
         android:label="@string/title_requestion"
-        tools:layout="@layout/fragment_reqest" />
+        tools:layout="@layout/fragment_reqests" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.arbonik.helper.ui.settings.SettingsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+       />
 </navigation>

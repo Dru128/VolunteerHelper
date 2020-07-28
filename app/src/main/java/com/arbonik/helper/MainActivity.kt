@@ -10,7 +10,7 @@ import androidx.navigation.*
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.arbonik.helper.auth.SharedPreferenceUser
-import com.arbonik.helper.auth.SignIn
+import com.arbonik.helper.auth.SignInActivity
 import com.arbonik.helper.auth.USER_CATEGORY
 
 class MainActivity : AppCompatActivity() {
@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         if (!sharedPreferenceUser.checkAuth()){
-            startActivity(Intent(this, SignIn::class.java))
+            startActivity(Intent(this, SignInActivity::class.java))
             finish()
         }
         super.onCreate(savedInstanceState)
@@ -62,11 +62,8 @@ class MainActivity : AppCompatActivity() {
             when(item.itemId){
                 R.id.logout -> {
                     sharedPreferenceUser.loginOut()
-                    startActivity(Intent(this, SignIn::class.java))
+                    startActivity(Intent(this, SignInActivity::class.java))
                     finish()
-                }
-                R.id.logCheck -> {
-
                 }
             }
         return super.onOptionsItemSelected(item)

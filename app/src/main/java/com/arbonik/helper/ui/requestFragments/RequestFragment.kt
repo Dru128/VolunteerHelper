@@ -55,7 +55,7 @@ RequestAdapter.OnRequestSelectedListener{
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val root = inflater.inflate(R.layout.fragment_reqest, container, false)
+        val root = inflater.inflate(R.layout.fragment_reqests, container, false)
 
         requestRecycler =  root.findViewById(R.id.request_recycler_view)
         initRecyclerView()

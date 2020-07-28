@@ -13,7 +13,7 @@
     <string name="title_requests_volonteer">Мои заявки</string>
     <string name="title_requestion">Заявки</string>
     <string name="title_notifications">Настройки профиля</string>
-    <string name="date_help">Выберите время</string>
+    <string name="date_help">Выберите удобное для вас время</string>
 
     <string name="already_request">Заявка принята</string>
     <string name="wait_request">Заявка в обработке</string>
