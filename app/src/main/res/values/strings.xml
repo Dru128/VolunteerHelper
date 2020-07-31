@@ -1,10 +1,8 @@
 <resources>
     <array name="help_variant">
         <item>Помощь по хозяйству</item>
-        <item>Прогулка с питомцем / уход</item>
+        <item>Уход за питомцем </item>
         <item>Поход в магазин</item>
-        <item>Душевное общение</item>
-        <item>Детские утренники</item>
     </array>
 
     <string name="answ_accept">Заявка принята!</string>
