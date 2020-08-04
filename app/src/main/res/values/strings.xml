@@ -22,4 +22,5 @@
     <string name="inputAllView">Заполните все поля</string>
     <string name="veteran">Ветеран</string>
     <string name="volonteer">Волонтер</string>
+    <string name="signup">Зарегистрировать</string>
 </resources>

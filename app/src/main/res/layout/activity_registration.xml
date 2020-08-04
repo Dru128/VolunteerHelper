@@ -77,7 +77,7 @@
         android:id="@+id/singInBotton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Зарегестрировать"
+        android:text="@string/signup"
         android:radius="10dp"
         android:textColor="#FFF"
         android:background="@drawable/button_yellow_radius"

@@ -42,13 +42,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         navController.graph = graph
-
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_home, R.id.navigation_request, R.id.navigation_notifications
-            )
-        )
-//        navView.setupWithNavController(navController)
         navView.setupWithNavController(navController)
 
     }

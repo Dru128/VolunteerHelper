@@ -1,12 +1,10 @@
 package com.arbonik.helper.auth
 
 import android.content.Intent
-import android.os.AsyncTask
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.core.view.children
-import com.arbonik.helper.FirebaseFun
 import com.arbonik.helper.MainActivity
 import com.arbonik.helper.R
 import com.arbonik.helper.helprequest.RequestManager.Companion.USERS_TAG
@@ -74,13 +72,5 @@ class SignInActivity : AuthBase() {
             .addOnFailureListener {
                 Log.d("TESTTEXT", "WOW")
             }
-    }
-
-    class RunHhttpRequest : AsyncTask<Unit, Unit, String>(){
-        override fun doInBackground(vararg params: Unit?): String {
-            var result = FirebaseFun().getFirst()
-            Log.d("TEXT", result)
-            return ""
-        }
     }
 }
