@@ -35,7 +35,7 @@ class SignInActivity : AuthBase() {
 
 
     fun signIn(login : String, password : String) {
-        mAuth.signInWithEmailAndPassword(login, password)
+        mAuth.signInWithEmailAndPassword(login+"@mail.ru", password)
             .addOnCompleteListener(this) {
             if (it.isSuccessful) {
                 val currentUser = mAuth.currentUser!!

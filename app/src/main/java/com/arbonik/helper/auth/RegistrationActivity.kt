@@ -26,7 +26,8 @@ class RegistrationActivity : AuthBase() {
     }
 
     fun registerUser(){
-        mAuth.createUserWithEmailAndPassword(email.text.toString(), password.text.toString())
+//        val mail: String = email.text.toString() + "@mail.ru"
+        mAuth.createUserWithEmailAndPassword(email.text.toString()+"@mail.ru", password.text.toString())
             .addOnCompleteListener(this) { p0 ->
                 if (p0.isSuccessful) {
                     Toast.makeText(this, mAuth.currentUser?.uid!!, Toast.LENGTH_LONG).show()
