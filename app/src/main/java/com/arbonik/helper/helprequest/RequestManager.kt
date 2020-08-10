@@ -1,5 +1,6 @@
 package com.arbonik.helper.helprequest
 
+import com.arbonik.helper.auth.User
 import com.google.firebase.firestore.FirebaseFirestore
 
 class RequestManager {
@@ -14,14 +15,25 @@ class RequestManager {
 
     var requests: Array<RequestData> = arrayOf()
 
-    fun addRequest(request: RequestData) {
+    fun addRequest(request: RequestData)
+    {
          db.collection(REQUEST_TAG).add(request).addOnSuccessListener {
               var id = it.id
          }
     }
 
-    fun deleteRequest(uid: String) {
+    fun deleteRequest(uid: String)
+    {
         db.collection(REQUEST_TAG).document(uid).delete()
     }
 
+    fun updateUser(user: User)
+    {
+        user.uid?.let {
+            db.collection(USERS_TAG).document(it)
+                .set(user)
+                .addOnSuccessListener {}
+                .addOnFailureListener {}
+        }
+    }
 }

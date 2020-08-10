@@ -4,14 +4,18 @@ import android.util.Log
 import androidx.preference.PreferenceManager
 import com.arbonik.helper.HelperApplication
 
-class SharedPreferenceUser {
-    companion object{
+class SharedPreferenceUser
+{
+    companion object
+    {
         var currentUser :User? = null
-            get(){
+            get()
+            {
                 if (field == null)
                 {
                     var sharedPreferenceUser = SharedPreferenceUser()
-                    if (sharedPreferenceUser.checkAuth()) {
+                    if (sharedPreferenceUser.checkAuth())
+                    {
                      currentUser = sharedPreferenceUser.restoreUser()
                     }
                 }
@@ -24,9 +28,11 @@ class SharedPreferenceUser {
 
     var editor = sharedPreference.edit()
 
-    fun authInDevice(user: User){
+    fun authInDevice(user: User)
+    {
         currentUser = user
-        with(editor) {
+        with(editor)
+        {
             putBoolean(User.TAG_AUTH, true)
             putString(User.NAME_TAG, user.name)
             putString(User.TAG_UID, user.uid)
@@ -38,13 +44,15 @@ class SharedPreferenceUser {
         }
     }
 
-    fun checkAuth():Boolean{
+    fun checkAuth():Boolean
+    {
         Log.d("TESTTEXT","LOGINCHECK")
         return PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
             .getBoolean(User.TAG_AUTH, false)
     }
 
-    fun loginOut(){
+    fun loginOut()
+    {
         Log.d("TESTTEXT","LOGINOUT")
         currentUser = null
             editor.putBoolean(User.TAG_AUTH, false)
@@ -53,7 +61,8 @@ class SharedPreferenceUser {
 
     fun restoreUser():User{
        var sharedPreference= PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
-            with(sharedPreference){
+            with(sharedPreference)
+            {
             return@restoreUser User(
                 getString(User.NAME_TAG,""),
                 getString(User.TAG_PHONE,""),

@@ -66,10 +66,7 @@ class VeteranRequestFragment : Fragment() {
                 }
                 ca.notifyDataSetChanged()
 
-                val t = Toast.makeText(
-                    HelperApplication.globalContext,
-                    "Ваша заявка принята!", Toast.LENGTH_LONG
-                )
+                val t = Toast.makeText(HelperApplication.globalContext,"Ваша заявка принята!", Toast.LENGTH_LONG)
                 t.setGravity(Gravity.CENTER, 0, 0)
                 t.show()
             }

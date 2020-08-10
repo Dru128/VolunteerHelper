@@ -1,28 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
     <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        app:key="main_screen"
-    >
+        app:key="main_screen">
         <PreferenceCategory
             app:key="user_category"
-            app:title="Личные данные"
-            >
+            app:title="Личные данные">
             <EditTextPreference
                 app:dialogTitle="Ваше имя"
                 app:dialogMessage="Введите ваше полное имя"
                 app:key="NAME"
                 app:title="Имя"
-                app:summary="Фамилия Имя"
-                >
+                app:summary="Фамилия Имя">
             </EditTextPreference>
             <EditTextPreference
                 app:dialogTitle="Ваш телефон"
                 app:dialogMessage="Введите ваш телефон"
                 app:key="PHONE"
                 app:title="Телефон"
-                app:summary="88005553535"
-                >
-
+                app:summary="88005553535">
             </EditTextPreference>
             <EditTextPreference
                 app:dialogTitle="Ваш адресс"

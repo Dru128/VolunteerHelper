@@ -18,7 +18,8 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
 open class RequestFragment : Fragment(),
-RequestAdapter.OnRequestSelectedListener{
+RequestAdapter.OnRequestSelectedListener
+{
 
     protected var firestore: FirebaseFirestore? = null
     protected var query: Query? = null
@@ -26,12 +27,14 @@ RequestAdapter.OnRequestSelectedListener{
     private var requestRecycler: RecyclerView? = null
     private var adapter: RequestAdapter? = null
 
-    init {
+    init
+    {
         firestore = FirebaseFirestore.getInstance()
         initFirestore()
     }
 
-    protected open fun initFirestore(){
+    protected open fun initFirestore()
+    {
         val fieldPath = FieldPath.of("master", "phone")
         val phone = SharedPreferenceUser.currentUser?.phone
         query = when (SharedPreferenceUser.currentUser?.category) {
@@ -50,11 +53,8 @@ RequestAdapter.OnRequestSelectedListener{
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    {
         val root = inflater.inflate(R.layout.fragment_reqests, container, false)
 
         requestRecycler =  root.findViewById(R.id.request_recycler_view)

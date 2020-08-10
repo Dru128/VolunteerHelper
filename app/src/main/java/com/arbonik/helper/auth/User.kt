@@ -8,7 +8,8 @@ data class User(
     val category : USER_CATEGORY? = null,
     val uid : String? = null
 ){
-    companion object{
+    companion object
+    {
         const val TAG_PHONE : String = "PHONE"
         const val NAME_TAG = "NAME"
         const val TAG_ADDRESS : String = "ADDRESS"
@@ -18,7 +19,8 @@ data class User(
     }
 }
 
-fun USER_CATEGORY_CREATER(s : String) = when(s){
+fun USER_CATEGORY_CREATER(s : String) = when(s)
+{
     "VETERAN" -> USER_CATEGORY.VETERAN
     "VOLONTEER"-> USER_CATEGORY.VOLONTEER
     "ADMIN"    -> USER_CATEGORY.ADMIN
