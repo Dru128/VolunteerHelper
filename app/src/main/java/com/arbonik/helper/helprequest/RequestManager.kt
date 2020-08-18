@@ -1,11 +1,15 @@
 package com.arbonik.helper.helprequest
 
+import android.widget.Toast
+import com.arbonik.helper.HelperApplication
 import com.arbonik.helper.auth.User
 import com.google.firebase.firestore.FirebaseFirestore
 
-class RequestManager {
+class RequestManager
+{
 
-    companion object {
+    companion object
+    {
         val USERS_TAG = "USERS"
         const val REQUEST_TAG = "requests"
         const val MY_REQUEST_TAG = "myrequests"

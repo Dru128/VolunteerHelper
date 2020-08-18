@@ -1,22 +1,27 @@
 package com.arbonik.helper
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.*
-import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.auth.SignInActivity
 import com.arbonik.helper.auth.USER_CATEGORY
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
     var sharedPreferenceUser = SharedPreferenceUser()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
+//        applicationContext.startService(Intent(applicationContext, NotificationService::class.java))
+
         if (!sharedPreferenceUser.checkAuth()){
             startActivity(Intent(this, SignInActivity::class.java))
             finish()
