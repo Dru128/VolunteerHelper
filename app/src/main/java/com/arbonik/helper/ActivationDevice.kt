@@ -16,7 +16,7 @@ class ActivationDevice : BroadcastReceiver()
     @SuppressLint("UnsafeProtectedBroadcastReceiver")
     override fun onReceive(context: Context, intent: Intent) /** вызывается после загрузки телефона*/
     {
-        Log.d("on", "start!")
+        //Log.d("on", "start!")
         Toast.makeText(context.applicationContext, "Загрузка завершена", Toast.LENGTH_LONG).show()
 //        context.startActivity(Intent(context, MainActivity::class.java))
         context.startService(Intent(context, NotificationService::class.java))
