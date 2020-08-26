@@ -57,14 +57,16 @@ open class RequestAdapter(_query : Query, _listener : OnRequestSelectedListener)
                         numberView.setText(it.master.phone)
                         commentView.setText(it.comment)
                         when (userCategory){
-                            USER_CATEGORY.VETERAN -> {
+                            USER_CATEGORY.VETERAN ->
+                            {
                                 statusView.text = if (it.status) "Заявка принята" else "Заявка обрабатывается"
                                 button.text = if (it.status) "Заявка исполнена" else "Отозвать заявку"
                                 button.setOnClickListener { v->
                                     snapshot.reference.delete()
                                 }
                             }
-                            USER_CATEGORY.VOLONTEER -> {
+                            USER_CATEGORY.VOLONTEER ->
+                            {
                                 statusView.text = if (it.status) "Заявка принята" else "Заявка обрабатывается"
                                 button.text = if (it.status) "Отказаться от заявки" else "Принять заявку"
                                 button.setOnClickListener { v->

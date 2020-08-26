@@ -62,7 +62,8 @@ class SignInActivity : AuthBase() {
                         result[User.TAG_PHONE.toLowerCase()].toString(),
                         result[User.TAG_ADDRESS.toLowerCase()].toString(),
                         USER_CATEGORY_CREATER(result[User.TAG_CATEGORY.toLowerCase()].toString()),
-                        result[User.TAG_UID.toLowerCase()].toString()
+                        result[User.TAG_UID.toLowerCase()].toString(),
+                        result[User.TAG_NOTFICATION.toLowerCase()].toString().toBoolean()
                     )
                     sharedPreferenceUser.authInDevice(returnUser)
                     startActivity(Intent(this, MainActivity::class.java))

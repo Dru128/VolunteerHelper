@@ -24,15 +24,23 @@
                 app:dialogMessage="Введите ваш адрес"
                 app:key="ADDRESS"
                 app:title="Адрес"
-                app:summary="Улица Пошкина дом Колотушкина"
-                >
+                app:summary="Улица Пошкина дом Колотушкина">
             </EditTextPreference>
         </PreferenceCategory>
+
     <PreferenceCategory
         app:title="Аккаунт">
         <EditTextPreference
             app:key="CATEGORY"
             app:title="ТИП АККАУНТА">
         </EditTextPreference>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:title="Уведомления">
+        <SwitchPreference
+            app:title="Отправлять уведомления"
+            android:key="NOTIFICATION">
+        </SwitchPreference>
     </PreferenceCategory>
 </PreferenceScreen>

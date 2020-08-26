@@ -51,7 +51,8 @@ class RegistrationActivity : AuthBase() {
         phone.text.toString(),
         adress.text.toString(),
         getUserCategory(),
-        uid
+        uid,
+        true
     )
 
     fun getUserCategory() : USER_CATEGORY =

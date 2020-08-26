@@ -12,7 +12,8 @@ abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query)
     }
 
     var query : Query = _query
-        set(value) {
+        set(value)
+        {
             // Stop listening
             stopListening()
 
@@ -35,48 +36,59 @@ abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query)
             return
         }
 
-        for (change in value?.documentChanges!!){
+        for (change in value?.documentChanges!!)
+        {
             var snapshot = change.document
             when (change.type){
-                DocumentChange.Type.ADDED -> {
+                DocumentChange.Type.ADDED ->
+                {
                     onDocumentAdded(change)
                 }
-                DocumentChange.Type.MODIFIED -> {
+                DocumentChange.Type.MODIFIED ->
+                {
                     onDocumentModified(change)
                 }
-                DocumentChange.Type.REMOVED -> {
+                DocumentChange.Type.REMOVED ->
+                {
                     onDocumentRemoved(change)
                 }
             }
         }
-        onDataChanged();
+        onDataChanged()
     }
     protected open fun onDocumentAdded(change : DocumentChange){
         snapshots.add(change.newIndex, change.document)
         notifyItemInserted(change.newIndex)
     }
-    protected open fun onDocumentModified(change: DocumentChange) {
-        if (change.oldIndex == change.newIndex) {
+    protected open fun onDocumentModified(change: DocumentChange)
+    {
+        if (change.oldIndex == change.newIndex)
+        {
             // Item changed but remained in same position
             snapshots.set(change.oldIndex, change.document)
             notifyItemChanged(change.oldIndex)
-        } else {
+        }
+        else
+        {
             // Item changed and changed position
             snapshots.removeAt(change.oldIndex)
             snapshots.add(change.newIndex, change.document)
             notifyItemMoved(change.oldIndex, change.newIndex)
         }
     }
-    protected open fun onDocumentRemoved(change: DocumentChange) {
+    protected open fun onDocumentRemoved(change: DocumentChange)
+    {
         snapshots.removeAt(change.oldIndex)
         notifyItemRemoved(change.oldIndex)
     }
 
-    open fun startListening(){
+    open fun startListening()
+    {
         if (registration == null)
             registration = query.addSnapshotListener(this)
     }
-    open fun stopListening(){
+    open fun stopListening()
+    {
         registration?.let {
             it.remove()
             registration = null

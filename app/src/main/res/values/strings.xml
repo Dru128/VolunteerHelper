@@ -23,4 +23,7 @@
     <string name="veteran">Ветеран</string>
     <string name="volonteer">Волонтер</string>
     <string name="signup">Зарегистрировать</string>
+
+    <string name="notify_for_volonter">Появилась новая заявка!</string>
+    <string name="notify_for_veteran">Ваша заявка принята!</string>
 </resources>
