@@ -7,8 +7,8 @@ data class User(
     var address : String? = null,
     val category : USER_CATEGORY? = null,
     val uid : String? = null,
-    var notification: Boolean? = null
-){
+    var notification: Boolean? = null)
+{
     companion object
     {
         const val TAG_PHONE : String = "PHONE"

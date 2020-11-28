@@ -2,7 +2,8 @@ package com.arbonik.helper.auth
 
 import com.google.firebase.firestore.FirebaseFirestore
 
-class UserDataFirebase {
+class UserDataFirebase
+{
 
     val COLLECTION_TAG = "USERS"
 
@@ -12,5 +13,4 @@ class UserDataFirebase {
     {
         db.collection(COLLECTION_TAG).document(user.uid.toString()).set(user)
     }
-
 }

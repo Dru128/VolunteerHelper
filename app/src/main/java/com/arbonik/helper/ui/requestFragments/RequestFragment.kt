@@ -17,8 +17,7 @@ import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 
-open class RequestFragment : Fragment(),
-RequestAdapter.OnRequestSelectedListener
+open class RequestFragment : Fragment(), RequestAdapter.OnRequestSelectedListener
 {
 
     protected var firestore: FirebaseFirestore? = null
@@ -63,19 +62,22 @@ RequestAdapter.OnRequestSelectedListener
         return root
     }
 
-    private fun initRecyclerView(){
+    private fun initRecyclerView()
+    {
         adapter = RequestAdapter(query!!, this)
         val linear = LinearLayoutManager(context)
         requestRecycler?.layoutManager = linear
         requestRecycler?.adapter = adapter
     }
 
-    override fun onStart() {
+    override fun onStart()
+    {
         super.onStart()
         adapter?.startListening()
     }
 
-    override fun onStop() {
+    override fun onStop()
+    {
         super.onStop()
         adapter?.stopListening()
     }

@@ -10,9 +10,11 @@ abstract class AuthBase : AppCompatActivity() {
     val mAuth = FirebaseAuth.getInstance()
     val sharedPreferenceUser = SharedPreferenceUser()
     val userDataFirebase = UserDataFirebase()
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        if(sharedPreferenceUser.checkAuth()){
+        if(sharedPreferenceUser.checkAuth())
+        {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }

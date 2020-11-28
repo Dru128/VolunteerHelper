@@ -14,20 +14,24 @@ import com.arbonik.helper.*
 import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.helprequest.RequestData
 import com.arbonik.helper.helprequest.RequestManager
+//import com.arbonik.helper.notifications.Notification
 
-class VeteranRequestFragment : Fragment() {
+class VeteranRequestFragment : Fragment()
+{
     var requestManager = RequestManager()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
-        retainInstance = true // сохранение сострояния при перевороте
+        retainInstance = true // сохранение состояния при перевороте
     }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View?
+    {
         val root = inflater.inflate(R.layout.fragment_create_request, container, false)
 
         val data: RecyclerView = root.findViewById(R.id.fragmentRecycler)
@@ -47,9 +51,12 @@ class VeteranRequestFragment : Fragment() {
         timeHelp.setIs24HourView(true)
         root.findViewById<Button>(R.id.toAuth).setOnClickListener {
             v ->
-                for (c in ca.categories) {
-                    if (c.choise) {
-                        var request = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                for (c in ca.categories)
+                {
+                    if (c.choise)
+                    {
+                        var request = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M)
+                        {
                             RequestData(
                                 c.category,
                                 commentText.text.toString(),
@@ -57,14 +64,29 @@ class VeteranRequestFragment : Fragment() {
                                 "${datePicker.dayOfMonth}.${datePicker.month} в ${timeHelp.hour}:${timeHelp.minute}",
                                 false
                             )
-                        } else {
+
+                        }
+                        else
+                        {
                             TODO("VERSION.SDK_INT < M")
                         }
                         requestManager.addRequest(request)
                         c.choise = false
+                            //============================================
+/*                        var message: String
+                        SharedPreferenceUser.currentUser?.let {
+                            message =
+                                "${it.name} оставил(а) заявку:\nТип помощи: ${c.category}\n" +
+                                        "Время испольнения: ${datePicker.dayOfMonth}.${datePicker.month} в ${timeHelp.hour}:${timeHelp.minute}" +
+                                        "\nАдресс: ${it.address}\nТелефон: ${it.phone}"
+                            if (commentText.text.isNotEmpty()) message += "\n${it.name} оставил(а) комментарий: ${commentText.text}"
+                            *//*Notification.sendNotification_server("Новая заявка!", message, Notification.TOPIC_FOR_VOLONTER)*//*
+                            //============================================
+                        }*/
                     }
                 }
                 ca.notifyDataSetChanged()
+
 
                 val t = Toast.makeText(HelperApplication.globalContext,"Ваша заявка принята!", Toast.LENGTH_LONG)
                 t.setGravity(Gravity.CENTER, 0, 0)

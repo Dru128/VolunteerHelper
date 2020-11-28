@@ -1,6 +1,7 @@
 package com.arbonik.helper.ui.settings
 
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.preference.*
 import com.arbonik.helper.HelperApplication
 import com.arbonik.helper.R
@@ -15,8 +16,8 @@ import com.arbonik.helper.helprequest.RequestManager
 
 class SettingsFragment : PreferenceFragmentCompat()
 {
-    var user: User? = null
     var requestManager = RequestManager()
+    var user: User? = null
     var text_name :EditTextPreference? = null
     var text_phone :EditTextPreference? = null
     var text_address :EditTextPreference? = null
@@ -26,7 +27,6 @@ class SettingsFragment : PreferenceFragmentCompat()
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?)
     {
         setPreferencesFromResource(R.xml.fragment_settings, rootKey)
-
         text_name = findPreference(NAME_TAG)
         text_phone = findPreference(TAG_PHONE)
         text_address = findPreference(TAG_ADDRESS)

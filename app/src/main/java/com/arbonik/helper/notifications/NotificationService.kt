@@ -1,5 +1,5 @@
 package com.arbonik.helper.notifications
-
+/*
 import android.app.*
 import android.content.Context
 import android.content.Intent
@@ -134,4 +134,4 @@ class NotificationService : Service()
     {
         super.onDestroy()
     }
-}
+}*/

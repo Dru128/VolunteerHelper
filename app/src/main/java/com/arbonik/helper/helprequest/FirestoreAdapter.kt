@@ -4,9 +4,9 @@ import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.firestore.*
 
-abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query)
-    : RecyclerView.Adapter<VH>(),
-    EventListener<QuerySnapshot> {
+abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query) : RecyclerView.Adapter<VH>(),
+    EventListener<QuerySnapshot>
+{
     companion object{
         val TAG = "Firestore Adapter"
     }
@@ -29,9 +29,11 @@ abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query)
     var registration : ListenerRegistration? = null
     var snapshots : ArrayList<DocumentSnapshot> = arrayListOf()
 
-    override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?) {
+    override fun onEvent(value: QuerySnapshot?, error: FirebaseFirestoreException?)
+    {
         // handle error
-        if (error != null){
+        if (error != null)
+        {
             Log.w(TAG, "onEvent:error", error);
             return
         }
@@ -39,7 +41,8 @@ abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query)
         for (change in value?.documentChanges!!)
         {
             var snapshot = change.document
-            when (change.type){
+            when (change.type)
+            {
                 DocumentChange.Type.ADDED ->
                 {
                     onDocumentAdded(change)
@@ -56,7 +59,8 @@ abstract class FirestoreAdapter<VH : RecyclerView.ViewHolder>(_query : Query)
         }
         onDataChanged()
     }
-    protected open fun onDocumentAdded(change : DocumentChange){
+    protected open fun onDocumentAdded(change : DocumentChange)
+    {
         snapshots.add(change.newIndex, change.document)
         notifyItemInserted(change.newIndex)
     }

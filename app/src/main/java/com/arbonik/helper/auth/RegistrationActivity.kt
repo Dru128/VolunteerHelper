@@ -10,9 +10,11 @@ import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import kotlinx.android.synthetic.main.activity_registration.*
 
 
-class RegistrationActivity : AuthBase() {
+class RegistrationActivity : AuthBase()
+{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
 
@@ -25,10 +27,12 @@ class RegistrationActivity : AuthBase() {
         }
     }
 
-    fun registerUser(){
+    fun registerUser()
+    {
         mAuth.createUserWithEmailAndPassword(email.text.toString()+"@mail.ru", password.text.toString())
             .addOnCompleteListener(this) { p0 ->
-                if (p0.isSuccessful) {
+                if (p0.isSuccessful)
+                {
                     Toast.makeText(this, mAuth.currentUser?.uid!!, Toast.LENGTH_LONG).show()
                     userDataFirebase.addUser(createUser(mAuth.currentUser?.uid!!))
                     startActivity(Intent(this, SignInActivity::class.java))

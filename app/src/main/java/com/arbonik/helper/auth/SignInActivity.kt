@@ -8,13 +8,16 @@ import androidx.core.view.children
 import com.arbonik.helper.MainActivity
 import com.arbonik.helper.R
 import com.arbonik.helper.helprequest.RequestManager.Companion.USERS_TAG
+//import com.arbonik.helper.notifications.Notification
 import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_auth.*
 
-class SignInActivity : AuthBase() {
+class SignInActivity : AuthBase()
+{
 
-    override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
@@ -22,9 +25,11 @@ class SignInActivity : AuthBase() {
         }
         singInBotton.setOnClickListener { v ->
             val allView = auth_activity_container.children
-            if (checkDataInput(allView)) {
+            if (checkDataInput(allView))
+            {
                 signIn(email.text.toString(), password.text.toString())
-            } else
+            }
+            else
                 Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
         }
 
@@ -34,10 +39,13 @@ class SignInActivity : AuthBase() {
     }
 
 
-    fun signIn(login : String, password : String) {
-        mAuth.signInWithEmailAndPassword(login+"@mail.ru", password)
-            .addOnCompleteListener(this) {
-            if (it.isSuccessful) {
+    fun signIn(login: String, password: String)
+    {
+        mAuth.signInWithEmailAndPassword("$login@mail.ru", password)
+            .addOnCompleteListener(this)
+            {
+            if (it.isSuccessful)
+            {
                 val currentUser = mAuth.currentUser!!
                 getDataUser(currentUser.uid)
             }
@@ -66,6 +74,7 @@ class SignInActivity : AuthBase() {
                         result[User.TAG_NOTFICATION.toLowerCase()].toString().toBoolean()
                     )
                     sharedPreferenceUser.authInDevice(returnUser)
+                   // Notification.subscribeTopic(Notification.TOPIC_FOR_VOLONTER)
                     startActivity(Intent(this, MainActivity::class.java))
                     finish()
                 }
