@@ -31,12 +31,12 @@ class SettingsFragment : PreferenceFragmentCompat()
         text_phone = findPreference(TAG_PHONE)
         text_address = findPreference(TAG_ADDRESS)
         text_user_category = findPreference(TAG_CATEGORY)
-        switch_notification = findPreference(TAG_NOTFICATION)
+//        switch_notification = findPreference(TAG_NOTFICATION)
         setPreferenceListener(text_name!!)
         setPreferenceListener(text_phone!!)
         setPreferenceListener(text_address!!)
         setPreferenceListener(text_user_category!!)
-        setPreferenceListener(switch_notification!!)
+//        setPreferenceListener(switch_notification!!)
         user = SharedPreferenceUser.currentUser
     }
 
@@ -77,7 +77,7 @@ class SettingsFragment : PreferenceFragmentCompat()
         {
             when (preference.key)
             {
-                TAG_NOTFICATION -> user?.notification = value.toBoolean()
+//                TAG_NOTFICATION -> user?.notification = value.toBoolean()
             }
                 // LocalUserData.type = preference.isEnabled
         }

@@ -1,6 +1,6 @@
 package com.arbonik.helper.notifications
 
-//import com.google.firebase.messaging.Message
+/*//import com.google.firebase.messaging.Message
 import android.app.Notification
 import android.app.NotificationManager
 import android.content.Intent
@@ -28,15 +28,15 @@ class FirebaseMessagingService : FirebaseMessagingService()
     {
         if (remoteMessage.data.isNotEmpty())
         {
-            /**здесь получаю сообщение из БД, затем из объекта remoteMessage
-             * извлекаю данные и отправляю соообщение на устройство*/
+            *//**здесь получаю сообщение из БД, затем из объекта remoteMessage
+             * извлекаю данные и отправляю соообщение на устройство*//*
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
             val notificationBuilder = NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.logo)
                 .setLargeIcon(BitmapFactory.decodeResource(this.resources, R.drawable.logo))
-                .setContentTitle(/*this.getString(R.string.app_name)*/ remoteMessage.notification!!.title)
+                .setContentTitle(*//*this.getString(R.string.app_name)*//* remoteMessage.notification!!.title)
                 .setContentText(remoteMessage.notification!!.body)
                 .setAutoCancel(true)
                 .setDefaults(Notification.DEFAULT_ALL)
@@ -57,4 +57,4 @@ class FirebaseMessagingService : FirebaseMessagingService()
         editor.apply() // save token (key = token)
 //        if (SharedPreferenceUser.currentUser.category == USER_CATEGORY.VOLONTEER)
     }
-}
+}*/

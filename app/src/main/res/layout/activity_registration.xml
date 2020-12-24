@@ -9,20 +9,21 @@
     tools:context=".auth.RegistrationActivity"
     android:id="@+id/viewGroupRegistration">
     <EditText
+        android:phoneNumber="true"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/email"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
-        android:hint="email"/>
+        android:hint="Ваш телефон"/>
 
     <EditText
-        app:layout_constraintTop_toBottomOf="@id/email"
+        app:layout_constraintTop_toBottomOf="@id/phone"
         android:layout_marginTop="32dp"
         android:layout_marginStart="24dp"
         android:layout_marginEnd="24dp"
@@ -45,8 +46,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
-        android:hint="Ваше имя"
-        />
+        android:hint="Ваше имя" />
+
     <EditText
         android:hint="Ваш адрес "
         app:layout_constraintTop_toBottomOf="@id/name"
@@ -59,19 +60,7 @@
         android:id="@+id/adress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <EditText
-        android:hint="Ваш телефон"
-        app:layout_constraintTop_toBottomOf="@id/adress"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:backgroundTint="@color/colorAccent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/phone"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+
 
     <Button
         android:id="@+id/singInBotton"
@@ -96,7 +85,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phone">
+        app:layout_constraintTop_toBottomOf="@+id/adress">
 
         <RadioButton
             android:id="@+id/radioButtonVeteran"

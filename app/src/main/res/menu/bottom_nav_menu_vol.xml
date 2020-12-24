@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_volonteer_fragmenggt"
+        android:id="@+id/navigation_volonteer_fragment"
         android:icon="@drawable/ic_announcement_blue_24dp"
         android:title="@string/title_requests_volonteer" />
 

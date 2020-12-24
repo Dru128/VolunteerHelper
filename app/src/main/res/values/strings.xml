@@ -5,6 +5,8 @@
         <item>Поход в магазин</item>
     </array>
 
+
+
     <string name="answ_accept">Заявка принята!</string>
     <string name="app_name">Помощник в кармане</string>
     <string name="title_home">Создать заявку</string>
@@ -22,12 +24,17 @@
     <string name="inputAllView">Заполните все поля</string>
     <string name="veteran">Ветеран</string>
     <string name="volonteer">Волонтер</string>
-    <string name="signup">Зарегистрировать</string>
-    <string name="add_type_help">добавить тип помощи</string>
+    <string name="signup">Регистрация</string>
+    <string name="signin">Вход</string>
+    <string name="writecode">Введите код подтверждения</string>
 
     <string name="notify_for_volonter">Появилась новая заявка!</string>
     <string name="notify_for_veteran">Ваша заявка принята!</string>
 
+    <string name="add_type_help">добавить тип помощи</string>
+    <string name="all_users">Всего пользователей</string>
+    <string name="volonteers">Волонтёров</string>
+    <string name="veterans">Ветеранов</string>
     <string name="title_dialog_admin">Создание типа помощи</string>
     <string name="message_dialog_admin">Введите название типа помощи</string>
     <string name="types_requests">Типы заявок</string>

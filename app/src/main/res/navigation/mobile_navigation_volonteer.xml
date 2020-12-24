@@ -19,6 +19,5 @@
     <fragment
         android:id="@+id/navigation_notifications_vol"
         android:name="com.arbonik.helper.ui.settings.SettingsFragment"
-        android:label="@string/title_notifications"
-     />
+        android:label="@string/title_notifications" />
 </navigation>

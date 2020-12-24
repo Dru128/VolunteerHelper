@@ -4,7 +4,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class UserDataFirebase
 {
-
     val COLLECTION_TAG = "USERS"
 
     var db = FirebaseFirestore.getInstance()

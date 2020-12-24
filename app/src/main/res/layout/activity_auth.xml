@@ -7,8 +7,8 @@
     android:accessibilityPaneTitle="@string/app_name"
     android:background="#FFF"
     tools:context=".auth.RegistrationActivity"
-    android:id="@+id/auth_activity_container"
-    >
+    android:id="@+id/auth_activity_container">
+
     <EditText
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="32dp"
@@ -16,37 +16,12 @@
         android:layout_marginEnd="24dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/email"
+        android:id="@+id/phone"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/colorAccent"
-        android:hint="email"/>
+        android:hint="Номер телефона"/>
 
-    <EditText
-        app:layout_constraintTop_toBottomOf="@id/email"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
-        android:inputType="textPassword"
-        android:hint="Пароль"/>
-    <TextView
-        app:layout_constraintTop_toBottomOf="@id/password"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:id="@+id/forgott_pass"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
-        android:text="Забыли пароль?"/>
     <Button
         android:id="@+id/singInBotton"
         android:layout_width="match_parent"

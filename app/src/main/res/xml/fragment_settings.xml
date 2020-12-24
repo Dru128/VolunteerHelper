@@ -37,11 +37,11 @@
         </EditTextPreference>
     </PreferenceCategory>
 
-    <PreferenceCategory
-        app:title="Уведомления">
-        <SwitchPreference
-            app:title="Отправка уведомлений"
-            android:key="NOTIFICATION">
-        </SwitchPreference>
-    </PreferenceCategory>
+<!--    <PreferenceCategory-->
+<!--        app:title="Уведомления">-->
+<!--        <SwitchPreference-->
+<!--            app:title="Отправка уведомлений"-->
+<!--            android:key="NOTIFICATION">-->
+<!--        </SwitchPreference>-->
+<!--    </PreferenceCategory>-->
 </PreferenceScreen>
