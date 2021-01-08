@@ -16,6 +16,7 @@
                 app:dialogTitle="Ваш телефон"
                 app:dialogMessage="Введите ваш телефон"
                 app:key="PHONE"
+                app:enabled="false"
                 app:title="Телефон"
                 app:summary="88005553535">
             </EditTextPreference>

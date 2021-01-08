@@ -1,0 +1,25 @@
+<resources>
+<!--
+    TODO: Before you run your application, you need a Google Maps API key.
+
+    To get one, follow this link, follow the directions and press "Create" at the end:
+
+    https://console.developers.google.com/flows/enableapi?apiid=maps_android_backend&keyType=CLIENT_SIDE_ANDROID&r=73:7E:1D:31:F9:78:B7:A1:A9:BF:DE:01:6E:A9:40:49:76:FB:65:C8%3Bcom.arbonik.helper.ui.veteran
+
+    You can also add your credentials to an existing key, using these values:
+
+    Package name:
+    com.arbonik.helper.ui.veteran
+
+    SHA-1 certificate fingerprint:
+    73:7E:1D:31:F9:78:B7:A1:A9:BF:DE:01:6E:A9:40:49:76:FB:65:C8
+
+    Alternatively, follow the directions here:
+    https://developers.google.com/maps/documentation/android/start#get-key
+
+    Once you have your key (it starts with "AIza"), replace the "google_maps_key"
+    string in this file.
+    ключ апи 3      AIzaSyBpHW2xacTttrhLKJajOs43BMZp-Vz7rdo
+-->
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCWkuGeuyzfT2xwv_78APYXBfND1nGgBis</string>
+</resources>

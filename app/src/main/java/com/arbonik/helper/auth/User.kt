@@ -6,6 +6,7 @@ data class User(
     var phone : String? = null,
     var address : String? = null,
     val category : USER_CATEGORY? = null,
+    var rating: Float? = null,
     val uid : String? = null,
     var notification: Boolean? = null)
 {
@@ -15,9 +16,11 @@ data class User(
         const val NAME_TAG = "NAME"
         const val TAG_ADDRESS : String = "ADDRESS"
         const val TAG_CATEGORY : String = "CATEGORY"
+        const val RATING_TAG : String = "RATING"
         const val TAG_UID = "UID"
         const val TAG_AUTH = "AUTH"
         const val TAG_NOTFICATION = "NOTIFICATION"
+        const val TAG_LOCATION = "LOCATION"
     }
 }
 
@@ -29,7 +32,8 @@ fun USER_CATEGORY_CREATER(s : String) = when(s)
     else -> USER_CATEGORY.VETERAN
 }
 
-enum class USER_CATEGORY{
+enum class USER_CATEGORY
+{
     VETERAN,
     VOLONTEER,
     ADMIN

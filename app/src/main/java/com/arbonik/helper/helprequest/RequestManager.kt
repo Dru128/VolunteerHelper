@@ -34,7 +34,8 @@ class RequestManager
     fun updateUser(user: User)
     {
         user.uid?.let {
-            db.collection(USERS_TAG).document(it)
+            db.collection(USERS_TAG)
+                .document(it)
                 .set(user)
                 .addOnSuccessListener {}
                 .addOnFailureListener {}

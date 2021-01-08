@@ -1,25 +1,14 @@
 package com.arbonik.helper.auth
 
-import android.app.AlertDialog
-import android.content.Context
-import android.content.Intent
 import android.os.Bundle
-import android.text.InputFilter
-import android.util.Log
-import android.widget.EditText
-import android.widget.Toast
-import androidx.core.view.children
+import android.view.View
+import androidx.fragment.app.DialogFragment
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.arbonik.helper.Map.MapsFragment
 import com.arbonik.helper.R
-import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.android.synthetic.main.activity_registration.*
-import java.util.concurrent.TimeUnit
 
 
 class RegistrationActivity : AuthBase()
@@ -28,13 +17,24 @@ class RegistrationActivity : AuthBase()
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
+        makeMask(phone_reg)
+        role_radio_group.setOnCheckedChangeListener{ _, id ->
+            if (id == radioButtonVolonteer.id) container_location.visibility = View.GONE
+            else container_location.visibility = View.VISIBLE
+        }
+        adressButton.setOnClickListener {
+            var locationDialog = ChooseLocationDialog()
+            locationDialog.show(supportFragmentManager, "tag_dialog") //вызов диалога, в котром должен быть MapsFragment()
+        }
         singInBotton.setOnClickListener { v ->
-            val allView = viewGroupRegistration.children
-            if (checkDataInput(allView))
-            {
-                authUser(phone.text.toString(), Aim.register)
-            } else
-                Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
+//            if (Format.format_number(phone_reg.text.toString()).length == 12 && name_reg.text.toString() != "") // проверка на ввод данных
+//            {
+//                if (radioButtonVolonteer.isChecked && geoPoint != null || radioButtonVolonteer.isChecked) // проверка на выбор адреса, если пользователь ветеран
+//                    authUser(Format.format_number(phone_reg.text.toString()), Aim.register)
+//                else
+//                    Toast.makeText(this, getString(R.string.choose_location), Toast.LENGTH_LONG).show()
+//            } else
+//                Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
         }
     }
 }

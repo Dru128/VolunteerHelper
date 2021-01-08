@@ -39,6 +39,7 @@ class SharedPreferenceUser
             putString(User.TAG_ADDRESS, user.address)
             putString(User.TAG_PHONE, user.phone)
             putString(User.TAG_CATEGORY, user.category.toString())
+            putFloat(User.RATING_TAG, user.rating.toString().toFloat())
             putBoolean(User.TAG_NOTFICATION, user.notification.toString().toBoolean())
             Log.d("TESTTEXT", "LOGININ")
             apply()
@@ -60,7 +61,7 @@ class SharedPreferenceUser
             editor.apply()
     }
 
-    fun restoreUser():User
+    fun restoreUser(): User
     {
        var sharedPreference= PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
             with(sharedPreference)
@@ -70,6 +71,7 @@ class SharedPreferenceUser
                 getString(User.TAG_PHONE,""),
                 getString(User.TAG_ADDRESS,""),
                 USER_CATEGORY_CREATER(getString(User.TAG_CATEGORY,"")!!),
+                getFloat(User.RATING_TAG,-1f),
                 getString(User.TAG_UID,""),
                 getBoolean(User.TAG_NOTFICATION,true))
             }

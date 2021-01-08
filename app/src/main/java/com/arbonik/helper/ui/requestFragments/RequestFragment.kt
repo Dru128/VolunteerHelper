@@ -36,12 +36,15 @@ open class RequestFragment : Fragment(), RequestAdapter.OnRequestSelectedListene
     {
         val fieldPath = FieldPath.of("master", "phone")
         val phone = SharedPreferenceUser.currentUser?.phone
-        query = when (SharedPreferenceUser.currentUser?.category) {
-            USER_CATEGORY.VETERAN -> {
+        query = when (SharedPreferenceUser.currentUser?.category)
+        {
+            USER_CATEGORY.VETERAN ->
+            {
                 firestore!!.collection(RequestManager.REQUEST_TAG)
                     .whereEqualTo(fieldPath, phone!!)
             }
-            USER_CATEGORY.VOLONTEER -> {
+            USER_CATEGORY.VOLONTEER ->
+            {
                 firestore!!.collection(RequestManager.REQUEST_TAG)
                     .whereEqualTo("status", false)
 
@@ -82,13 +85,16 @@ open class RequestFragment : Fragment(), RequestAdapter.OnRequestSelectedListene
         adapter?.stopListening()
     }
 
-    override fun onRequestSelectedListener(requestData: DocumentSnapshot) {
+    override fun onRequestSelectedListener(requestData: DocumentSnapshot)
+    {
 
     }
 }
 
-class RequestVolonteerFragment : RequestFragment() {
-    override fun initFirestore() {
+class RequestVolonteerFragment : RequestFragment()
+{
+    override fun initFirestore()
+    {
         val fieldPath = FieldPath.of("accepter")
         val phone = SharedPreferenceUser.currentUser?.phone
         query = firestore!!.collection(RequestManager.REQUEST_TAG)

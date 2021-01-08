@@ -1,30 +1,15 @@
 package com.arbonik.helper.auth
 
-import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
-import android.text.InputFilter
-import android.util.Log
-import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.children
-import com.arbonik.helper.MainActivity
+import com.arbonik.helper.Map.MapsFragment
 import com.arbonik.helper.R
-import com.arbonik.helper.helprequest.RequestManager.Companion.USERS_TAG
-//import com.arbonik.helper.notifications.Notification
 import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
-import com.google.firebase.FirebaseException
-import com.google.firebase.FirebaseTooManyRequestsException
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException
-import com.google.firebase.auth.PhoneAuthCredential
-import com.google.firebase.auth.PhoneAuthOptions
-import com.google.firebase.auth.PhoneAuthProvider
-import com.google.firebase.firestore.FirebaseFirestore
+import com.arbonik.helper.system.Format
 import kotlinx.android.synthetic.main.activity_auth.*
-import kotlinx.android.synthetic.main.activity_auth.phone
-import kotlinx.android.synthetic.main.activity_auth.singInBotton
-import kotlinx.android.synthetic.main.activity_registration.*
-import java.util.concurrent.TimeUnit
+
 
 class SignInActivity : AuthBase()
 {
@@ -33,11 +18,12 @@ class SignInActivity : AuthBase()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
+        makeMask(phone_sign)
         singInBotton.setOnClickListener { v ->
             val allView = auth_activity_container.children
             if (checkDataInput(allView))
             {
-                authUser(phone.text.toString(), Aim.signIn)
+                authUser(Format.format_number(phone_sign.text.toString()), Aim.signIn)
             }
             else
                 Toast.makeText(this, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
@@ -47,3 +33,4 @@ class SignInActivity : AuthBase()
         }
     }
 }
+

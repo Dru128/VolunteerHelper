@@ -15,7 +15,8 @@ import com.arbonik.helper.auth.USER_CATEGORY
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity()
+{
     var sharedPreferenceUser = SharedPreferenceUser()
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?)
