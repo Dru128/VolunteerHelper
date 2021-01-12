@@ -30,14 +30,14 @@ open class ChooseLocationDialog : DialogFragment()
 
             }
 
-            var layout = LinearLayout(context)
-            layout.id = View.generateViewId()
-            var map = MapsFragment()
-            childFragmentManager
-                .beginTransaction()
-                .add(layout.id, map)
-                .commit()
-            setView(layout)
+//            var layout = LinearLayout(context)
+//            layout.id = View.generateViewId()
+//            var map = MapsFragment()
+//            childFragmentManager
+//                .beginTransaction()
+//                .add(layout.id, map)
+//                .commit()
+//            setView(layout)
 /**
  * нужно com.arbonik.helper.Map.MapsFragment
  * разместить в диалоге на весь экран

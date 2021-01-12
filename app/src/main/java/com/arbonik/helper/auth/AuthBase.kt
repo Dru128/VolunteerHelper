@@ -155,17 +155,18 @@ abstract class AuthBase : AppCompatActivity()
     }
 
     private fun createUser(uid: String) = User(
-        name = name_reg.text.toString(),
-        phone = Format.format_number(phone_reg.text.toString()),
+//        name = name_reg.text.toString(),
+//        phone = Format.format_number(phone_reg.text.toString()),
 //        address = adress.text.toString(),
-        rating = null,
-        category = getUserCategory(),
-        uid = uid,
-        notification = true
+//        rating = null,
+//        category = getUserCategory(),
+//        uid = uid,
+//        notification = true
+    TODO()
     )
 
     private fun getUserCategory() : USER_CATEGORY =
-        when (role_radio_group.checkedRadioButtonId)
+        when (TODO()/*role_radio_group.checkedRadioButtonId*/)
         {
             R.id.radioButtonVeteran -> USER_CATEGORY.VETERAN
             R.id.radioButtonVolonteer -> USER_CATEGORY.VOLONTEER
@@ -176,12 +177,5 @@ abstract class AuthBase : AppCompatActivity()
     {
         super.onStart()
         val currentUser = mAuth.currentUser
-    }
-
-    public fun makeMask(edittext: EditText)
-    {
-        val slots = UnderscoreDigitSlotsParser().parseSlots("+7 (___) ___-__-__")
-        val formatWatcher: FormatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots))
-        formatWatcher.installOn(edittext) // устанавливаем форматер на любой EditText
     }
 }

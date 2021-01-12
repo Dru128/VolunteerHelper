@@ -6,7 +6,6 @@
     </array>
 
 
-
     <string name="answ_accept">Заявка принята!</string>
     <string name="app_name">Помощник в кармане</string>
     <string name="title_home">Создать заявку</string>
@@ -46,4 +45,6 @@
     <string name="all_requests">Всего заявок</string>
     <string name="refused_requests">Отклоненных заявок</string>
     <string name="complited_requests">исполненных</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

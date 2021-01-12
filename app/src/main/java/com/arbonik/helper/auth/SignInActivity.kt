@@ -8,6 +8,7 @@ import com.arbonik.helper.Map.MapsFragment
 import com.arbonik.helper.R
 import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import com.arbonik.helper.system.Format
+import com.arbonik.helper.system.Format.Companion.makeMask
 import kotlinx.android.synthetic.main.activity_auth.*
 
 
