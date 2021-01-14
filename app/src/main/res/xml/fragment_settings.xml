@@ -38,7 +38,7 @@
         </EditTextPreference>
     </PreferenceCategory>
 
-<!--    <PreferenceCategory-->
+    <!--    <PreferenceCategory-->
 <!--        app:title="Уведомления">-->
 <!--        <SwitchPreference-->
 <!--            app:title="Отправка уведомлений"-->
