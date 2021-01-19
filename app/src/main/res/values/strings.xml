@@ -14,6 +14,7 @@
     <string name="title_notifications">Настройки профиля</string>
     <string name="date_help">Выберите удобное для вас время</string>
     <string name="modify_position">Позиция успешно изменена</string>
+    <string name="selected">выбрано</string>
 
     <string name="already_request">Заявка принята</string>
     <string name="wait_request">Заявка в обработке</string>

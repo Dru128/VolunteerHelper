@@ -28,11 +28,13 @@ class RegistrationFragment() : Fragment()
             val container_location = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.container_location)
             val radioButtonVolonteer = findViewById<RadioButton>(R.id.radioButtonVolonteer)
             val radioButtonVeteran = findViewById<RadioButton>(R.id.radioButtonVeteran)
+            val location_status_text = findViewById<TextView>(R.id.location_status_text)
             textPhone = findViewById(R.id.phone_reg)
             textName = findViewById(R.id.name_reg)
             regActivity?.apply {
                 if (name != null) textName!!.text.insert(0, name)
                 if (phone != null) textPhone!!.text.insert(0, phone.toString())
+                if (location != null) location_status_text!!.text = getString(R.string.selected)
             }
 
             findViewById<RadioGroup>(R.id.role_radio_group)
@@ -67,14 +69,4 @@ class RegistrationFragment() : Fragment()
 
         return root
     }
-
-//    fun newInstance(someInt: Int, someString: String?): CatFragment?
-//    {
-//        val catFragment = CatFragment()
-//        val args = Bundle()
-//        args.putInt("someInt", someInt)
-//        args.putString("SomeString", someString)
-//        catFragment.setArguments(args)
-//        return catFragment
-//    }
 }          

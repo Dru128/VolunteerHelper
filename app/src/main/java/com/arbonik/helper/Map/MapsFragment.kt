@@ -38,6 +38,7 @@ class MapsFragment() : Fragment(),
     GoogleMap.OnMarkerDragListener,
     GoogleMap.OnMyLocationChangeListener
 {
+    var curLocation: LatLng? = null
     var myMacker: Marker? = null
     private lateinit var google_map: GoogleMap
     private val db = FirebaseFirestore.getInstance().collection(RequestManager.USERS_TAG)
@@ -50,8 +51,8 @@ class MapsFragment() : Fragment(),
         root.apply {
             var myswithc = findViewById<SwitchCompat>(R.id.tipy_map)
             myswithc.setOnClickListener {
-                if (myswithc.isChecked) initMap(GoogleMap.MAP_TYPE_HYBRID)
-                else initMap(GoogleMap.MAP_TYPE_NORMAL)
+                if (myswithc.isChecked) setMapType(GoogleMap.MAP_TYPE_HYBRID)
+                else setMapType(GoogleMap.MAP_TYPE_NORMAL)
             }
         }
         return root
@@ -60,17 +61,17 @@ class MapsFragment() : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?)
     {
         super.onViewCreated(view, savedInstanceState)
-        initMap(GoogleMap.MAP_TYPE_NORMAL)
+        initMap()
     }
 
-    private fun initMap(map_type: Int)
+    private fun initMap()
     {
         permission_GPS = ContextCompat.checkSelfPermission(requireContext(),  Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync { googleMap ->
             google_map = googleMap
             googleMap.apply {
-                mapType = map_type
+                if (curLocation != null) setMyMackerPosition(curLocation!!)
                 uiSettings.isZoomControlsEnabled = true
                 uiSettings.isMyLocationButtonEnabled = true
 
@@ -91,7 +92,7 @@ class MapsFragment() : Fragment(),
                 {
 
                 }
-                /*USER_CATEGORY.VETERAN*/ null ->
+                USER_CATEGORY.VETERAN, null ->
                 {
                     googleMap.setOnMapClickListener { setMyMackerPosition(it) }
 /*                    if (permission_GPS)
@@ -108,7 +109,6 @@ class MapsFragment() : Fragment(),
                             show()
                         }
                     }*/
-
                 }
                 USER_CATEGORY.ADMIN ->
                 {
@@ -139,29 +139,26 @@ class MapsFragment() : Fragment(),
         }
     }
 
+    fun setMapType(type: Int) { google_map.mapType = type }
+
     fun setMyMackerPosition(position: LatLng)
     {
+        curLocation = position
         if (myMacker == null) myMacker = google_map.addMarker(MarkerOptions().position(position))
-//        myMacker = Marker(position) //-------------------------------------------------------------------------------------
         else myMacker!!.position = position
-        google_map.animateCamera(CameraUpdateFactory.newLatLng(position))
-        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
+                google_map.animateCamera(CameraUpdateFactory.newLatLng(position))
+//        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
     }
 
-    fun move_camera(lat: Double, lon: Double)
-    {
-        val cameraPosition = CameraPosition.Builder()
-            .target(LatLng(lat, lon))
-            .build()
-        val cameraUpdate = CameraUpdateFactory.newCameraPosition(cameraPosition)
-        google_map.animateCamera(cameraUpdate)
-    }
 //--------------------------------------------------------| интерфейсы |--------------------------------------------------------
     override fun onMyLocationButtonClick(): Boolean = false
 
-    override fun onMyLocationClick(point: Location)
+    override fun onMyLocationClick(position: Location)
     {
-
+        curLocation = LatLng(position.latitude, position.longitude)
+        if (myMacker == null) myMacker = google_map.addMarker(MarkerOptions().position(curLocation!!))
+        else myMacker!!.position = curLocation
+        google_map.animateCamera(CameraUpdateFactory.newLatLng(curLocation))
     }
 
     override fun onMyLocationChange(point: Location?) { }
@@ -174,8 +171,7 @@ class MapsFragment() : Fragment(),
 
     override fun onMarkerClick(macker: Marker?): Boolean
     {
-        move_camera(macker!!.position.latitude, macker!!.position.longitude)
-//        Toast.makeText(context, macker!!.position.toString(), Toast.LENGTH_SHORT).show()
+        google_map.animateCamera(CameraUpdateFactory.newLatLng(macker?.position))
         return true
     }
 

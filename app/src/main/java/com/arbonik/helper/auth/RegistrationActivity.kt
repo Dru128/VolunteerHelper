@@ -14,8 +14,8 @@ import com.google.android.gms.maps.model.LatLng
 class RegistrationActivity : AuthBase()
 {
     val containerButtons by lazy { findViewById<LinearLayout>(R.id.reg_cansel_choose) }
-    var mapsFragment = MapsFragment()
-    var regFragment = RegistrationFragment()
+    var mapsFragment: MapsFragment? = MapsFragment()
+    var regFragment: RegistrationFragment = RegistrationFragment()
 
     var phone: Int? = null
     var name: String? = null
@@ -34,12 +34,11 @@ class RegistrationActivity : AuthBase()
 
         findViewById<Button>(R.id.reg_choose)
             .setOnClickListener {
-                if (mapsFragment.myMacker?.position != null)
+                if (mapsFragment != null && mapsFragment!!.myMacker != null)
                 {
-//                    location = mapsFragment.myMacker!!.position!!
+                    location = mapsFragment!!.myMacker!!.position
+                    mapsFragment!!.myMacker = null
                     setRegistrationFragment()
-//                   var a =  regFragment.view?.findViewById<TextView>(R.id.location_status_text)
-//                    a!!.text = "выбрано"
                 }
             }
         setRegistrationFragment()
@@ -56,12 +55,14 @@ class RegistrationActivity : AuthBase()
 
     fun setMapFragment()
     {
+        mapsFragment = MapsFragment()
+        if (location != null) mapsFragment!!.curLocation = location//.setMyMackerPosition(location!!)
         containerButtons?.visibility = View.VISIBLE
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.activity_layout_reg, mapsFragment)
+            .replace(R.id.activity_layout_reg, mapsFragment!!)
             .commit()
-//        if (location != null) mapsFragment.setMyMackerPosition(location!!)
     }
-
 }
+
+
