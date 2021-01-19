@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:map="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -17,26 +16,28 @@
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent" />
 
-<!--    <Button-->
-<!--        android:id="@+id/setting"-->
-<!--        android:layout_width="48dp"-->
-<!--        android:layout_height="48dp"-->
-<!--        android:layout_marginStart="6dp"-->
-<!--        android:layout_marginTop="60dp"-->
-<!--        android:background="@drawable/ic_baseline_settings_24"-->
-<!--        map:layout_constraintStart_toStartOf="parent"-->
-<!--        map:layout_constraintTop_toTopOf="parent" />-->
+    <!--    <Button-->
+    <!--        android:id="@+id/setting"-->
+    <!--        android:layout_width="48dp"-->
+    <!--        android:layout_height="48dp"-->
+    <!--        android:layout_marginStart="6dp"-->
+    <!--        android:layout_marginTop="60dp"-->
+    <!--        android:background="@drawable/ic_baseline_settings_24"-->
+    <!--        map:layout_constraintStart_toStartOf="parent"-->
+    <!--        map:layout_constraintTop_toTopOf="parent" />-->
 
     <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/switch12"
-        style="@style/Switch"
+        android:id="@+id/tipy_map"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
-        android:text="тип карты"
+        android:background="#F2D2D3D2"
+        android:text=" спутник"
+        android:textColor="#F2000000"
         map:layout_constraintEnd_toEndOf="parent"
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 

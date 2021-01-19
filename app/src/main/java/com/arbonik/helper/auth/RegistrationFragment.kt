@@ -6,34 +6,43 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.Fragment
-import com.arbonik.helper.Map.MapsFragment
 import com.arbonik.helper.R
 import com.arbonik.helper.system.Format
 import com.arbonik.helper.system.Format.Companion.makeMask
+import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.GeoPoint
-import kotlinx.android.synthetic.main.raiting_dialog.view.*
 
 
-class RegistrationFragment : Fragment()
+class RegistrationFragment() : Fragment()
 {
-    var phone: EditText? = null
-    var name: EditText? = null
+    var textPhone: EditText? = null
+    var textName: EditText? = null
     var geoPoint: GeoPoint? = null
+    val regActivity by lazy { activity as RegistrationActivity }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         var root = inflater.inflate(R.layout.fragment_registration, container, false)
         root.apply {
 
-            var container_location = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(
-                R.id.container_location
-            )
-            var radioButtonVolonteer = findViewById<RadioButton>(R.id.radioButtonVolonteer)
-            var radioButtonVeteran = findViewById<RadioButton>(R.id.radioButtonVeteran)
-            phone = findViewById(R.id.phone_reg)
+            val container_location = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.container_location)
+            val radioButtonVolonteer = findViewById<RadioButton>(R.id.radioButtonVolonteer)
+            val radioButtonVeteran = findViewById<RadioButton>(R.id.radioButtonVeteran)
+            textPhone = findViewById(R.id.phone_reg)
+            textName = findViewById(R.id.name_reg)
+            regActivity?.apply {
+                if (name != null) textName!!.text.insert(0, name)
+                if (phone != null) textPhone!!.text.insert(0, phone.toString())
+            }
+
+            findViewById<RadioGroup>(R.id.role_radio_group)
+                .setOnCheckedChangeListener { _, id ->
+                    if (id == radioButtonVolonteer.id) container_location.visibility = View.GONE
+                    else container_location.visibility = View.VISIBLE
+                }
             findViewById<Button>(R.id.singInBotton)
                 .setOnClickListener {
-                        if (Format.format_number(phone!!.text.toString()).length == 12 && name!!.text.toString() != "") // проверка на ввод данных
+                    if (Format.format_number(textPhone!!.text.toString()).length == 12 && textName!!.text.toString() != "") // проверка на ввод данных
                         {
                             if (radioButtonVeteran.isChecked && geoPoint != null || radioButtonVolonteer.isChecked) // проверка на выбор адреса, если пользователь ветеран
 //                                authUser(Format.format_number(phone_reg.text.toString()), Aim.register)
@@ -44,19 +53,18 @@ class RegistrationFragment : Fragment()
                 }
             findViewById<Button>(R.id.adressButton)
                 .setOnClickListener{
-                    val mapsFragment = MapsFragment()//.newInstance(5, "Васька")
-                    requireFragmentManager()
-                        .beginTransaction()
-                        .replace(R.id.activity_layout_reg, mapsFragment)
-                        .commit()
+                    regActivity?.apply {
+                        if (phone != null) phone = Format.format_number(textPhone!!.text.toString()).toInt()
+                        if (name != null) name = textName!!.text.toString()
+                        if (radioButtonVeteran.isChecked) typeUser = USER_CATEGORY.VETERAN
+                        else typeUser = USER_CATEGORY.VOLONTEER
+                        setMapFragment()
+                    }
                 }
-            makeMask(phone!!)
-            findViewById<RadioGroup>(R.id.role_radio_group)
-                .setOnCheckedChangeListener { _, id ->
-                    if (id == radioButtonVolonteer.id) container_location.visibility = View.GONE
-                    else container_location.visibility = View.VISIBLE
-            }
+            makeMask(textPhone!!)
+
         }
+
         return root
     }
 

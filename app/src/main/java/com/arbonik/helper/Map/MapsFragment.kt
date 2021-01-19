@@ -1,7 +1,6 @@
 package com.arbonik.helper.Map
 
 import android.Manifest
-import android.app.AlertDialog
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -14,9 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
-
 import com.arbonik.helper.R
-import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.auth.USER_CATEGORY
 import com.arbonik.helper.auth.User
 import com.arbonik.helper.helprequest.RequestManager
@@ -41,32 +38,17 @@ class MapsFragment() : Fragment(),
     GoogleMap.OnMarkerDragListener,
     GoogleMap.OnMyLocationChangeListener
 {
-    private var myMacker: Marker? = null
+    var myMacker: Marker? = null
     private lateinit var google_map: GoogleMap
-    private lateinit var curLocation: LatLng
     private val db = FirebaseFirestore.getInstance().collection(RequestManager.USERS_TAG)
     private var permission_GPS: Boolean = false
     private val TYPE_USER: USER_CATEGORY? = null //SharedPreferenceUser.currentUser!!.category
-    private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Манипулирует картой, как только она становится доступной.
-         * Этот обратный вызов срабатывает, когда карта готова к использованию.
-         * Здесь мы можем добавлять маркеры или линии, добавлять слушателей или перемещать камеру.
-         * В этом случае мы просто добавим маркер рядом с Сиднеем, Австралия.
-         * Если Google Play services не установлен на устройстве, пользователю будет предложено
-         * установить его внутри SupportMapFragment. Этот метод будет запущен только
-         * после того, как пользователь установит сервисы Google Play и вернется в приложение.
-         */
-
-
-
-    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         var root = inflater.inflate(R.layout.fragment_maps, container, false)
         root.apply {
-            var myswithc = findViewById<SwitchCompat>(R.id.switch12)
+            var myswithc = findViewById<SwitchCompat>(R.id.tipy_map)
             myswithc.setOnClickListener {
                 if (myswithc.isChecked) initMap(GoogleMap.MAP_TYPE_HYBRID)
                 else initMap(GoogleMap.MAP_TYPE_NORMAL)
@@ -83,7 +65,7 @@ class MapsFragment() : Fragment(),
 
     private fun initMap(map_type: Int)
     {
-        permission_GPS = ContextCompat.checkSelfPermission(requireContext() ,Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        permission_GPS = ContextCompat.checkSelfPermission(requireContext(),  Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync { googleMap ->
             google_map = googleMap
@@ -109,21 +91,9 @@ class MapsFragment() : Fragment(),
                 {
 
                 }
-                USER_CATEGORY.VETERAN ->
+                /*USER_CATEGORY.VETERAN*/ null ->
                 {
-                    googleMap.setOnMapClickListener {
-                        if (myMacker == null)
-                        {
-                            myMacker = googleMap.addMarker(MarkerOptions().position(it))
-                        }
-                        else
-                        {
-                            googleMap.animateCamera(CameraUpdateFactory.newLatLng(it))
-                            myMacker!!.position = it
-                        }
-                        curLocation = it
-                        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
-                    }
+                    googleMap.setOnMapClickListener { setMyMackerPosition(it) }
 /*                    if (permission_GPS)
                     {
                         //                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(curLocation, 5f))
@@ -169,6 +139,15 @@ class MapsFragment() : Fragment(),
         }
     }
 
+    fun setMyMackerPosition(position: LatLng)
+    {
+        if (myMacker == null) myMacker = google_map.addMarker(MarkerOptions().position(position))
+//        myMacker = Marker(position) //-------------------------------------------------------------------------------------
+        else myMacker!!.position = position
+        google_map.animateCamera(CameraUpdateFactory.newLatLng(position))
+        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
+    }
+
     fun move_camera(lat: Double, lon: Double)
     {
         val cameraPosition = CameraPosition.Builder()
@@ -182,19 +161,10 @@ class MapsFragment() : Fragment(),
 
     override fun onMyLocationClick(point: Location)
     {
-        val geoPoint = LatLng(point.latitude, point.longitude)
-        curLocation = geoPoint
-        google_map.animateCamera(CameraUpdateFactory.newLatLng(geoPoint))
-        myMacker!!.position = geoPoint
-        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
-    }
-
-    override fun onMyLocationChange(point: Location?)
-    {
-        if (point != null)
-            curLocation = LatLng(point.latitude, point.longitude)
 
     }
+
+    override fun onMyLocationChange(point: Location?) { }
 
 
     override fun onMapReady(macker: GoogleMap?)

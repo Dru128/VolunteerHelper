@@ -35,7 +35,8 @@
                     android:layout_marginTop="32dp"
                     android:layout_marginEnd="24dp"
                     android:backgroundTint="@color/colorAccent"
-                    android:hint="+7"
+                    android:hint="+7 ("
+                    android:textColorHint="@color/black"
                     android:inputType="phone"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
@@ -43,6 +44,7 @@
 
                 <EditText
                     android:id="@+id/name_reg"
+                    android:text=""
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
@@ -74,6 +76,7 @@
                         android:id="@+id/radioButtonVolonteer"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:checked="false"
                         android:text="@string/volonteer" />
                 </RadioGroup>
 
@@ -95,7 +98,6 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
                         android:layout_marginTop="2dp"
-                        android:drawableStart="@drawable/ic_baseline_location_blue"
                         android:text="Выбрать / изменить"
                         android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -103,13 +105,14 @@
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_hint_address" />
+                        app:layout_constraintTop_toBottomOf="@+id/text_hint_address"
+                        android:drawableLeft="@drawable/ic_baseline_location_blue"
+                        android:drawableStart="@drawable/ic_baseline_location_blue" />
 
                     <TextView
                         android:id="@+id/location_status_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="2dp"
                         android:layout_marginTop="2dp"
                         android:text="Не выбрано"
                         android:textSize="16dp"

@@ -45,6 +45,7 @@
     <string name="all_requests">Всего заявок</string>
     <string name="refused_requests">Отклоненных заявок</string>
     <string name="complited_requests">исполненных</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="choose">выбрать</string>
+    <string name="close">закрыть</string>
 </resources>
