@@ -8,6 +8,7 @@ import android.widget.TextView
 import android.widget.Toast
 import com.arbonik.helper.Map.MapsFragment
 import com.arbonik.helper.R
+import com.arbonik.helper.system.Format
 import com.google.android.gms.maps.model.LatLng
 
 
@@ -16,11 +17,6 @@ class RegistrationActivity : AuthBase()
     val containerButtons by lazy { findViewById<LinearLayout>(R.id.reg_cansel_choose) }
     var mapsFragment: MapsFragment? = MapsFragment()
     var regFragment: RegistrationFragment = RegistrationFragment()
-
-    var phone: Int? = null
-    var name: String? = null
-    var typeUser: USER_CATEGORY? = null
-    var location: LatLng? = null
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -36,7 +32,7 @@ class RegistrationActivity : AuthBase()
             .setOnClickListener {
                 if (mapsFragment != null && mapsFragment!!.myMacker != null)
                 {
-                    location = mapsFragment!!.myMacker!!.position
+                    RegData.location = Format.latLng_to_geoPoint(mapsFragment!!.myMacker!!.position)
                     mapsFragment!!.myMacker = null
                     setRegistrationFragment()
                 }
@@ -56,7 +52,7 @@ class RegistrationActivity : AuthBase()
     fun setMapFragment()
     {
         mapsFragment = MapsFragment()
-        if (location != null) mapsFragment!!.curLocation = location//.setMyMackerPosition(location!!)
+        if (RegData.location != null) mapsFragment!!.curLocation = Format.geoPoint_to_geoPointlatLng(RegData.location!!)
         containerButtons?.visibility = View.VISIBLE
         supportFragmentManager
             .beginTransaction()

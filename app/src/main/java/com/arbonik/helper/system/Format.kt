@@ -1,6 +1,8 @@
 package com.arbonik.helper.system
 
 import android.widget.EditText
+import com.google.android.gms.maps.model.LatLng
+import com.google.firebase.firestore.GeoPoint
 import ru.tinkoff.decoro.MaskImpl
 import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
 import ru.tinkoff.decoro.watchers.FormatWatcher
@@ -29,5 +31,8 @@ class Format()
             val formatWatcher: FormatWatcher = MaskFormatWatcher(MaskImpl.createTerminated(slots))
             formatWatcher.installOn(edittext) // устанавливаем форматер на любой EditText
         }
+
+        fun latLng_to_geoPoint(latLng: LatLng) = GeoPoint(latLng.latitude, latLng.longitude)
+        fun geoPoint_to_geoPointlatLng(geoPoint: GeoPoint) = LatLng(geoPoint.latitude, geoPoint.longitude)
     }
 }

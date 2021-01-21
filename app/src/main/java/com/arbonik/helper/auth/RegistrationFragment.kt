@@ -17,7 +17,6 @@ class RegistrationFragment() : Fragment()
 {
     var textPhone: EditText? = null
     var textName: EditText? = null
-    var geoPoint: GeoPoint? = null
     val regActivity by lazy { activity as RegistrationActivity }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
@@ -31,11 +30,11 @@ class RegistrationFragment() : Fragment()
             val location_status_text = findViewById<TextView>(R.id.location_status_text)
             textPhone = findViewById(R.id.phone_reg)
             textName = findViewById(R.id.name_reg)
-            regActivity?.apply {
-                if (name != null) textName!!.text.insert(0, name)
-                if (phone != null) textPhone!!.text.insert(0, phone.toString())
-                if (location != null) location_status_text!!.text = getString(R.string.selected)
-            }
+
+            if (RegData.name != null) textName!!.text.insert(0, RegData.name)
+            if (RegData.phone != null) textPhone!!.text.insert(0, RegData.phone.toString())
+            if (RegData.location != null) location_status_text!!.text = getString(R.string.selected)
+
 
             findViewById<RadioGroup>(R.id.role_radio_group)
                 .setOnCheckedChangeListener { _, id ->
@@ -44,29 +43,28 @@ class RegistrationFragment() : Fragment()
                 }
             findViewById<Button>(R.id.singInBotton)
                 .setOnClickListener {
-                    if (Format.format_number(textPhone!!.text.toString()).length == 12 && textName!!.text.toString() != "") // проверка на ввод данных
+                    if (Format.format_number(textPhone?.text.toString()).length == 12 && textName?.text.toString() != "") // проверка на ввод данных
                         {
-                            if (radioButtonVeteran.isChecked && geoPoint != null || radioButtonVolonteer.isChecked) // проверка на выбор адреса, если пользователь ветеран
-//                                authUser(Format.format_number(phone_reg.text.toString()), Aim.register)
-                            else
+                            if (radioButtonVeteran.isChecked && RegData.location != null || radioButtonVolonteer.isChecked) // проверка на выбор адреса, если пользователь ветеран
+                            {
+                                val geoPoint: GeoPoint = GeoPoint(RegData.location!!.latitude, RegData.location!!.longitude)
+                                regActivity.authUser(Format.format_number(textPhone?.text.toString()), Aim.register)
+                            }
+                                else
                                 Toast.makeText(context, getString(R.string.choose_location), Toast.LENGTH_LONG).show()
                         } else
                                 Toast.makeText(context, getString(R.string.inputAllView), Toast.LENGTH_LONG).show()
                 }
             findViewById<Button>(R.id.adressButton)
                 .setOnClickListener{
-                    regActivity?.apply {
-                        if (phone != null) phone = Format.format_number(textPhone!!.text.toString()).toInt()
-                        if (name != null) name = textName!!.text.toString()
-                        if (radioButtonVeteran.isChecked) typeUser = USER_CATEGORY.VETERAN
-                        else typeUser = USER_CATEGORY.VOLONTEER
-                        setMapFragment()
-                    }
+                        if (RegData.phone != null) RegData.phone = Format.format_number(textPhone!!.text.toString()).toInt()
+                        if (RegData.name != null) RegData.name = textName!!.text.toString()
+                        if (radioButtonVeteran.isChecked) RegData.typeUser = USER_CATEGORY.VETERAN
+                        else RegData.typeUser = USER_CATEGORY.VOLONTEER
+                        regActivity.setMapFragment()
                 }
             makeMask(textPhone!!)
-
         }
-
         return root
     }
 }          

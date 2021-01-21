@@ -18,10 +18,6 @@ import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.android.synthetic.main.activity_registration.*
-import ru.tinkoff.decoro.MaskImpl
-import ru.tinkoff.decoro.parser.UnderscoreDigitSlotsParser
-import ru.tinkoff.decoro.watchers.FormatWatcher
-import ru.tinkoff.decoro.watchers.MaskFormatWatcher
 import java.util.*
 import java.util.concurrent.TimeUnit
 
@@ -137,12 +133,13 @@ abstract class AuthBase : AppCompatActivity()
                     var returnUser = User(
                         name = result[User.NAME_TAG.toLowerCase(Locale.ROOT)].toString(),
                         phone = result[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString(),
-                        address = result[User.TAG_ADDRESS.toLowerCase(Locale.ROOT)].toString(),
+                        comment = null/*result[User.TAG_ADDRESS.toLowerCase(Locale.ROOT)].toString()*/,
                         rating = 0f/*result[User.RATING_TAG.toLowerCase(Locale.ROOT)].toString().toFloat()*/,
                         category = USER_CATEGORY_CREATER(result[User.TAG_CATEGORY.toLowerCase(Locale.ROOT)].toString()),
                         uid = result[User.TAG_UID.toLowerCase(Locale.ROOT)].toString(),
                         notification = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)].toString().toBoolean()
                     )
+                    if (getUserCategory() == USER_CATEGORY.VETERAN) returnUser.location = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)] as GeoPoint?
                     sharedPreferenceUser.authInDevice(returnUser)
                     // Notification.subscribeTopic(Notification.TOPIC_FOR_VOLONTER)
                     startActivity(Intent(this@AuthBase, MainActivity::class.java))
@@ -155,23 +152,18 @@ abstract class AuthBase : AppCompatActivity()
     }
 
     private fun createUser(uid: String) = User(
-//        name = name_reg.text.toString(),
-//        phone = Format.format_number(phone_reg.text.toString()),
-//        address = adress.text.toString(),
-//        rating = null,
-//        category = getUserCategory(),
-//        uid = uid,
-//        notification = true
-    TODO()
+        name = RegData.name,
+        phone = RegData.phone.toString(),
+        comment = null,
+        rating = null,
+        category = getUserCategory(),
+        uid = uid,
+        location = RegData.location,
+        notification = true
+
     )
 
-    private fun getUserCategory() : USER_CATEGORY =
-        when (TODO()/*role_radio_group.checkedRadioButtonId*/)
-        {
-            R.id.radioButtonVeteran -> USER_CATEGORY.VETERAN
-            R.id.radioButtonVolonteer -> USER_CATEGORY.VOLONTEER
-            else -> USER_CATEGORY.ADMIN
-        }
+    private fun getUserCategory() = RegData.typeUser
 
     override fun onStart()
     {

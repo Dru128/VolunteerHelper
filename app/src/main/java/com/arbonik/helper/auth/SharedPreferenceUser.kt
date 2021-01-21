@@ -36,7 +36,7 @@ class SharedPreferenceUser
             putBoolean(User.TAG_AUTH, true)
             putString(User.NAME_TAG, user.name)
             putString(User.TAG_UID, user.uid)
-            putString(User.TAG_ADDRESS, user.address)
+//            putString(User.TAG_ADDRESS, user.address)
             putString(User.TAG_PHONE, user.phone)
             putString(User.TAG_CATEGORY, user.category.toString())
             putFloat(User.RATING_TAG, user.rating.toString().toFloat())
