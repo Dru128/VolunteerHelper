@@ -45,9 +45,9 @@ open class RequestAdapter(_query : Query, _listener : OnRequestSelectedListener)
              var dateView: TextView = item.findViewById(R.id.date_data)
              var titleView: TextView = item.findViewById(R.id.title_data)
              var nameView: TextView = item.findViewById(R.id.name_data)
-             var addressView: TextView = item.findViewById(R.id.address_data)
              var numberView: TextView = item.findViewById(R.id.number_data)
              var commentView: TextView = item.findViewById(R.id.comment_data)
+             var infView: TextView = item.findViewById(R.id.inf_data)
              var statusView: TextView = item.findViewById(R.id.status)
              val button : Button = item.findViewById(R.id.button_data)
 
@@ -58,9 +58,10 @@ open class RequestAdapter(_query : Query, _listener : OnRequestSelectedListener)
                         dateView.setText(it.date)
                         titleView.setText(it.title)
                         nameView.setText(it.master.name)
-//                        addressView.setText(it.master.address)
                         numberView.setText(it.master.phone)
                         commentView.setText(it.comment)
+                        infView.setText(it.master.inf)
+
                         when (userCategory)
                         {
                             USER_CATEGORY.VETERAN ->

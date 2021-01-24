@@ -27,10 +27,7 @@ class VeteranRequestFragment : Fragment()
         retainInstance = true // сохранение состояния при перевороте
     }
 
-    override fun onCreateView(inflater: LayoutInflater,
-                              container: ViewGroup?,
-                              savedInstanceState: Bundle?
-    ): View?
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val root = inflater.inflate(R.layout.fragment_create_request, container, false)
         val context = root.context
@@ -80,7 +77,7 @@ class VeteranRequestFragment : Fragment()
                             selected_category!!,
                             commentText.text.toString(),
                             SharedPreferenceUser.currentUser!!,
-                            "${datePicker.dayOfMonth}.${datePicker.month} в ${timeHelp.hour}:${timeHelp.minute}",
+                            "${datePicker.dayOfMonth}.${datePicker.month + 1} в ${timeHelp.hour}:${timeHelp.minute}",
                             false
                         )
                     }

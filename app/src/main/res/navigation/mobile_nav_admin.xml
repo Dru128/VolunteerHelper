@@ -17,11 +17,11 @@
         android:label="@string/map_admin"
         tools:layout="@layout/fragment_maps" />
 
-    <fragment
-        android:id="@+id/navigation_statistics_admin"
-        android:name="com.arbonik.helper.admin.StatisicsFragment_admin"
-        android:label="@string/title_requestion"
-        tools:layout="@layout/fragment_reqests" />
+<!--    <fragment-->
+<!--        android:id="@+id/navigation_statistics_admin"-->
+<!--        android:name="com.arbonik.helper.admin.StatisicsFragment_admin"-->
+<!--        android:label="@string/title_requestion"-->
+<!--        tools:layout="@layout/fragment_reqests" />-->
 
     <fragment
         android:id="@+id/navigation_notifications"

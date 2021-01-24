@@ -2,9 +2,10 @@ package com.arbonik.helper.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.Toast
 import androidx.core.view.children
-import com.arbonik.helper.Map.MapsFragment
+import com.arbonik.helper.MainActivity
 import com.arbonik.helper.R
 import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import com.arbonik.helper.system.Format
@@ -19,6 +20,13 @@ class SignInActivity : AuthBase()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
+        val phone_sign = findViewById<EditText>(R.id.phone_sign)
+
+        if(sharedPreferenceUser.checkAuth())
+        {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }
         makeMask(phone_sign)
         singInBotton.setOnClickListener { v ->
             val allView = auth_activity_container.children

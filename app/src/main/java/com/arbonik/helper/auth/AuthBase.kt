@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.arbonik.helper.MainActivity
 import com.arbonik.helper.R
 import com.arbonik.helper.helprequest.RequestManager
-import com.arbonik.helper.system.Format
 import com.google.firebase.FirebaseException
 import com.google.firebase.FirebaseTooManyRequestsException
 import com.google.firebase.auth.*
@@ -22,7 +21,7 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 
 enum class Aim{register, signIn} //намерение: регистрации или входа
-abstract class AuthBase : AppCompatActivity()
+open class AuthBase : AppCompatActivity()
 {
     var mAuth = FirebaseAuth.getInstance()
     var db = FirebaseFirestore.getInstance()
@@ -34,11 +33,7 @@ abstract class AuthBase : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
         mAuth.setLanguageCode("ru")
-        if(sharedPreferenceUser.checkAuth())
-        {
-            startActivity(Intent(this, MainActivity::class.java))
-            finish()
-        }
+
     }
 
     public fun authUser(phone: String, aim: Aim) // вызывается в registration и signIn Activity
@@ -133,13 +128,14 @@ abstract class AuthBase : AppCompatActivity()
                     var returnUser = User(
                         name = result[User.NAME_TAG.toLowerCase(Locale.ROOT)].toString(),
                         phone = result[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString(),
-                        comment = null/*result[User.TAG_ADDRESS.toLowerCase(Locale.ROOT)].toString()*/,
+                        inf = result[User.INF_TAG.toLowerCase(Locale.ROOT)].toString(),
                         rating = 0f/*result[User.RATING_TAG.toLowerCase(Locale.ROOT)].toString().toFloat()*/,
                         category = USER_CATEGORY_CREATER(result[User.TAG_CATEGORY.toLowerCase(Locale.ROOT)].toString()),
                         uid = result[User.TAG_UID.toLowerCase(Locale.ROOT)].toString(),
                         notification = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)].toString().toBoolean()
                     )
-                    if (getUserCategory() == USER_CATEGORY.VETERAN) returnUser.location = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)] as GeoPoint?
+                    if (getUserCategory() == USER_CATEGORY.VETERAN) returnUser.location = result[User.TAG_LOCATION.toLowerCase(Locale.ROOT)] as GeoPoint?
+                    else returnUser.location = null
                     sharedPreferenceUser.authInDevice(returnUser)
                     // Notification.subscribeTopic(Notification.TOPIC_FOR_VOLONTER)
                     startActivity(Intent(this@AuthBase, MainActivity::class.java))
@@ -154,13 +150,12 @@ abstract class AuthBase : AppCompatActivity()
     private fun createUser(uid: String) = User(
         name = RegData.name,
         phone = RegData.phone.toString(),
-        comment = null,
+        inf = RegData.inf,
         rating = null,
         category = getUserCategory(),
         uid = uid,
         location = RegData.location,
         notification = true
-
     )
 
     private fun getUserCategory() = RegData.typeUser

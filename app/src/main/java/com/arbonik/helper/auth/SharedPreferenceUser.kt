@@ -3,6 +3,7 @@ package com.arbonik.helper.auth
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.arbonik.helper.HelperApplication
+import com.google.firebase.firestore.GeoPoint
 
 class SharedPreferenceUser
 {
@@ -36,7 +37,9 @@ class SharedPreferenceUser
             putBoolean(User.TAG_AUTH, true)
             putString(User.NAME_TAG, user.name)
             putString(User.TAG_UID, user.uid)
-//            putString(User.TAG_ADDRESS, user.address)
+            putString(User.INF_TAG, user.inf)
+            putString(User.TAG_LOCATION_LAT, user.location?.latitude.toString())
+            putString(User.TAG_LOCATION_LON, user.location?.longitude.toString())
             putString(User.TAG_PHONE, user.phone)
             putString(User.TAG_CATEGORY, user.category.toString())
             putFloat(User.RATING_TAG, user.rating.toString().toFloat())
@@ -63,17 +66,21 @@ class SharedPreferenceUser
 
     fun restoreUser(): User
     {
-       var sharedPreference= PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
+       var sharedPreference = PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
             with(sharedPreference)
             {
-            return@restoreUser User(
-                getString(User.NAME_TAG,""),
-                getString(User.TAG_PHONE,""),
-                getString(User.TAG_ADDRESS,""),
-                USER_CATEGORY_CREATER(getString(User.TAG_CATEGORY,"")!!),
-                getFloat(User.RATING_TAG,-1f),
-                getString(User.TAG_UID,""),
-                getBoolean(User.TAG_NOTFICATION,true))
+                return@restoreUser User(
+                    getString(User.NAME_TAG,""),
+                    getString(User.TAG_PHONE,""),
+                    getString(User.INF_TAG,""),
+                    USER_CATEGORY_CREATER(getString(User.TAG_CATEGORY,"")!!),
+                    getFloat(User.RATING_TAG,-1f),
+                    getString(User.TAG_UID,""),
+                    getBoolean(User.TAG_NOTFICATION,true))
+                    GeoPoint(
+                        getString(User.TAG_LOCATION_LAT,"")!!.toDouble(),
+                        getString(User.TAG_LOCATION_LON,"")!!.toDouble()
+                    )
             }
     }
 }

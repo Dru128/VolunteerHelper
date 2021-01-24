@@ -4,12 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import com.arbonik.helper.Map.MapsFragment
 import com.arbonik.helper.R
 import com.arbonik.helper.system.Format
-import com.google.android.gms.maps.model.LatLng
 
 
 class RegistrationActivity : AuthBase()
@@ -52,7 +49,7 @@ class RegistrationActivity : AuthBase()
     fun setMapFragment()
     {
         mapsFragment = MapsFragment()
-        if (RegData.location != null) mapsFragment!!.curLocation = Format.geoPoint_to_geoPointlatLng(RegData.location!!)
+        if (RegData.location != null) mapsFragment!!.curLocation = Format.geoPoint_to_latLng(RegData.location!!)
         containerButtons?.visibility = View.VISIBLE
         supportFragmentManager
             .beginTransaction()

@@ -14,13 +14,13 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 
 import com.arbonik.helper.R
+import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.auth.USER_CATEGORY
 import com.arbonik.helper.auth.User
 import com.arbonik.helper.helprequest.RequestManager
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.GoogleMap.OnMyLocationButtonClickListener
 import com.google.android.gms.maps.GoogleMap.OnMyLocationClickListener
-import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -43,15 +43,15 @@ class MapsFragment() : Fragment(),
     private lateinit var google_map: GoogleMap
     private val db = FirebaseFirestore.getInstance().collection(RequestManager.USERS_TAG)
     private var permission_GPS: Boolean = false
-    private val TYPE_USER: USER_CATEGORY? = null //SharedPreferenceUser.currentUser!!.category
+    private val TYPE_USER: USER_CATEGORY? = SharedPreferenceUser.currentUser?.category
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         var root = inflater.inflate(R.layout.fragment_maps, container, false)
         root.apply {
-            var myswithc = findViewById<SwitchCompat>(R.id.tipy_map)
-            myswithc.setOnClickListener {
-                if (myswithc.isChecked) setMapType(GoogleMap.MAP_TYPE_HYBRID)
+            val type_map_switch = findViewById<SwitchCompat>(R.id.tipy_map)
+            type_map_switch.setOnClickListener {
+                if (type_map_switch.isChecked) setMapType(GoogleMap.MAP_TYPE_HYBRID)
                 else setMapType(GoogleMap.MAP_TYPE_NORMAL)
             }
         }
@@ -113,7 +113,7 @@ class MapsFragment() : Fragment(),
                 USER_CATEGORY.ADMIN ->
                 {
                     db
-                        //                        .whereEqualTo(User.TAG_CATEGORY, USER_CATEGORY.VETERAN)
+                        .whereEqualTo(User.TAG_CATEGORY, USER_CATEGORY.VETERAN)
                         .get().addOnSuccessListener { documents ->
                             for (document in documents)
                             {
@@ -125,16 +125,13 @@ class MapsFragment() : Fragment(),
                                         .title(document[User.NAME_TAG.toLowerCase(Locale.ROOT)].toString())
                                         .snippet(
                                             "телефон: ${document[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString()}" +
-                                            "   адрес: ${document[User.TAG_ADDRESS.toLowerCase(Locale.ROOT)].toString()}"
+                                            "   адрес: ${document[User.INF_TAG.toLowerCase(Locale.ROOT)].toString()}"
                                         )
                                 )
                             }
                         }
                 }
-                else ->
-                {
-
-                }
+                else -> { }
             }
         }
     }
@@ -147,7 +144,7 @@ class MapsFragment() : Fragment(),
         if (myMacker == null) myMacker = google_map.addMarker(MarkerOptions().position(position))
         else myMacker!!.position = position
                 google_map.animateCamera(CameraUpdateFactory.newLatLng(position))
-//        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
     }
 
 //--------------------------------------------------------| интерфейсы |--------------------------------------------------------
@@ -155,14 +152,10 @@ class MapsFragment() : Fragment(),
 
     override fun onMyLocationClick(position: Location)
     {
-        curLocation = LatLng(position.latitude, position.longitude)
-        if (myMacker == null) myMacker = google_map.addMarker(MarkerOptions().position(curLocation!!))
-        else myMacker!!.position = curLocation
-        google_map.animateCamera(CameraUpdateFactory.newLatLng(curLocation))
+        setMyMackerPosition(LatLng(position.latitude, position.longitude))
     }
 
     override fun onMyLocationChange(point: Location?) { }
-
 
     override fun onMapReady(macker: GoogleMap?)
     {
@@ -175,18 +168,7 @@ class MapsFragment() : Fragment(),
         return true
     }
 
-    override fun onMarkerDragStart(macker: Marker?)
-    {
-
-    }
-
-    override fun onMarkerDrag(macker: Marker?)
-    {
-
-    }
-
-    override fun onMarkerDragEnd(macker: Marker?)
-    {
-
-    }
+    override fun onMarkerDragStart(macker: Marker?) { }
+    override fun onMarkerDrag(macker: Marker?) { }
+    override fun onMarkerDragEnd(macker: Marker?) { }
 }

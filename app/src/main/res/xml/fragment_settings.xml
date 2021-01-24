@@ -20,13 +20,12 @@
                 app:title="Телефон"
                 app:summary="88005553535">
             </EditTextPreference>
-            <EditTextPreference
-                app:dialogTitle="Ваш адресс"
-                app:dialogMessage="Введите ваш адрес"
-                app:key="ADDRESS"
-                app:title="Адрес"
-                app:summary="Улица Пошкина дом Колотушкина">
-            </EditTextPreference>
+<!--            <EditTextPreference-->
+<!--                app:dialogTitle="Дополнительная информация"-->
+<!--                app:key="COMMENT"-->
+<!--                app:title="Дополнительная информация"-->
+<!--                app:summary="Улица Пошкина дом Колотушкина">-->
+<!--            </EditTextPreference>-->
         </PreferenceCategory>
 
     <PreferenceCategory

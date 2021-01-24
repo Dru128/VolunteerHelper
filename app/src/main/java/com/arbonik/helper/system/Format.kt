@@ -33,6 +33,6 @@ class Format()
         }
 
         fun latLng_to_geoPoint(latLng: LatLng) = GeoPoint(latLng.latitude, latLng.longitude)
-        fun geoPoint_to_geoPointlatLng(geoPoint: GeoPoint) = LatLng(geoPoint.latitude, geoPoint.longitude)
+        fun geoPoint_to_latLng(geoPoint: GeoPoint) = LatLng(geoPoint.latitude, geoPoint.longitude)
     }
 }
