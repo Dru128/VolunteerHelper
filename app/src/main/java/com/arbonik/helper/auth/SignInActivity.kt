@@ -17,16 +17,16 @@ class SignInActivity : AuthBase()
 {
     override fun onCreate(savedInstanceState: Bundle?)
     {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-
-        val phone_sign = findViewById<EditText>(R.id.phone_sign)
 
         if(sharedPreferenceUser.checkAuth())
         {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
+        val phone_sign = findViewById<EditText>(R.id.phone_sign)
         makeMask(phone_sign)
         singInBotton.setOnClickListener { v ->
             val allView = auth_activity_container.children
