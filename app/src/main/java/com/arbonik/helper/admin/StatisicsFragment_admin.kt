@@ -57,7 +57,7 @@ class StatisicsFragment_admin : Fragment(), StatisticsFireBase.getStatistics
         var checkRequests = mutableListOf<String>()
         when (view.id)
         {
-            R.id.all_users -> checkUsers.add(resources.getString(R.string.all_users))
+            R.id.all_users -> checkUsers.add(getString(R.string.all_users))
             R.id.veterans -> {   }
             R.id.volonteers -> {    }
             R.id.all_requests -> {  }

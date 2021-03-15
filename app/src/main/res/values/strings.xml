@@ -1,13 +1,19 @@
 <resources>
+    <string name="app_name">Не требуя взамен</string>
+    <string name="privacy_policy">Для использования приложения вам необходимо принять
+        <a href="https://andrei761349.wixsite.com/helper/%D0%BF%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD">Политику конфиденциальности</a> и
+        <a href="https://andrei761349.wixsite.com/helper/%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-1">Условия использования</a>.
+    </string>
     <array name="help_variant">
         <item>Помощь по хозяйству</item>
         <item>Уход за питомцем</item>
         <item>Поход в магазин</item>
     </array>
 
+    <string name="welcome">Добро пожаловать в</string>
+    <string name="accept">Принять и продолжить</string>
 
     <string name="answ_accept">Заявка принята!</string>
-    <string name="app_name">Помощник в кармане</string>
     <string name="title_home">Создать заявку</string>
     <string name="title_requests_volonteer">Мои заявки</string>
     <string name="title_requestion">Заявки</string>
@@ -47,6 +53,19 @@
     <string name="refused_requests">Отклоненных заявок</string>
     <string name="complited_requests">исполненных</string>
 
+    <string name="inf_user">информация пользователя</string>
+    <string name="name">имя:</string>
+    <string name="phone">телефон:</string>
+    <string name="inf">дополнительная информация:</string>
+    <string name="time">время:</string>
+    <string name="comment">комментарий:</string>
+    <string name="location">местоположение</string>
+
+    <string name="coped_phone">номер телефона скопирован в буфер обмена</string>
+
+
     <string name="choose">выбрать</string>
     <string name="close">закрыть</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

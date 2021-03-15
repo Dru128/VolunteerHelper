@@ -4,7 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.R
@@ -16,6 +19,7 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldPath
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 open class RequestFragment : Fragment(), RequestAdapter.OnRequestSelectedListener
 {
@@ -58,7 +62,6 @@ open class RequestFragment : Fragment(), RequestAdapter.OnRequestSelectedListene
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         val root = inflater.inflate(R.layout.fragment_reqests, container, false)
-
         requestRecycler =  root.findViewById(R.id.request_recycler_view)
         initRecyclerView()
 

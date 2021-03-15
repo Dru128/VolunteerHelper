@@ -1,93 +1,304 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="15dp"
     android:layout_marginBottom="5dp"
     android:layout_marginTop="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-<LinearLayout
-    android:layout_gravity="center"
-    android:orientation="vertical"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/root_data"
-    >
-    <TextView
-        android:gravity="center"
-        android:id="@+id/title_data"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@{request.request.title}"
-        tools:text = "Название" />
-    <TextView
-        android:id="@+id/inf_data"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "@{request.request.master.address}"
-        tools:text = "Улица пушкина дом колотушкина"
-        />
-    <TextView
-        android:id="@+id/date_data"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "@{request.request.date.toString()}"
-        tools:text = "20.08"
-        />
-    <TextView
-        android:id="@+id/name_data"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@{request.request.master.name}"
-        tools:text = "Андрей" />
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/data_request_main">
 
-    <TextView
-        android:id="@+id/number_data"
-        android:textSize="16dp"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "@{request.request.master.phone}"
-        tools:text = "88005353535"
-        />
-    <TextView
-        android:id="@+id/comment_data"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text = "@{request.request.comment}"
-        tools:text = "comment"
-        />
-    <LinearLayout
-        android:layout_marginTop="4dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <TextView
-            android:layout_margin="4dp"
-            android:layout_gravity="center"
-            android:textSize="16dp"
-            android:gravity="center"
-            android:id="@+id/status"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text = ""
-            tools:text = "Заявка в обработке"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/button_data"
+            <TextView
+                android:id="@+id/title_data"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="4dp"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Тип помощи" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="right"
-            android:background="@drawable/button_blue_radius"
-            android:onClick="@{() -> request.onClick()}"
-            android:text="Принять/удалить заявку"
-            android:textColor="#FFF" />
-    </LinearLayout>
-    </LinearLayout>
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+            <TextView
+                android:id="@+id/hint_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="180dp"
+                android:text="@string/name"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/name_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hint_name"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Фёдор Евгенич" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout2">
+
+            <TextView
+                android:id="@+id/hint_phone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="180dp"
+                android:text="@string/phone"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/number_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toStartOf="@+id/copy_phone"
+                app:layout_constraintStart_toEndOf="@+id/hint_phone"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="+79831783103" />
+
+            <Button
+                android:id="@+id/copy_phone"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/copy_24"
+                app:layout_constraintDimensionRatio="h,1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+            <TextView
+                android:id="@+id/hint_inf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="120dp"
+                android:text="@string/inf"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/inf_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hint_inf"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="солнечная поляна 35, 3 подъезд, 4 этаж, квартира 75" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+            <TextView
+                android:id="@+id/hint_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="180dp"
+                android:text="@string/time"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/date_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hint_time"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="10.2 в 10:0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+            <TextView
+                android:id="@+id/hint_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxWidth="180dp"
+                android:text="@string/comment"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/comment_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hint_comment"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="купить .........." />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+            <Button
+                android:id="@+id/button_location"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_baseline_location_blue"
+                android:drawableLeft="@drawable/ic_baseline_location_blue"
+                android:maxWidth="180dp"
+                android:text="@string/location"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginEnd="4dp"
+                android:layout_marginRight="4dp"
+                android:maxWidth="2000dp"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/button_data"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Заявка в обработке" />
+
+            <Button
+                android:id="@+id/button_data"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:background="@drawable/button_blue_radius"
+                android:text="Принять / удалить заявку"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintDimensionRatio="w,4:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

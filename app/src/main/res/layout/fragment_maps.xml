@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Map.MapsFragment">
+    tools:context=".Map.MapsFragment"
+    android:id="@+id/map_layout">
 
     <fragment
         android:id="@+id/map"
@@ -38,6 +39,18 @@
         map:layout_constraintStart_toStartOf="parent"
         map:layout_constraintTop_toTopOf="parent"
         tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    <LinearLayout
+        android:id="@+id/map_layout_child"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginBottom="4dp"
+        android:orientation="vertical"
+        map:layout_constraintBottom_toBottomOf="parent"
+        map:layout_constraintStart_toStartOf="parent"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

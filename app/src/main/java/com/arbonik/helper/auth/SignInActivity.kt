@@ -9,7 +9,7 @@ import com.arbonik.helper.MainActivity
 import com.arbonik.helper.R
 import com.arbonik.helper.othertools.CheckValidate.Companion.checkDataInput
 import com.arbonik.helper.system.Format
-import com.arbonik.helper.system.Format.Companion.makeMask
+import com.arbonik.helper.system.Format.Companion.makeMaskEditTest
 import kotlinx.android.synthetic.main.activity_auth.*
 
 
@@ -27,7 +27,7 @@ class SignInActivity : AuthBase()
             finish()
         }
         val phone_sign = findViewById<EditText>(R.id.phone_sign)
-        makeMask(phone_sign)
+        makeMaskEditTest(phone_sign)
         singInBotton.setOnClickListener { v ->
             val allView = auth_activity_container.children
             if (checkDataInput(allView))
@@ -40,6 +40,9 @@ class SignInActivity : AuthBase()
         registration.setOnClickListener { v ->
             startActivity(Intent(this, RegistrationActivity::class.java))
         }
+
+        DialogPrivacyPolicy(0.8f)
+            .show(supportFragmentManager, "privacy_policy")
     }
 }
 

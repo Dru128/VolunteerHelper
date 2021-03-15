@@ -79,7 +79,7 @@ open class MarkDialog : DialogFragment()
     {
         dialog?.window?.apply {
             setDimAmount(dimAmount)
-            setBackgroundDrawableResource(R.drawable.around)
+            setBackgroundDrawableResource(R.drawable.half_around)
             setGravity(Gravity.BOTTOM)
         }
         super.onStart()

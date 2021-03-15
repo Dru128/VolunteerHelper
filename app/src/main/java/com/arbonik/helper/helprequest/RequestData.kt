@@ -1,6 +1,7 @@
 package com.arbonik.helper.helprequest
 
 import com.arbonik.helper.auth.User
+import java.io.Serializable
 
 data class RequestData(
     var title: String = "",
@@ -8,4 +9,4 @@ data class RequestData(
     var master: User = User(),
     var date: String = "",
     var status: Boolean = false
-)
+) : Serializable

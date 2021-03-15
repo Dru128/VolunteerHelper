@@ -9,7 +9,7 @@ import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import com.arbonik.helper.R
 import com.arbonik.helper.system.Format
-import com.arbonik.helper.system.Format.Companion.makeMask
+import com.arbonik.helper.system.Format.Companion.makeMaskEditTest
 
 
 class RegistrationFragment() : Fragment()
@@ -67,7 +67,7 @@ class RegistrationFragment() : Fragment()
                 }
             findViewById<Button>(R.id.adressButton)
                 .setOnClickListener{ regActivity.setMapFragment() }
-            makeMask(textPhone!!)
+            makeMaskEditTest(textPhone!!)
         }
         return root
     }

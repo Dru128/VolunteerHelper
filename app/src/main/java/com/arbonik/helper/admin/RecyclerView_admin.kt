@@ -13,7 +13,7 @@ import com.arbonik.helper.R
 class RecyclerView_admin: RecyclerView.Adapter<RecyclerView_admin.ViewHolder>()
 {
     var db = FireStore()
-
+//project-529198191554
     companion object
     {
         var Dataset: MutableList<TypeRequest> = mutableListOf()
@@ -21,8 +21,7 @@ class RecyclerView_admin: RecyclerView.Adapter<RecyclerView_admin.ViewHolder>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        val View =
-            LayoutInflater.from(parent.context).inflate(R.layout.admin_item, parent, false)
+        val View = LayoutInflater.from(parent.context).inflate(R.layout.admin_item, parent, false)
         return ViewHolder(View)
     }
 
