@@ -63,11 +63,6 @@ class VeteranRequestFragment : Fragment()
                      .removeView(root.findViewById<ProgressBar>(R.id.progressBar))
              }
 
-
-
-
-
-
         root.findViewById<Button>(R.id.toAuth).setOnClickListener { v ->
             if (selected_category != null)
                 {

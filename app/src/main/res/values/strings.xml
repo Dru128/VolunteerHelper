@@ -14,18 +14,19 @@
     <string name="accept">Принять и продолжить</string>
 
     <string name="answ_accept">Заявка принята!</string>
+
     <string name="title_home">Создать заявку</string>
     <string name="title_requests_volonteer">Мои заявки</string>
     <string name="title_requestion">Заявки</string>
-    <string name="title_notifications">Настройки профиля</string>
+    <string name="title_notifications">Настройки</string>
     <string name="date_help">Выберите удобное для вас время</string>
-    <string name="modify_position">Позиция успешно изменена</string>
     <string name="selected">выбрано</string>
 
     <string name="already_request">Заявка принята</string>
     <string name="wait_request">Заявка в обработке</string>
 
     <string name="accept_request">Принять заявку</string>
+    <string name="decline_request">"Отказаться от заявки"</string>
     <string name="delete_request">Удалить заявку</string>
     <string name="success_request">Заявка выполненна</string>
     <string name="inputAllView">Заполните все поля</string>
@@ -52,11 +53,12 @@
     <string name="all_requests">Всего заявок</string>
     <string name="refused_requests">Отклоненных заявок</string>
     <string name="complited_requests">исполненных</string>
+    <string name="not_shoose">Не выбрано</string>
 
     <string name="inf_user">информация пользователя</string>
     <string name="name">имя:</string>
     <string name="phone">телефон:</string>
-    <string name="inf">дополнительная информация:</string>
+    <string name="inf">Ваш адрес<!-- и дополнительная информация--></string>
     <string name="time">время:</string>
     <string name="comment">комментарий:</string>
     <string name="location">местоположение</string>
@@ -66,6 +68,9 @@
 
     <string name="choose">выбрать</string>
     <string name="close">закрыть</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ok">ок</string>
+    <string name="not">Нет, спасибо</string>
+
+
+    <string name="proposal_include_gps">Чтобы продолжить, включите на устройстве геолокацию</string>
 </resources>

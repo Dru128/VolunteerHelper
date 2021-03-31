@@ -11,14 +11,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.navigation.NavController
-import androidx.navigation.NavDestination
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.R
 import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.auth.USER_CATEGORY
-import com.arbonik.helper.auth.data_request_map
+import com.arbonik.helper.system.BundleHelper
 import com.arbonik.helper.system.Format
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.Query
@@ -48,7 +47,7 @@ open class RequestAdapter(_query: Query, _listener: OnRequestSelectedListener)
         holder.bind(snapshots[position], listener)
     }
 
-        inner class ViewHolder(item: View) : RecyclerView.ViewHolder(item)
+        inner class ViewHolder(var item: View) : RecyclerView.ViewHolder(item)
         {
              var dateView: TextView = item.findViewById(R.id.date_data)
              var titleView: TextView = item.findViewById(R.id.title_data)
@@ -59,7 +58,7 @@ open class RequestAdapter(_query: Query, _listener: OnRequestSelectedListener)
              var statusView: TextView = item.findViewById(R.id.status)
              val button : Button = item.findViewById(R.id.button_data)
              val button_location : Button = item.findViewById(R.id.button_location)
-             val copy_phone : Button = item.findViewById(R.id.copy_phone)
+             val button_copy_phone : Button = item.findViewById(R.id.button_copy_phone)
              val context = item.context
 
             fun bind(snapshot: DocumentSnapshot, listener: OnRequestSelectedListener)
@@ -75,25 +74,15 @@ open class RequestAdapter(_query: Query, _listener: OnRequestSelectedListener)
                         Linkify.addLinks(numberView, Linkify.PHONE_NUMBERS)
 
                         button_location.setOnClickListener {
-                            var navController = it.findNavController()
                             val bundle = Bundle()
-                            bundle.putSerializable("request", requestData)
-                            navController.navigate(R.id.action_navigation_request_vol_to_map_volonteer_fragment, bundle)
-                            navController.addOnDestinationChangedListener{ navController: NavController, navDestination: NavDestination, bundle: Bundle? ->
-                                if (navController.currentDestination?.id == R.id.action_map_volonteer_fragment_to_navigation_request_vol ||
-                                    navController.currentDestination?.id == R.id.action_navigation_request_vol_to_map_volonteer_fragment   )
-                                {
-                                    Toast.makeText(context, "testtesttest", Toast.LENGTH_LONG)
-                                        .show()
-                                }
-                            }
-
+                            bundle.putBundle("request", BundleHelper.putRequestData(requestData)) // заявка
+                            bundle.putString("request_id", snapshot.id) // ид документа заявки в БД
+                            if (requestData.status) it.findNavController().navigate(R.id.action_navigation_volonteer_fragment_to_map_volonteer_fragment, bundle)
+                            else it.findNavController().navigate(R.id.action_navigation_request_vol_to_map_volonteer_fragment, bundle)
                         }
-                        copy_phone.setOnClickListener {
+                        button_copy_phone.setOnClickListener {
                             val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                            val clip = ClipData.newPlainText(
-                                "TAG", requestData.master.phone.toString()
-                            )
+                            val clip = ClipData.newPlainText("TAG", requestData.master.phone.toString())
                             clipboard.setPrimaryClip(clip)
                             Toast.makeText(context, R.string.coped_phone, Toast.LENGTH_SHORT).show()
                         }
@@ -101,6 +90,7 @@ open class RequestAdapter(_query: Query, _listener: OnRequestSelectedListener)
                         {
                             USER_CATEGORY.VETERAN ->
                             {
+                                item.findViewById<ConstraintLayout>(R.id.constraintLayout7).setVisibility(View.GONE)
                                 statusView.text =
                                     if (it.status) "Заявка принята" else "Заявка обрабатывается"
                                 button.text =
@@ -112,7 +102,7 @@ open class RequestAdapter(_query: Query, _listener: OnRequestSelectedListener)
                             USER_CATEGORY.VOLONTEER ->
                             {
                                 statusView.text =
-                                    if (it.status) "Заявка принята" else "Заявка обрабатывается"
+                                    if (it.status) "Заявка принята" else "Заявка свободна"
                                 button.text =
                                     if (it.status) "Отказаться от заявки" else "Принять заявку"
                                 button.setOnClickListener { v ->
@@ -141,7 +131,7 @@ open class RequestAdapter(_query: Query, _listener: OnRequestSelectedListener)
                 itemView.setOnClickListener {
                     listener.onRequestSelectedListener(snapshot)
                 }
-                fun accept_request()
+                fun wrap_request()
                 {
 
                 }

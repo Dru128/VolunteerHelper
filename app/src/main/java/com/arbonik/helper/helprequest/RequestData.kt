@@ -9,4 +9,4 @@ data class RequestData(
     var master: User = User(),
     var date: String = "",
     var status: Boolean = false
-) : Serializable
+) //: Serializable

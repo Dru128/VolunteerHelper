@@ -17,7 +17,7 @@ data class User(
     {
         const val TAG_PHONE : String = "PHONE"
         const val NAME_TAG = "NAME"
-        const val INF_TAG : String = "INF"
+        const val TAG_INF : String = "INF"
         const val TAG_CATEGORY : String = "CATEGORY"
         const val RATING_TAG : String = "RATING"
         const val TAG_UID = "UID"

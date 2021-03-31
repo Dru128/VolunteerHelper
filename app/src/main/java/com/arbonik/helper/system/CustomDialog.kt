@@ -8,6 +8,9 @@ open class CustomDialog(val dimAmount: Float) : DialogFragment()
 {
     override fun onStart()
     {
+        dialog?.apply {
+            setCanceledOnTouchOutside(false)
+        }
         dialog?.window?.apply {
             setDimAmount(dimAmount)
             setBackgroundDrawableResource(R.drawable.around)

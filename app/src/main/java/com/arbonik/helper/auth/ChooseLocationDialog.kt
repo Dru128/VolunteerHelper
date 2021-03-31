@@ -2,15 +2,11 @@ package com.arbonik.helper.auth
 
 import android.app.Dialog
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
-import com.arbonik.helper.Map.MapsFragment
-import com.arbonik.helper.R
+import com.arbonik.helper.map.MapsFragment
 
 
 open class ChooseLocationDialog : DialogFragment()

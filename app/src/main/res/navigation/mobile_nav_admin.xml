@@ -13,7 +13,7 @@
 
     <fragment
         android:id="@+id/navigation_map_admin"
-        android:name="com.arbonik.helper.Map.MapsFragment"
+        android:name="com.arbonik.helper.map.MapsFragment"
         android:label="@string/map_admin"
         tools:layout="@layout/fragment_maps" />
 

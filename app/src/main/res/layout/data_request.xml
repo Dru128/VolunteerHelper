@@ -102,13 +102,13 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@+id/copy_phone"
+                app:layout_constraintEnd_toStartOf="@+id/button_copy_phone"
                 app:layout_constraintStart_toEndOf="@+id/hint_phone"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="+79831783103" />
 
             <Button
-                android:id="@+id/copy_phone"
+                android:id="@+id/button_copy_phone"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@drawable/copy_24"
@@ -271,13 +271,14 @@
             <TextView
                 android:id="@+id/status"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:maxWidth="2000dp"
                 android:textSize="18sp"
+                android:gravity="center"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_data"
                 app:layout_constraintStart_toStartOf="parent"
@@ -286,7 +287,7 @@
 
             <Button
                 android:id="@+id/button_data"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"

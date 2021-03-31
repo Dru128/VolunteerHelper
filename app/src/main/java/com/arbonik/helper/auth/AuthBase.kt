@@ -27,7 +27,6 @@ open class AuthBase : AppCompatActivity()
     var db = FirebaseFirestore.getInstance()
     val sharedPreferenceUser = SharedPreferenceUser()
     val userDataFirebase = UserDataFirebase()
-    var geoPoint: GeoPoint? = null
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -113,7 +112,6 @@ open class AuthBase : AppCompatActivity()
             .setCallbacks(callbacks)          // OnVerificationStateChangedCallbacks
             .build()
         PhoneAuthProvider.verifyPhoneNumber(options)
-
     }
 
     private fun getDataUser(uid: String)
@@ -128,14 +126,13 @@ open class AuthBase : AppCompatActivity()
                     var returnUser = User(
                         name = result[User.NAME_TAG.toLowerCase(Locale.ROOT)].toString(),
                         phone = result[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString(),
-                        inf = result[User.INF_TAG.toLowerCase(Locale.ROOT)].toString(),
+                        inf = result[User.TAG_INF.toLowerCase(Locale.ROOT)].toString(),
                         rating = 0f/*result[User.RATING_TAG.toLowerCase(Locale.ROOT)].toString().toFloat()*/,
                         category = USER_CATEGORY_CREATER(result[User.TAG_CATEGORY.toLowerCase(Locale.ROOT)].toString()),
                         uid = result[User.TAG_UID.toLowerCase(Locale.ROOT)].toString(),
-                        notification = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)].toString().toBoolean()
+                        notification = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)].toString().toBoolean(),
+                        location = result[User.TAG_LOCATION.toLowerCase(Locale.ROOT)] as GeoPoint?
                     )
-                    if (getUserCategory() == USER_CATEGORY.VETERAN) returnUser.location = result[User.TAG_LOCATION.toLowerCase(Locale.ROOT)] as GeoPoint?
-                    else returnUser.location = null
                     sharedPreferenceUser.authInDevice(returnUser)
                     // Notification.subscribeTopic(Notification.TOPIC_FOR_VOLONTER)
                     startActivity(Intent(this@AuthBase, MainActivity::class.java))
@@ -154,7 +151,7 @@ open class AuthBase : AppCompatActivity()
         rating = null,
         category = getUserCategory(),
         uid = uid,
-        location = RegData.location,
+        location = if (RegData.typeUser == USER_CATEGORY.VETERAN) RegData.location else /*GeoPoint(0.0, 0.0)*/null,
         notification = true
     )
 

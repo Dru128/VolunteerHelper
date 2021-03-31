@@ -1,18 +1,23 @@
-package com.arbonik.helper.Map
+package com.arbonik.helper.map
 
 import android.Manifest
-import android.content.pm.PackageManager
+import android.annotation.SuppressLint
+import android.app.AlertDialog
+import android.content.Context
+import android.content.Intent
 import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.provider.Settings
+import android.view.*
 import android.widget.*
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import com.arbonik.helper.R
 import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.auth.USER_CATEGORY
@@ -26,21 +31,21 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.android.synthetic.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 import kotlinx.android.synthetic.main.data_request.*
 import java.util.*
 
 
 open class MapsFragment() : Fragment(),
     OnMyLocationButtonClickListener,
-    OnMyLocationClickListener,
-    OnMapReadyCallback,
     GoogleMap.OnMarkerClickListener,
     GoogleMap.OnMarkerDragListener,
     GoogleMap.OnMyLocationChangeListener
 {
-    var curLocation: LatLng? = null
-    var myMacker: Marker? = null
+    val navController by lazy { this.requireView().findNavController() }
+
     var map_layout_child: LinearLayout? = null
+    var map_layout_main: ConstraintLayout? = null
     open var google_map: GoogleMap? = null
     set(value)
     {
@@ -49,13 +54,17 @@ open class MapsFragment() : Fragment(),
     }
     private val db = FirebaseFirestore.getInstance().collection(RequestManager.USERS_TAG)
     private var permission_GPS: Boolean = false
-    private val TYPE_USER: USER_CATEGORY? = SharedPreferenceUser.currentUser?.category
-    open fun creatAll() {}
+    val TYPE_USER by lazy { SharedPreferenceUser.currentUser?.category }
+    open fun creatAll() { }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View?
     {
+        setHasOptionsMenu(true)
         var root = inflater.inflate(R.layout.fragment_maps, container, false)
         root.apply {
+            map_layout_main = findViewById(R.id.map_layout)
             map_layout_child = findViewById(R.id.map_layout_child)
             val type_map_switch = findViewById<SwitchCompat>(R.id.tipy_map)
             type_map_switch.setOnClickListener {
@@ -63,6 +72,7 @@ open class MapsFragment() : Fragment(),
                 else setMapType(GoogleMap.MAP_TYPE_NORMAL)
             }
         }
+
         return root
     }
 
@@ -74,46 +84,41 @@ open class MapsFragment() : Fragment(),
 
     private fun initMap()
     {
-        permission_GPS = ContextCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+
         var mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment!!.getMapAsync { googleMap ->
             google_map = googleMap
+            locationPermission.launch(Manifest.permission.ACCESS_FINE_LOCATION)
             googleMap.apply {
-                if (curLocation != null) setMyMackerPosition(curLocation!!)
                 uiSettings.isZoomControlsEnabled = true
-                uiSettings.isMyLocationButtonEnabled = true
+                google_map?.uiSettings?.isMyLocationButtonEnabled = true
 
 //                setOnMarkerClickListener(this@MapsFragment)
                 setOnMyLocationButtonClickListener(this@MapsFragment)
-                setOnMyLocationClickListener(this@MapsFragment)
                 setOnMyLocationChangeListener(this@MapsFragment)
-                if (permission_GPS)
-                {
-                    isMyLocationEnabled = true
-                }
-                else ActivityCompat.requestPermissions(
-                    requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), 1
-                )
             }
+
+
+
             when (TYPE_USER)
             {
-                USER_CATEGORY.VOLONTEER ->
-                {
-
-
-                }
                 USER_CATEGORY.VETERAN, null ->
                 {
-                    googleMap.setOnMapClickListener { setMyMackerPosition(it) }
-                    /*                    if (permission_GPS)
+                    //                    turnGPS()
+                    /*
+                    if (permission_GPS)
                     {
                         //                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(curLocation, 5f))
                         AlertDialog.Builder(context).apply {
                             setTitle("выбрать текущее местоположение?")
                             setPositiveButton("да, выбрать") { _, _ ->
                                 onMyLocationButtonClick()
-                                //                                val geoPoint = LatLng(googleMap.myLocation.latitude, googleMap.myLocation.longitude)
 
+                                val geoPoint = LatLng(
+                                    googleMap.myLocation.latitude, googleMap.myLocation.longitude
+                                )
+                                setMyMackerPosition(geoPoint)
+                                moveCamera(geoPoint)
                             }
                             setNegativeButton("отмена") { _, _ -> }
                             show()
@@ -138,9 +143,7 @@ open class MapsFragment() : Fragment(),
                                         .title(document[User.NAME_TAG.toLowerCase(Locale.ROOT)].toString())
                                         .snippet(
                                             "телефон: ${document[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString()}" + "   адрес: ${
-                                                document[User.INF_TAG.toLowerCase(
-                                                    Locale.ROOT
-                                                )].toString()
+                                                document[User.TAG_INF.toLowerCase(Locale.ROOT)].toString()
                                             }"
                                         )
                                 )
@@ -151,38 +154,86 @@ open class MapsFragment() : Fragment(),
             }
         }
     }
+    @SuppressLint("MissingPermission")
+    val locationPermission = registerForActivityResult(ActivityResultContracts.RequestPermission())
+    { isGranted ->
+        if (isGranted)
+        {
+            google_map?.isMyLocationEnabled = true
+        }
+        else {
+            ActivityCompat.requestPermissions(
+                requireActivity(), arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 0
+            )
+        }
+    }
+
+    open fun isGeoDisabled(): Boolean
+    {
+        val mLocationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        val mIsGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
+        val mIsNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
+        return !mIsGPSEnabled && !mIsNetworkEnabled
+    }
 
     fun setMapType(type: Int) { google_map?.mapType = type }
 
-    fun moveCamera(position: LatLng) { google_map?.animateCamera(CameraUpdateFactory.newLatLngZoom(position, 15f), 2500, null) }
+    fun moveCamera(position: LatLng) { google_map?.animateCamera(
+        CameraUpdateFactory.newLatLngZoom(
+            position, 15f
+        ), 1500, null
+    ) }
 
-    fun setMyMackerPosition(position: LatLng)
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
     {
-        curLocation = position
-        if (myMacker == null) myMacker = google_map?.addMarker(MarkerOptions().position(position))
-        else myMacker!!.position = position
-                google_map?.animateCamera(CameraUpdateFactory.newLatLng(position))
-        Toast.makeText(context, getString(R.string.modify_position), Toast.LENGTH_SHORT).show()
+        val actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar?.setHomeButtonEnabled(true)
+        actionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
-//--------------------------------------------------------| интерфейсы |--------------------------------------------------------
-    override fun onMyLocationButtonClick(): Boolean = false
-
-    override fun onMyLocationClick(position: Location)
+    override fun onDestroy()
     {
-        setMyMackerPosition(LatLng(position.latitude, position.longitude))
+        val actionBar = (activity as AppCompatActivity?)!!.supportActionBar
+        actionBar?.setHomeButtonEnabled(false)
+        actionBar?.setDisplayHomeAsUpEnabled(false)
+        super.onDestroy()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean
+    {
+        if (item.itemId == android.R.id.home)
+        {
+            onDestroyView()
+            onDestroy()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    //--------------------------------------------------------| интерфейсы |--------------------------------------------------------
+    override fun onMyLocationButtonClick(): Boolean
+    {
+        val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) // проверка включен ли GPS
+        {
+            AlertDialog.Builder(context).apply {
+                setMessage(getString(R.string.proposal_include_gps))
+                setPositiveButton(getString(R.string.ok)) { _, _ ->
+                    startActivity(Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
+                }
+                setNegativeButton(getString(R.string.not)) { _, _ ->
+                    onDestroyView()
+                }
+                show()
+            }
+        }
+        return false
     }
 
     override fun onMyLocationChange(point: Location?) { }
 
-    override fun onMapReady(macker: GoogleMap?)
+    override fun onMarkerClick(macker: Marker): Boolean
     {
-
-    }
-
-    override fun onMarkerClick(macker: Marker?): Boolean
-    {
-        google_map?.animateCamera(CameraUpdateFactory.newLatLng(macker?.position))
+        moveCamera(macker.position)
         return true
     }
 
