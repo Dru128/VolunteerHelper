@@ -25,8 +25,7 @@ class SharedPreferenceUser
             }
     }
 
-    var sharedPreference =
-        PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
+    var sharedPreference = PreferenceManager.getDefaultSharedPreferences(HelperApplication.globalContext)
 
     var editor = sharedPreference.edit()
 
