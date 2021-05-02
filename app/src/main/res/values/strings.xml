@@ -10,6 +10,9 @@
         <item>Поход в магазин</item>
     </array>
 
+    <string name="site_key">6Lc8RMEaAAAAAB3awAx2rVHwDvgfEi0MwhWE56lV</string>
+    <string name="secret_key">6Lc8RMEaAAAAADHG5QHG1379GGYkl1tgf3o8koA_</string>
+
     <string name="welcome">Добро пожаловать в</string>
     <string name="accept">Принять и продолжить</string>
 

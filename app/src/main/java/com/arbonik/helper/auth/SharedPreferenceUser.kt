@@ -1,5 +1,6 @@
 package com.arbonik.helper.auth
 
+import android.app.Application
 import android.content.SharedPreferences
 import android.util.Log
 import androidx.preference.PreferenceManager
@@ -61,6 +62,7 @@ class SharedPreferenceUser
         currentUser = null
         editor.putBoolean(User.TAG_AUTH, false)
         editor.apply()
+        HelperApplication.clearDataApp()
     }
 
     fun restoreUser(): User

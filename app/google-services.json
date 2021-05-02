@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "529198191554-cmor9r9ssf30trfp8omf2t9j1eij2hqg.apps.googleusercontent.com",
+          "client_id": "529198191554-mga2jp5vre6gahn3m987ad9h3lf8356j.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.arbonik.helper",
-            "certificate_hash": "737e1d31f978b7a1a9bfde016ea9404976fb65c8"
+            "certificate_hash": "6e4a114f2da14f8501fb3c23e39096a2d897922e"
           }
         },
         {
@@ -29,7 +29,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCWkuGeuyzfT2xwv_78APYXBfND1nGgBis"
+          "current_key": "AIzaSyCHWhMvwG_xrDHJhh-93zoUzUZvrHA1jw0"
         }
       ],
       "services": {
