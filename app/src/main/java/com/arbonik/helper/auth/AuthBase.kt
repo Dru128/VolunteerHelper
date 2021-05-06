@@ -50,16 +50,22 @@ open class AuthBase : AppCompatActivity()
                 if (e is FirebaseAuthInvalidCredentialsException)
                 {
                     // Invalid request
+                    Toast.makeText(this@AuthBase, "${e.errorCode}; ${e.message}; Invalid request", Toast.LENGTH_LONG).show()
                 } else if (e is FirebaseTooManyRequestsException)
                 {
                     // The SMS quota for the project has been exceeded
+                    Toast.makeText(this@AuthBase, "${e.message}; The SMS quota for the project has been exceeded", Toast.LENGTH_LONG).show()
                 }
-                // Show a message and update the UI
-                Toast.makeText(this@AuthBase, "Ошибка!", Toast.LENGTH_LONG).show()
+                else
+                {
+                    // Show a message and update the UI
+                    Toast.makeText(this@AuthBase, "Other: ${e.message}", Toast.LENGTH_LONG).show()
+                }
             }
 
             override fun onCodeSent(verificationId: String, token: PhoneAuthProvider.ForceResendingToken)
             {
+                Toast.makeText(this@AuthBase, "отправлен!", Toast.LENGTH_LONG).show()
                 AlertDialog.Builder(this@AuthBase/*, R.drawable.dialog_style*/).apply{
                     val codeText = EditText(this@AuthBase) // текст для ввода типа заявки
                         codeText.inputType = InputType.TYPE_CLASS_PHONE
@@ -74,6 +80,7 @@ open class AuthBase : AppCompatActivity()
                         mAuth.signInWithCredential(credential)
                             .addOnCompleteListener(this@AuthBase)
                             { task ->
+                                Toast.makeText(this@AuthBase, "все!", Toast.LENGTH_LONG).show()
                                 when (aim)
                                 {
                                     Aim.register ->
