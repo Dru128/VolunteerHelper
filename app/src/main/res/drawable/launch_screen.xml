@@ -10,12 +10,11 @@
 
     <!-- Лого приложения -->
     <item
-        android:height="68.6dp"
-        android:width="80.4dp"
+        android:height="103dp"
+        android:width="120dp"
         android:gravity="center">
-        <bitmap android:src="@drawable/logo"/>
+        <bitmap android:src="@drawable/logo_round"/>
 
     </item>
 
 </layer-list>
-

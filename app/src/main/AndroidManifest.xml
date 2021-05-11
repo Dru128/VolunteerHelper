@@ -14,9 +14,9 @@
     <application
         android:name=".HelperApplication"
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/logo_round"
         android:label="@string/app_name"
-        android:roundIcon="@drawable/logo"
+        android:roundIcon="@drawable/logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
@@ -38,9 +38,10 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".auth.SignInActivity"
+            android:name=".auth.AuthActivity"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AppTheme.Launcher"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,11 +50,13 @@
         </activity>
         <activity
             android:name=".auth.RegistrationActivity"
-            android:launchMode="singleTask" />
+            android:launchMode="singleTask"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:launchMode="singleTop"/>
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"/>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"

@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.arbonik.helper.auth.SharedPreferenceUser
-import com.arbonik.helper.auth.SignInActivity
+import com.arbonik.helper.auth.AuthActivity
 import com.arbonik.helper.auth.USER_CATEGORY
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity()
     {
         if (!sharedPreferenceUser.checkAuth())
         {
-            startActivity(Intent(this, SignInActivity::class.java))
+            startActivity(Intent(this, AuthActivity::class.java))
             finish()
         }
         super.onCreate(savedInstanceState)
@@ -70,7 +70,7 @@ class MainActivity : AppCompatActivity()
                 R.id.logout ->
                 {
                     sharedPreferenceUser.loginOut()
-                    startActivity(Intent(this, SignInActivity::class.java))
+                    startActivity(Intent(this, AuthActivity::class.java))
                     finish()
                 }
                 android.R.id.home -> onBackPressed() // эмуляция кнопки назад

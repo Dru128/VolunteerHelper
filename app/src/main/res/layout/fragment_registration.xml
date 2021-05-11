@@ -13,7 +13,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginBottom="3dp"
-        app:layout_constraintBottom_toTopOf="@+id/singInBotton"
+        app:layout_constraintBottom_toTopOf="@+id/registration_button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -28,33 +28,18 @@
                 android:background="#FFF">
 
                 <EditText
-                    android:id="@+id/phone_reg"
+                    android:id="@+id/name_reg"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginLeft="24dp"
                     android:layout_marginTop="32dp"
-                    android:layout_marginEnd="24dp"
+                    android:layout_marginRight="24dp"
                     android:backgroundTint="@color/colorAccent"
-                    android:hint="+7 ("
-                    android:textColorHint="@color/black"
-                    android:inputType="phone"
+                    android:maxLength="45"
+                    android:text=""
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-                <EditText
-                    android:id="@+id/name_reg"
-                    android:text=""
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginTop="32dp"
-                    android:layout_marginEnd="24dp"
-                    android:backgroundTint="@color/colorAccent"
-                    android:maxLength="45"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/phone_reg" />
 
                 <RadioGroup
                     android:id="@+id/role_radio_group"
@@ -157,17 +142,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_marginBottom="1dp"
-                    android:text="Ваш номер телефон"
-                    android:textColor="@color/black"
-                    android:textSize="13dp"
-                    app:layout_constraintBottom_toTopOf="@+id/phone_reg"
-                    app:layout_constraintStart_toStartOf="@+id/phone_reg" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="6dp"
-                    android:layout_marginBottom="1dp"
                     android:text="Ваше имя"
                     android:textColor="@color/black"
                     android:textSize="13dp"
@@ -189,7 +163,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/singInBotton"
+        android:id="@+id/registration_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="6dp"

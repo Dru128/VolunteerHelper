@@ -29,7 +29,7 @@
     <string name="decline_request">"Отказаться от заявки"</string>
     <string name="delete_request">Удалить заявку</string>
     <string name="success_request">Заявка выполненна</string>
-    <string name="inputAllView">Заполните все поля</string>
+    <string name="choose_name">Введите имя</string>
     <string name="choose_location">выберите адрес</string>
     <string name="veteran">Ветеран</string>
     <string name="volonteer">Волонтер</string>

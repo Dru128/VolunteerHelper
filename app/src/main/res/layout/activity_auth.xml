@@ -10,48 +10,14 @@
     tools:context=".auth.RegistrationActivity"
     android:id="@+id/auth_activity_container">
 
-    <EditText
-        android:id="@+id/phone_sign"
-        android:inputType="phone"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="32dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/colorAccent"
-        android:hint="+7 ("
-        android:textColorHint="@color/black"/>
 
-    <Button
-        android:id="@+id/singInBotton"
-        android:layout_width="match_parent"
+    <ProgressBar
+        android:id="@+id/progressBar2"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Войти"
-        android:radius="10dp"
-        android:textColor="#FFF"
-        android:background="@drawable/button_yellow_radius"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="40dp"
-        app:layout_constraintBottom_toTopOf="@id/registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-    <Button
-        android:id="@+id/registration"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Создать аккаунт"
-        android:radius="10dp"
-        android:textColor="#FFF"
-        android:background="@drawable/button_yellow_radius"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
