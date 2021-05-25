@@ -6,7 +6,7 @@
     android:opacity="opaque">
 
     <!-- Цвет фона, предпочтительно как в главной теме -->
-    <item android:drawable="@android:color/white"/>
+    <item android:drawable="@color/logo_background"/>
 
     <!-- Лого приложения -->
     <item

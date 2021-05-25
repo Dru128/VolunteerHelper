@@ -46,6 +46,7 @@ open class MapsFragment() : Fragment(),
 
     var map_layout_child: LinearLayout? = null
     var map_layout_main: ConstraintLayout? = null
+
     open var google_map: GoogleMap? = null
     set(value)
     {
@@ -209,7 +210,7 @@ open class MapsFragment() : Fragment(),
         return super.onOptionsItemSelected(item)
     }
 
-    //--------------------------------------------------------| интерфейсы |--------------------------------------------------------
+    //--------------------------------------------------------| интерфейсы & проверки |--------------------------------------------------------
     override fun onMyLocationButtonClick(): Boolean
     {
         val locationManager = requireContext().getSystemService(Context.LOCATION_SERVICE) as LocationManager

@@ -4,7 +4,9 @@ import android.content.SharedPreferences
 import android.util.Log
 import androidx.preference.PreferenceManager
 import com.arbonik.helper.HelperApplication
+import com.firebase.ui.auth.AuthUI
 import com.google.firebase.firestore.GeoPoint
+import kotlin.coroutines.coroutineContext
 
 class SharedPreferenceUser
 {
@@ -41,7 +43,7 @@ class SharedPreferenceUser
             user?.location?.longitude?.let { putDouble(User.TAG_LOCATION_LON, it) }
             putString(User.TAG_PHONE, user?.phone)
             putString(User.TAG_CATEGORY, user?.category.toString())
-            putFloat(User.RATING_TAG, user?.rating.toString().toFloat())
+            putFloat(User.RATING_TAG, -1f /*user?.rating.toString().toFloat()*/)
             putBoolean(User.TAG_NOTFICATION, user?.notification.toString().toBoolean())
             Log.d("TESTTEXT", "LOGININ")
             apply()
@@ -58,9 +60,11 @@ class SharedPreferenceUser
     fun loginOut()
     {
         Log.d("TESTTEXT", "LOGINOUT")
-        currentUser = null
-        editor.putBoolean(User.TAG_AUTH, false)
-        editor.apply()
+        AuthUI.getInstance().signOut(HelperApplication.globalContext).addOnSuccessListener {
+            currentUser = null
+            editor.putBoolean(User.TAG_AUTH, false)
+            editor.apply()
+        }
     }
 
     fun restoreUser(): User

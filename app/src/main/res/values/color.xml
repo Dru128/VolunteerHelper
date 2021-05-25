@@ -11,4 +11,7 @@
     <color name="colorAccent">#ff9800</color>
     <color name="layoutColorBlue">#ffccbc</color>
 
+    <color name="logo_background">#FCECD2</color>
+
+
 </resources>

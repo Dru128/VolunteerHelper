@@ -14,6 +14,16 @@
         <item name="colorControlActivated">@color/colorAccent</item>
     </style>
 
+    <style name="TextView" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="EditText" parent="Theme.AppCompat.Light">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="AppTheme.Launcher">
         <!-- загрузочный экран -->
         <item name="android:windowBackground">@drawable/launch_screen</item>

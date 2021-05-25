@@ -14,11 +14,14 @@ class Format()
         fun makeMaskTextView(phone: String): String
         {
             var p = phone
-            p = StringBuilder(p).insert(p.length - 10, " (").toString()
-            p = StringBuilder(p).insert(p.length - 7, ") ").toString()
-            p = StringBuilder(p).insert(p.length - 4, "-").toString()
-            p = StringBuilder(p).insert(p.length - 2, "-").toString()
-            return p
+            if (phone.length == 12)
+            {
+                p = StringBuilder(p).insert(p.length - 10, " (").toString()
+                p = StringBuilder(p).insert(p.length - 7, ") ").toString()
+                p = StringBuilder(p).insert(p.length - 4, "-").toString()
+                p = StringBuilder(p).insert(p.length - 2, "-").toString()
+            }
+                return p
         }
     }
 }
