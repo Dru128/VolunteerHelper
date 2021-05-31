@@ -11,7 +11,8 @@ data class User(
     var rating: Float? = null,
     val uid: String? = null,
     var notification: Boolean? = null,
-    var location: GeoPoint? = null)
+    var location: GeoPoint? = null,
+    var status_account: STATUS_ACCOUNT? = null)
 {
     companion object
     {
@@ -19,6 +20,7 @@ data class User(
         const val NAME_TAG = "NAME"
         const val TAG_INF : String = "INF"
         const val TAG_CATEGORY : String = "CATEGORY"
+        const val TAG_STATUS_ACCOUNT : String = "STATUS_ACCOUNT"
         const val RATING_TAG : String = "RATING"
         const val TAG_UID = "UID"
         const val TAG_AUTH = "AUTH"
@@ -37,9 +39,26 @@ fun USER_CATEGORY_CREATER(s : String) = when(s)
     else -> USER_CATEGORY.VETERAN
 }
 
+fun STATUS_ACCOUNT_CREATER(s : String) = when(s)
+{
+    "REG_CHECKED" -> STATUS_ACCOUNT.REG_CHECKED
+    "ACTIVE"-> STATUS_ACCOUNT.ACTIVE
+    "LOCKED"    -> STATUS_ACCOUNT.LOCKED
+    "DELETED" -> STATUS_ACCOUNT.DELETED
+    else -> null
+}
+
 enum class USER_CATEGORY
 {
     VETERAN,
     VOLONTEER,
     ADMIN
+}
+
+enum class STATUS_ACCOUNT
+{
+    REG_CHECKED,
+    ACTIVE,
+    LOCKED,
+    DELETED
 }

@@ -26,7 +26,7 @@ class RegistrationActivity : AuthBase()
         val user = createUser(authUI!!.uid)
         userDataFirebase.addUser(user)
         sharedPreferenceUser.authInDevice(user)
-        startActivity(Intent(this, MainActivity::class.java))
+        startActivity(Intent(this, AuthActivity::class.java))
         Toast.makeText(this, "регистрация завершена", Toast.LENGTH_SHORT).show()
         finish()
     }
@@ -39,7 +39,8 @@ class RegistrationActivity : AuthBase()
         category = RegData.typeUser,
         uid = uid,
         location = if (RegData.typeUser == USER_CATEGORY.VETERAN) RegData.location else /*GeoPoint(0.0, 0.0)*/ null,
-        notification = true
+        notification = true,
+        status_account = STATUS_ACCOUNT.REG_CHECKED
     )
 }
 

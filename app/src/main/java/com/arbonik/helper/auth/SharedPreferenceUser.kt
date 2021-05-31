@@ -43,6 +43,7 @@ class SharedPreferenceUser
             user?.location?.longitude?.let { putDouble(User.TAG_LOCATION_LON, it) }
             putString(User.TAG_PHONE, user?.phone)
             putString(User.TAG_CATEGORY, user?.category.toString())
+            putString(User.TAG_STATUS_ACCOUNT, user?.status_account.toString())
             putFloat(User.RATING_TAG, -1f /*user?.rating.toString().toFloat()*/)
             putBoolean(User.TAG_NOTFICATION, user?.notification.toString().toBoolean())
             Log.d("TESTTEXT", "LOGININ")
@@ -76,13 +77,14 @@ class SharedPreferenceUser
                 getString(User.NAME_TAG, ""),
                 getString(User.TAG_PHONE, ""),
                 getString(User.TAG_INF, ""),
-                USER_CATEGORY_CREATER(getString(User.TAG_CATEGORY, "")!!),
+                USER_CATEGORY_CREATER(getString(User.TAG_CATEGORY, "").toString()),
                 getFloat(User.RATING_TAG, -1f),
                 getString(User.TAG_UID, ""),
                 getBoolean(User.TAG_NOTFICATION, true),
                 GeoPoint(
                     getDouble(User.TAG_LOCATION_LAT, 0.0), getDouble(User.TAG_LOCATION_LON, 0.0)
-                )
+                ),
+                STATUS_ACCOUNT_CREATER(getString(User.TAG_STATUS_ACCOUNT, "").toString())
             )
         }
     }

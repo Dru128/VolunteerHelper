@@ -58,7 +58,7 @@
     <string name="inf_user">информация пользователя</string>
     <string name="name">имя:</string>
     <string name="phone">телефон:</string>
-    <string name="inf">Ваш адрес<!-- и дополнительная информация--></string>
+    <string name="inf">адрес<!-- и дополнительная информация--></string>
     <string name="time">время:</string>
     <string name="comment">комментарий:</string>
     <string name="location">местоположение</string>

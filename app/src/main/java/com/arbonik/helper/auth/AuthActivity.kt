@@ -6,6 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import com.arbonik.helper.MainActivity
+import com.arbonik.helper.R
 import com.arbonik.helper.helprequest.RequestManager
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
@@ -25,6 +26,7 @@ class AuthActivity : AuthBase()
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
         checkAuthUser()
+
     }
 
 
@@ -35,13 +37,13 @@ class AuthActivity : AuthBase()
             if (sharedPreferenceUser.checkAuth())
             {
                 // already signed in
-                startActivity(Intent(this, MainActivity::class.java))
+                getDataUser(authUI!!)
             }
             else
             {
                 startActivity(Intent(this, RegistrationActivity::class.java))
+                finish()
             }
-            finish()
         }
         else
         {
@@ -94,25 +96,53 @@ class AuthActivity : AuthBase()
                             phone = result[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString(),
                             inf = result[User.TAG_INF.toLowerCase(Locale.ROOT)].toString(),
                             rating = 0f/*result[User.RATING_TAG.toLowerCase(Locale.ROOT)].toString().toFloat()*/,
-                            category = USER_CATEGORY_CREATER(result[User.TAG_CATEGORY.toLowerCase(
-                                Locale.ROOT)].toString()),
+                            category = USER_CATEGORY_CREATER(result[User.TAG_CATEGORY.toLowerCase(Locale.ROOT)].toString()),
                             uid = result[User.TAG_UID.toLowerCase(Locale.ROOT)].toString(),
                             notification = result[User.TAG_NOTFICATION.toLowerCase(Locale.ROOT)].toString().toBoolean(),
-                            location = result[User.TAG_LOCATION.toLowerCase(Locale.ROOT)] as GeoPoint?
+                            location = result[User.TAG_LOCATION.toLowerCase(Locale.ROOT)] as GeoPoint?,
+                            status_account = STATUS_ACCOUNT_CREATER(result[User.TAG_STATUS_ACCOUNT.toLowerCase(Locale.ROOT)].toString())
                         )
                         sharedPreferenceUser.authInDevice(returnUser)
+
+
+                        when (returnUser.status_account)
+                        {
+                            STATUS_ACCOUNT.REG_CHECKED ->
+                            {
+                                // уведомить юзера что его заявка на регистрацию рассматривается
+                                setContentView(R.layout.activity_auth_reg_checked) // подключение разметки
+
+
+
+//                                отобразить данные
+//                                returnUser.phone
+//                                returnUser.name
+//                                returnUser.category
+//                                returnUser.inf если не равен null
+                            }
+                            STATUS_ACCOUNT.ACTIVE ->
+                            {
+                                startActivity(Intent(this, MainActivity::class.java))
+                                finish()
+                            }
+                            STATUS_ACCOUNT.LOCKED ->
+                            {
+                                // уведомить юзера что его аккаунт заблокирован
+                            }
+                            STATUS_ACCOUNT.DELETED -> {}
+                        }
+
                     }
-                    startActivity(Intent(this, MainActivity::class.java))
+
                 }
                 else
                 {
                     startActivity(Intent(this, RegistrationActivity::class.java))
+                    finish()
                 }
-                finish()
             }
             .addOnFailureListener {
                 Toast.makeText(this, "Ошибка: ${it.message}", Toast.LENGTH_LONG).show()
             }
     }
 }
-

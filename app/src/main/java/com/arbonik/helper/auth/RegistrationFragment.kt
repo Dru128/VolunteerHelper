@@ -26,16 +26,17 @@ import com.google.firebase.auth.FirebaseUser
 
 class RegistrationFragment() : Fragment()
 {
-    private val PHONE_NUMBER_RC: Int = 1274756
     private val RC_AUTH: Int = 3902478
     private val navController by lazy { this.requireView().findNavController() }
-    private lateinit var textPhone: TextView
-    private lateinit var textAccount: TextView
+    private lateinit var textPhone: EditText
+    private lateinit var textAccount: EditText
     var authUI: FirebaseUser? = null
         @SuppressLint("RestrictedApi") get() = AuthUI.getInstance().auth.currentUser
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
     {
         var root = inflater.inflate(R.layout.fragment_registration, container, false)
+
         root.apply {
             val container_location = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.container_location)
             val radioButtonVolonteer = findViewById<RadioButton>(R.id.radioButtonVolonteer)
@@ -47,18 +48,17 @@ class RegistrationFragment() : Fragment()
             textPhone = findViewById(R.id.text_phone)
             textName.doAfterTextChanged { RegData.name = it.toString() }
             textInf.doAfterTextChanged { RegData.inf = it.toString() }
+            textPhone.doAfterTextChanged { RegData.phone = Format.format_number(it.toString()) }
 
             if (RegData.name != null) textName!!.text.insert(0, RegData.name)
+            if (RegData.phone != null) textPhone.text.insert(0, RegData.phone.toString())
             if (RegData.inf != null) textInf!!.text.insert(0, RegData.inf.toString())
             if (RegData.location != null) location_status_text!!.text = getString(R.string.selected)
 
-            textAccount.text = authUI!!.email
+            textAccount.setText(authUI!!.email)
 
             requireActivity().window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN) // скрыть клавиатуру при создании фрагмента
 
-            textPhone.setOnClickListener {
-                requestPhoneNumber()
-            }
             textAccount.setOnClickListener {
                 AuthUI.getInstance().signOut(context).addOnSuccessListener {
                     auth_userUI()
@@ -103,15 +103,10 @@ class RegistrationFragment() : Fragment()
                     }
                     navController.navigate(R.id.action_registration_fragment_to_map_veteran_fragment, bundle)
                 }
+            Format.makeMaskEditTest(textPhone)
+
         }
         return root
-    }
-
-    private fun requestPhoneNumber()
-    {
-        val hintRequest = HintRequest.Builder().setPhoneNumberIdentifierSupported(true).build()
-        val intent = Auth.CredentialsApi.getHintPickerIntent(GoogleApiClient.Builder(requireContext()).addApi(Auth.CREDENTIALS_API).build(), hintRequest)
-        startIntentSenderForResult(intent.intentSender, PHONE_NUMBER_RC, null, 0, 0, 0, null)
     }
 
     private fun auth_userUI()
@@ -126,23 +121,13 @@ class RegistrationFragment() : Fragment()
     {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (requestCode == PHONE_NUMBER_RC)
-        {
-            if (resultCode == AppCompatActivity.RESULT_OK && data != null)
-            {
-                val credential: Credential? = data.getParcelableExtra(Credential.EXTRA_KEY)
-                val phoneNumber = credential?.id.toString()
-                RegData.phone = phoneNumber
-                textPhone.text = Format.makeMaskTextView(phoneNumber)
-            }
-        }
-        else if (requestCode == RC_AUTH)
+        if (requestCode == RC_AUTH)
         {
             val response = IdpResponse.fromResultIntent(data)
 
             if (resultCode == Activity.RESULT_OK && authUI != null)
             {
-                textAccount.text = authUI!!.email
+                textAccount.setText(authUI!!.email)
             }
             else
             {
