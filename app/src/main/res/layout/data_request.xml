@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
-    app:cardCornerRadius="15dp"
-    android:layout_marginBottom="5dp"
-    android:layout_marginTop="5dp"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="15dp"
+    android:layout_margin="4dp"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/data_request_main">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,59 +15,43 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+
+        <TextView
+            android:id="@+id/title_data"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="4sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            tools:text="Поход в магазин"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <TextView
-                android:id="@+id/title_data"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="4dp"
-                android:textSize="18sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Тип помощи" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintTop_toTopOf="parent"/>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/title_data">
 
             <TextView
                 android:id="@+id/hint_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="180dp"
-                android:text="@string/name"
-                android:textSize="14sp"
+                style="@style/Hint_item"
+                android:text="@string/_name"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/name_data"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="15sp"
+                style="@style/Text_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hint_name"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/hint_name"
                 tools:text="Фёдор Евгенич" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -77,7 +60,7 @@
             android:id="@+id/constraintLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginEnd="2dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,72 +68,59 @@
 
             <TextView
                 android:id="@+id/hint_phone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="180dp"
-                android:text="@string/phone"
-                android:textSize="14sp"
+                style="@style/Hint_item"
+                android:text="@string/_phone"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/number_data"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toStartOf="@+id/button_copy_phone"
+                style="@style/Text_item"
+                android:layout_marginRight="2sp"
+                app:layout_constraintEnd_toStartOf="@+id/button_copy_phone_data_request"
                 app:layout_constraintStart_toEndOf="@+id/hint_phone"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="+79831783103" />
+                app:layout_constraintTop_toTopOf="@+id/hint_phone"
+                tools:text="+7 (333) 555-55-55" />
 
-            <Button
-                android:id="@+id/button_copy_phone"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/copy_24"
-                app:layout_constraintDimensionRatio="h,1:1"
+            <ImageButton
+                android:id="@+id/button_copy_phone_data_request"
+                style="@style/Button_copy"
+                app:layout_constraintDimensionRatio="1:1"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="@+id/number_data" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout4"
-            android:layout_width="match_parent"
+            android:layout_width="0sp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
 
             <TextView
                 android:id="@+id/hint_inf"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="120dp"
-                android:text="@string/inf"
-                android:textSize="14sp"
+                style="@style/Hint_item"
+                android:text="@string/_address"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/inf_data"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
+                style="@style/Text_item"
+                android:layout_marginRight="2sp"
+                app:layout_constraintEnd_toStartOf="@id/button_location_data_request"
                 app:layout_constraintStart_toEndOf="@+id/hint_inf"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/hint_inf"
                 tools:text="солнечная поляна 35, 3 подъезд, 4 этаж, квартира 75" />
+
+            <ImageButton
+                android:id="@+id/button_location_data_request"
+                style="@style/Button_location_mini"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/inf_data" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -158,34 +128,24 @@
             android:id="@+id/constraintLayout5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
 
             <TextView
                 android:id="@+id/hint_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="180dp"
+                style="@style/Hint_item"
                 android:text="@string/time"
-                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/date_data"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="15sp"
+                style="@style/Text_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hint_time"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/hint_time"
                 tools:text="10.2 в 10:0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -194,7 +154,6 @@
             android:id="@+id/constraintLayout6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -202,57 +161,18 @@
 
             <TextView
                 android:id="@+id/hint_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:maxWidth="180dp"
+                style="@style/Hint_item"
                 android:text="@string/comment"
-                android:textSize="14sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/comment_data"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:textSize="15sp"
+                style="@style/Text_item"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/hint_comment"
-                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/hint_comment"
                 tools:text="купить .........." />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout7"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
-
-            <Button
-                android:id="@+id/button_location"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:drawableStart="@drawable/ic_baseline_location_blue"
-                android:drawableLeft="@drawable/ic_baseline_location_blue"
-                android:maxWidth="180dp"
-                android:text="@string/location"
-                android:textSize="15sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -260,43 +180,36 @@
             android:id="@+id/constraintLayout8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+
+            <Button
+                android:id="@+id/button_data"
+                android:layout_width="0sp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_frame"
+                android:padding="4sp"
+                android:text="Принять / удалить заявку"
+                app:layout_constraintDimensionRatio="3:1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginEnd="4dp"
-                android:layout_marginRight="4dp"
-                android:maxWidth="2000dp"
-                android:textSize="18sp"
+                android:layout_height="wrap_content"
                 android:gravity="center"
+                android:textSize="14sp"
+                tools:text="Заявка в обработке"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/button_data"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Заявка в обработке" />
-
-            <Button
-                android:id="@+id/button_data"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="8dp"
-                android:layout_marginRight="8dp"
-                android:background="@drawable/button_blue_radius"
-                android:text="Принять / удалить заявку"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintDimensionRatio="w,4:1"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

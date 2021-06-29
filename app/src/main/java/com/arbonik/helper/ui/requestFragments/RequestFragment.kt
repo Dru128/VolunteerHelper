@@ -43,13 +43,12 @@ open class RequestFragment : Fragment(), RequestAdapter.OnRequestSelectedListene
                 firestore!!.collection(RequestManager.REQUEST_TAG)
                     .whereEqualTo(fieldPath, phone!!)
             }
-            USER_CATEGORY.VOLONTEER ->
+            USER_CATEGORY.VOLONTEER, USER_CATEGORY.ADMIN ->
             {
                 firestore!!.collection(RequestManager.REQUEST_TAG)
                     .whereEqualTo("status", false)
 
             }
-            USER_CATEGORY.ADMIN -> TODO()
             null -> TODO()
         }
     }

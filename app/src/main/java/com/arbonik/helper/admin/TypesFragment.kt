@@ -7,22 +7,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.R
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class TypesFragment : Fragment()
 {
     private lateinit var recyclerView: RecyclerView
-    private var db = FireStore()
-
-    override fun onCreate(savedInstanceState: Bundle?)
-    {
-        super.onCreate(savedInstanceState)
-    }
+    private var db = FireBaseTypesRequest()
 
     override fun onCreateView(inflater: LayoutInflater,
                               container: ViewGroup?,
@@ -34,20 +29,18 @@ class TypesFragment : Fragment()
 
 
         recyclerView = root.findViewById(R.id.recyclerView_admin)
-        recyclerView.adapter = RecyclerView_admin()
+        recyclerView.adapter = RecyclerAdapterTypesHelpAdmin()
         recyclerView.layoutManager = LinearLayoutManager(context)
         updateRecycler()
 
-        root.findViewById<Button>(R.id.addType_button).setOnClickListener{
+        root.findViewById<FloatingActionButton>(R.id.add_type_button_fragment_types_admin).setOnClickListener{
             AlertDialog.Builder(context).apply{
                 val editText = EditText(context) // текст для ввода типа заявки
                 editText.filters = arrayOf(InputFilter.LengthFilter(30)) // максимальная длина текста (в символах)
                 setView(editText)
-                setTitle(R.string.title_dialog_admin) // заголовок
-                setMessage(R.string.message_dialog_admin) // сообщение
-                setIcon(android.R.drawable.ic_dialog_info) // иконка
-                setNegativeButton("отмена") { _, _ -> }  // кнопка нейтрального ответа
-                setPositiveButton("создать")
+                setTitle(R.string.title_types_dialog_admin) // заголовок
+                setNegativeButton(context.getString(R.string.cancel)) { _, _ -> }  // кнопка нейтрального ответа
+                setPositiveButton(context.getString(R.string.add))
                 { _, _ ->
                     db.addTypeHelp(editText.text.toString(), context) // добавить новый тип помощи
                     updateRecycler()
@@ -59,16 +52,20 @@ class TypesFragment : Fragment()
         return root
     }
 
-     fun updateRecycler() // прочитать коллекцию типы помощи и обновить RecyclerView_admin
+    fun updateRecycler() // прочитать коллекцию типы помощи и обновить RecyclerView_admin
     {
-        var data: MutableList<TypeRequest> = mutableListOf()
-        FireStore.ref
+
+        db
+            .reference
             .get()
             .addOnSuccessListener { result ->
+                var data: MutableList<TypeRequest> = mutableListOf()
                 for (document in result)
                     data.add(TypeRequest(document.get("type").toString(), document.id))
-                RecyclerView_admin.Dataset = data
-                (recyclerView.adapter as RecyclerView_admin).notifyDataSetChanged()
+                (recyclerView.adapter as RecyclerAdapterTypesHelpAdmin).apply {
+                    dataset = data
+                    notifyDataSetChanged()
+                }
             }
     }
 }

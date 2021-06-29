@@ -1,6 +1,12 @@
 package com.arbonik.helper.system
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Canvas
 import android.widget.EditText
+import androidx.core.content.ContextCompat
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.firebase.firestore.GeoPoint
 import ru.tinkoff.decoro.MaskImpl
@@ -26,8 +32,8 @@ class Format()
             }
         }
 
-        fun latLng_to_geoPoint(latLng: LatLng) = GeoPoint(latLng.latitude, latLng.longitude)
-        fun geoPoint_to_latLng(geoPoint: GeoPoint) = LatLng(geoPoint.latitude, geoPoint.longitude)
+        fun latLngTogeoPoint(latLng: LatLng) = GeoPoint(latLng.latitude, latLng.longitude)
+        fun geoPointTolatLng(geoPoint: GeoPoint) = LatLng(geoPoint.latitude, geoPoint.longitude)
 
         fun makeMaskEditTest(text: EditText)
         {
@@ -36,7 +42,7 @@ class Format()
             formatWatcher.installOn(text) // устанавливаем форматер на любой EditText
         }
 
-        fun makeMaskTextView(phone: String): String
+        fun makeMaskPhone(phone: String): String
         {
             var p = phone
             if (phone.length == 12)

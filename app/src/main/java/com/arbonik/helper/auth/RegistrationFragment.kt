@@ -10,7 +10,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.*
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
@@ -18,10 +17,6 @@ import com.arbonik.helper.R
 import com.arbonik.helper.system.Format
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
-import com.google.android.gms.auth.api.Auth
-import com.google.android.gms.auth.api.credentials.Credential
-import com.google.android.gms.auth.api.credentials.HintRequest
-import com.google.android.gms.common.api.GoogleApiClient
 import com.google.firebase.auth.FirebaseUser
 
 class RegistrationFragment() : Fragment()
@@ -99,7 +94,7 @@ class RegistrationFragment() : Fragment()
                     val bundle = Bundle()
                     if (RegData.location != null)
                     {
-                        bundle.putParcelable("location", Format.geoPoint_to_latLng(RegData.location!!))
+                        bundle.putParcelable(User.TAG_LOCATION, Format.geoPointTolatLng(RegData.location!!))
                     }
                     navController.navigate(R.id.action_registration_fragment_to_map_veteran_fragment, bundle)
                 }

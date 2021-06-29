@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_volonteer"
+    app:startDestination="@id/navigation_request_vol">
+
+
+    <fragment
+        android:id="@+id/navigation_volonteer_fragment"
+        android:name="com.arbonik.helper.ui.requestFragments.RequestVolonteerFragment"
+        android:label="@string/title_requests_volonteer"
+        tools:layout="@layout/fragment_reqests">
+        <action
+            android:id="@+id/action_navigation_volonteer_fragment_to_map_volonteer_fragment"
+            app:destination="@id/map_volonteer_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_request_vol"
+        android:name="com.arbonik.helper.ui.requestFragments.RequestFragment"
+        android:label="@string/title_requestion"
+        tools:layout="@layout/fragment_reqests" >
+        <action
+            android:id="@+id/action_navigation_request_vol_to_map_volonteer_fragment"
+            app:destination="@id/map_volonteer_fragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_notifications_vol"
+        android:name="com.arbonik.helper.ui.settings.SettingsFragment"
+        android:label="@string/title_notifications" />
+    <fragment
+        android:id="@+id/map_volonteer_fragment"
+        android:name="com.arbonik.helper.map.MapVolonteerFragment"
+        android:label="fragment_maps"
+        tools:layout="@layout/fragment_maps" />
+
+
+    <fragment
+        android:id="@+id/navigation_types_fragment"
+        android:name="com.arbonik.helper.admin.TypesFragment"
+        android:label="@string/services"
+        tools:layout="@layout/fragment_types_admin" />
+
+    <fragment
+        android:id="@+id/navigation_users_fragment"
+        android:name="com.arbonik.helper.admin.users.UsersFragment"
+        android:label="@string/users"
+        tools:layout="@layout/fragment_users" >
+        <action
+            android:id="@+id/action_navigation_users_fragment_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/mapsFragment"
+        android:name="com.arbonik.helper.map.MapsFragment"
+        tools:layout="@layout/fragment_maps" />
+
+    <!--    <fragment-->
+<!--        android:id="@+id/navigation_map_admin"-->
+<!--        android:name="com.arbonik.helper.map.MapsFragment"-->
+<!--        android:label="@string/map_admin"-->
+<!--        tools:layout="@layout/fragment_maps" />-->
+</navigation>

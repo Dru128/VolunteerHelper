@@ -49,7 +49,7 @@
                     android:layout_marginStart="6dp"
                     android:layout_marginLeft="6dp"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/your_phone_number"
+                    android:text="@string/phone_number"
                     app:layout_constraintBottom_toTopOf="@+id/text_phone"
                     app:layout_constraintStart_toStartOf="@+id/text_phone" />
 
@@ -105,40 +105,22 @@
 
                     <Button
                         android:id="@+id/adressButton"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        style="@style/Button_location"
                         android:layout_marginTop="2dp"
-                        android:drawableStart="@drawable/ic_baseline_location_blue"
-                        android:drawableLeft="@drawable/ic_baseline_location_blue"
-                        android:text="Выбрать / изменить"
-                        android:textColor="@color/black"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.0"
-                        app:layout_constraintLeft_toLeftOf="parent"
-                        app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/text_hint_address" />
+                        app:layout_constraintTop_toBottomOf="@+id/parent" />
 
                     <TextView
                         android:id="@+id/location_status_text"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
                         android:layout_marginTop="2dp"
                         android:text="Не выбрано"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="@+id/adressButton"
                         app:layout_constraintTop_toBottomOf="@+id/adressButton" />
-
-                    <TextView
-                        android:id="@+id/text_hint_address"
-                        style="@style/TextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:layout_marginLeft="6dp"
-                        android:text="Местоположение"
-                        app:layout_constraintStart_toStartOf="@+id/adressButton"
-                        app:layout_constraintTop_toTopOf="parent" />
 
                     <EditText
                         android:id="@+id/info_reg"
@@ -157,7 +139,7 @@
                         android:layout_marginStart="6dp"
                         android:layout_marginLeft="6dp"
                         android:layout_marginBottom="1dp"
-                        android:text="@string/inf"
+                        android:text="@string/address"
                         android:textColor="@color/black"
                         android:textSize="13dp"
                         app:layout_constraintBottom_toTopOf="@+id/info_reg"
@@ -169,7 +151,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_marginBottom="1dp"
-                    android:text="@string/your_name"
+                    android:text="@string/name"
                     style="@style/TextView"
                     app:layout_constraintBottom_toTopOf="@+id/name_reg"
                     app:layout_constraintStart_toStartOf="@+id/name_reg" />
@@ -179,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:layout_marginBottom="2dp"
-                    android:text="Тип пользователя"
+                    android:text="@string/type_user"
                     style="@style/TextView"
                     app:layout_constraintBottom_toTopOf="@+id/role_radio_group"
                     app:layout_constraintStart_toStartOf="@+id/role_radio_group" />

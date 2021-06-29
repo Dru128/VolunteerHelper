@@ -17,14 +17,17 @@ import androidx.appcompat.widget.SwitchCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.navigation.findNavController
 import com.arbonik.helper.R
 import com.arbonik.helper.auth.SharedPreferenceUser
 import com.arbonik.helper.auth.USER_CATEGORY
 import com.arbonik.helper.auth.User
 import com.arbonik.helper.helprequest.RequestManager
+import com.arbonik.helper.system.Format
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.GoogleMap.*
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -103,53 +106,15 @@ open class MapsFragment() : Fragment(),
 
             when (TYPE_USER)
             {
-                USER_CATEGORY.VETERAN, null ->
-                {
-                    //                    turnGPS()
-                    /*
-                    if (permission_GPS)
-                    {
-                        //                        googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(curLocation, 5f))
-                        AlertDialog.Builder(context).apply {
-                            setTitle("выбрать текущее местоположение?")
-                            setPositiveButton("да, выбрать") { _, _ ->
-                                onMyLocationButtonClick()
-
-                                val geoPoint = LatLng(
-                                    googleMap.myLocation.latitude, googleMap.myLocation.longitude
-                                )
-                                setMyMackerPosition(geoPoint)
-                                moveCamera(geoPoint)
-                            }
-                            setNegativeButton("отмена") { _, _ -> }
-                            show()
-                        }
-                    }*/
-                }
-
+                USER_CATEGORY.VETERAN, null -> { }
                 USER_CATEGORY.ADMIN ->
                 {
-                    db.whereEqualTo(User.TAG_CATEGORY, USER_CATEGORY.VETERAN).get()
-                        .addOnSuccessListener { documents ->
-                            for (document in documents)
-                            {
-                                val location =
-                                    document[User.TAG_LOCATION.toLowerCase(Locale.ROOT)] as GeoPoint
-                                googleMap.addMarker(
-                                    MarkerOptions().position(
-                                        LatLng(
-                                            location.latitude, location.longitude
-                                        )
-                                    )
-                                        .title(document[User.NAME_TAG.toLowerCase(Locale.ROOT)].toString())
-                                        .snippet(
-                                            "телефон: ${document[User.TAG_PHONE.toLowerCase(Locale.ROOT)].toString()}" + "   адрес: ${
-                                                document[User.TAG_INF.toLowerCase(Locale.ROOT)].toString()
-                                            }"
-                                        )
-                                )
-                            }
-                        }
+                    val location: LatLng? = requireArguments().getParcelable(User.TAG_LOCATION)
+                    if (location != null)
+                    {
+                        googleMap.addMarker(MarkerOptions().position(location))
+                        moveCamera(location)
+                    }
                 }
                 else -> { }
             }
@@ -169,14 +134,6 @@ open class MapsFragment() : Fragment(),
         }
     }
 
-    open fun isGeoDisabled(): Boolean
-    {
-        val mLocationManager = context?.getSystemService(Context.LOCATION_SERVICE) as LocationManager
-        val mIsGPSEnabled = mLocationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)
-        val mIsNetworkEnabled = mLocationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER)
-        return !mIsGPSEnabled && !mIsNetworkEnabled
-    }
-
     fun setMapType(type: Int) { google_map?.mapType = type }
 
     fun moveCamera(position: LatLng) { google_map?.animateCamera(
@@ -184,31 +141,6 @@ open class MapsFragment() : Fragment(),
             position, 15f
         ), 1500, null
     ) }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater)
-    {
-        val actionBar = (activity as AppCompatActivity?)!!.supportActionBar
-        actionBar?.setHomeButtonEnabled(true)
-        actionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun onDestroy()
-    {
-        val actionBar = (activity as AppCompatActivity?)!!.supportActionBar
-        actionBar?.setHomeButtonEnabled(false)
-        actionBar?.setDisplayHomeAsUpEnabled(false)
-        super.onDestroy()
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean
-    {
-        if (item.itemId == android.R.id.home)
-        {
-            onDestroyView()
-            onDestroy()
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     //--------------------------------------------------------| интерфейсы & проверки |--------------------------------------------------------
     override fun onMyLocationButtonClick(): Boolean

@@ -2,23 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_types_fragment"
-        android:icon="@drawable/ic_announcement_blue_24dp"
-        android:title="@string/types_requests" />
+        android:id="@+id/navigation_volonteer_fragment"
+        android:icon="@drawable/ic_announcement_blue"
+        android:title="@string/title_requests_volonteer" />
 
     <item
-        android:id="@+id/navigation_map_admin"
-        android:icon="@drawable/ic_baseline_location_gray"
-        android:title="@string/map_admin" />
-
-<!--    <item-->
-<!--        android:id="@+id/navigation_statistics_admin"-->
-<!--        android:icon="@drawable/ic_assignment_black_24dp"-->
-<!--        android:title="@string/statistics" />-->
+        android:id="@+id/navigation_request_vol"
+        android:icon="@drawable/ic_assignment_black"
+        android:title="@string/title_requestion" />
 
     <item
-        android:id="@+id/navigation_notifications"
-        android:icon="@drawable/ic_account_circle_black_24dp"
+        android:id="@+id/navigation_notifications_vol"
+        android:icon="@drawable/ic_account_circle_black"
         android:title="@string/title_notifications" />
-
 </menu>

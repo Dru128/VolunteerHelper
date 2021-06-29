@@ -29,4 +29,71 @@
         <!-- загрузочный экран -->
         <item name="android:windowBackground">@drawable/launch_screen</item>
     </style>
+
+    <style name="Layout_user_admin_item" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">0sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2sp</item>
+
+    </style>
+
+    <style name="Hint_item" parent="TextView">
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">2dp</item>
+        <item name="android:layout_marginBottom">2dp</item>
+    </style>
+
+    <style name="Text_item" parent="TextView">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">4dp</item>
+    </style>
+<!--    <item name="android:gravity">center</item>-->
+
+    <style name="Button_copy" parent="Theme.AppCompat.Light">
+        <item name="android:maxWidth">32dp</item>
+        <item name="android:maxHeight">32dp</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:minWidth">24dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:src">@drawable/copy</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Button_location" parent="Theme.AppCompat.Light">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center|left</item>
+        <item name="android:padding">12sp</item>
+        <item name="android:text">@string/location</item>
+        <item name="android:layout_marginTop">2sp</item>
+        <item name="android:textColor">@color/gray_dark</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:background">@drawable/button_frame</item>
+    </style>
+
+    <style name="Button_location_mini" parent="Widget.AppCompat.ImageButton">
+        <item name="android:maxWidth">32dp</item>
+        <item name="android:maxHeight">32dp</item>
+        <item name="android:minHeight">24dp</item>
+        <item name="android:minWidth">24dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:src">@drawable/ic_baseline_location_gray</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="Button_action_admin" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/button_frame</item>
+        <item name="android:padding">8sp</item>
+        <item name="android:layout_margin">4sp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>>
 </resources>

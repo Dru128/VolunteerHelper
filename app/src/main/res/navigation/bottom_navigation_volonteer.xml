@@ -5,7 +5,7 @@
     android:id="@+id/mobile_navigation_volonteer"
     app:startDestination="@id/navigation_request_vol">
     <fragment
-        android:id="@+id/navigation_volonteer_fragment"
+        android:id="@id/navigation_volonteer_fragment"
         android:name="com.arbonik.helper.ui.requestFragments.RequestVolonteerFragment"
         android:label="@string/title_requestion"
         tools:layout="@layout/fragment_reqests" >
@@ -36,6 +36,7 @@
         android:id="@+id/navigation_notifications_vol"
         android:name="com.arbonik.helper.ui.settings.SettingsFragment"
         android:label="@string/title_notifications" />
+
     <fragment
         android:id="@+id/map_volonteer_fragment"
         android:name="com.arbonik.helper.map.MapVolonteerFragment"

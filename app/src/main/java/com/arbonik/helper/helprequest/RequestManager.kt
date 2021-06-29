@@ -30,11 +30,4 @@ class RequestManager
     {
         db.collection(REQUEST_TAG).document(uid).delete()
     }
-
-    fun updateUser(user: User)
-    {
-        user.uid?.let {
-            db.collection(USERS_TAG).document(it).set(user)
-        }
-    }
 }

@@ -1,14 +1,30 @@
 <resources>
-    <string name="app_name">Не требуя взамен</string>
+    <string name="app_name">Помощник в кармане</string>
     <string name="privacy_policy">Для использования приложения вам необходимо принять
         <a href="https://andrei761349.wixsite.com/helper/%D0%BF%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD">Политику конфиденциальности</a> и
         <a href="https://andrei761349.wixsite.com/helper/%D1%83%D1%81%D0%BB%D0%BE%D0%B2%D0%B8%D1%8F-%D0%B8%D1%81%D0%BF%D0%BE%D0%BB%D1%8C%D0%B7%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D1%8F-1">Условия использования</a>.
     </string>
+
+    <string name="your_account_blocked">Ваш аккаунт заблокирован</string>
+    <string name="your_account_checked">Ваш аккаунт отправлен на проверку</string>
+
+    <string name="reg_checked">Проверяются</string>
+    <string name="active">Активные</string>
+    <string name="blocked">Заблокированные</string>
+
     <array name="help_variant">
         <item>Помощь по хозяйству</item>
         <item>Уход за питомцем</item>
         <item>Поход в магазин</item>
     </array>
+
+    <string name="veteran">Ветеран</string>
+    <string name="volonteer">Волонтёр</string>
+    <string name="admin">Администратор</string>
+
+    <string name="activate_short">Актив.</string>
+    <string name="lock_short">Заблок.</string>
+    <string name="unlock_short">Разблок.</string>
 
     <string name="welcome">Добро пожаловать в</string>
     <string name="accept">Принять и продолжить</string>
@@ -31,8 +47,6 @@
     <string name="success_request">Заявка выполненна</string>
     <string name="choose_name">Введите имя</string>
     <string name="choose_location">выберите адрес</string>
-    <string name="veteran">Ветеран</string>
-    <string name="volonteer">Волонтер</string>
     <string name="signup">Зарегистрироваться</string>
     <string name="registration">Регистрация</string>
     <string name="signin">Вход</string>
@@ -45,8 +59,7 @@
     <string name="all_users">Всего пользователей</string>
     <string name="volonteers">Волонтёров</string>
     <string name="veterans">Ветеранов</string>
-    <string name="title_dialog_admin">Создание типа помощи</string>
-    <string name="message_dialog_admin">Введите название типа помощи</string>
+    <string name="title_types_dialog_admin">Введите название услуги</string>
     <string name="types_requests">Типы заявок</string>
     <string name="statistics">статистика</string>
     <string name="map_admin">карта</string>
@@ -54,16 +67,24 @@
     <string name="refused_requests">Отклоненных заявок</string>
     <string name="complited_requests">исполненных</string>
     <string name="not_shoose">Не выбрано</string>
+    <string name="services">Услуги</string>
+    <string name="users">Пользователи</string>
+    <string name="add">Добавить</string>
 
-    <string name="inf_user">информация пользователя</string>
-    <string name="name">имя:</string>
-    <string name="phone">телефон:</string>
-    <string name="inf">адрес<!-- и дополнительная информация--></string>
-    <string name="time">время:</string>
-    <string name="comment">комментарий:</string>
-    <string name="location">местоположение</string>
+    <string name="inf_user">Информация пользователя</string>
+    <string name="_name">Имя:</string>
+    <string name="name">Имя</string>
+    <string name="_phone">Телефон:</string>
+    <string name="phone">Телефон</string>
+    <string name="_address">Адрес:</string>
+    <string name="address">Адрес</string>
+    <string name="time">Время:</string>
+    <string name="comment">Комментарий:</string>
+    <string name="location">Местоположение</string>
+    <string name="_type_user">Роль:</string>
+    <string name="type_user">Роль</string>
 
-    <string name="coped_phone">номер телефона скопирован в буфер обмена</string>
+    <string name="coped_phone">Номер телефона скопирован в буфер обмена</string>
 
     <string name="choose">выбрать</string>
     <string name="close">закрыть</string>
@@ -73,8 +94,11 @@
 
     <string name="proposal_include_gps">Чтобы продолжить, включите на устройстве геолокацию</string>
     <string name="click_to_change">Нажмите чтобы выбрать</string>
-    <string name="your_name">Имя</string>
-    <string name="your_phone_number">Номер телефона</string>
+    <string name="phone_number">Номер телефона</string>
     <string name="account">Аккаунт</string>
+    <string name="admin_short">админ</string>
     <string name="choose_phone_number">Выберите номер телефона</string>
+    <string name="uid">UID:</string>
+    <string name="cancel">Отмена</string>
+
 </resources>

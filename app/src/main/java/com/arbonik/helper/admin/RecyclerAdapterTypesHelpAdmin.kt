@@ -5,54 +5,48 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.arbonik.helper.R
 
 
-class RecyclerView_admin: RecyclerView.Adapter<RecyclerView_admin.ViewHolder>()
+class RecyclerAdapterTypesHelpAdmin: RecyclerView.Adapter<RecyclerAdapterTypesHelpAdmin.ViewHolder>()
 {
-    var db = FireStore()
-//project-529198191554
-    companion object
-    {
-        var Dataset: MutableList<TypeRequest> = mutableListOf()
-    }
-
+    //project-529198191554
+    var db = FireBaseTypesRequest()
+    var dataset: MutableList<TypeRequest> = mutableListOf()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder
     {
-        val View = LayoutInflater.from(parent.context).inflate(R.layout.admin_item, parent, false)
+        val View = LayoutInflater.from(parent.context).inflate(R.layout.type_help_item_admin, parent, false)
         return ViewHolder(View)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int)
     {
-        holder.onBind(Dataset[position])
+        holder.onBind(dataset[position])
     }
 
-    override fun getItemCount(): Int = Dataset.size
+    override fun getItemCount(): Int = dataset.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
     {
         var context = itemView.context
         var type_text = itemView.findViewById<TextView>(R.id.type_text)
-        var deletetype_button = itemView.findViewById<Button>(R.id.deletetype_buton)
+        var deletetype_button = itemView.findViewById<Button>(R.id.delete_type_buton)
 
         fun onBind(type: TypeRequest)
         {
             type_text.text = type.type
             deletetype_button.setOnClickListener {
-                for (i in 0 until Dataset.size)
+                for (i in 0 until dataset.size)
                 {
-                    if (type.type == Dataset[i].type)
+                    if (type.type == dataset[i].type)
                     {
                         db.deleteTypeHelp(type.key)
-                        Dataset.removeAt(i)
+                        dataset.removeAt(i)
                         notifyDataSetChanged()
                         return@setOnClickListener
                     }
                 }
-                Toast.makeText(context, "This type is deleted", Toast.LENGTH_LONG).show()
             }
         }
     }

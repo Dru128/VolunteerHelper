@@ -5,41 +5,39 @@
         <PreferenceCategory
             app:key="user_category"
             app:title="Личные данные">
-            <EditTextPreference
+            <Preference
                 app:dialogTitle="Ваше имя"
                 app:dialogMessage="Введите ваше полное имя"
                 app:key="NAME"
-                app:title="Имя"
+                app:title="@string/name"
                 app:summary="Фамилия Имя">
-            </EditTextPreference>
-            <EditTextPreference
+            </Preference>
+            <Preference
                 app:dialogTitle="Ваш телефон"
                 app:dialogMessage="Введите ваш телефон"
                 app:key="PHONE"
-                app:enabled="false"
-                app:title="Телефон"
+                app:title="@string/phone"
                 app:summary="88005553535">
-            </EditTextPreference>
+            </Preference>
             <Preference
                 app:key="LOCATION"
-                app:title="Местоположение"
-                app:summary="нажмите чтобы изменить">
+                app:title="@string/location">
             </Preference>
-            <EditTextPreference
-                app:dialogTitle="Дополнительная информация"
+            <Preference
+                app:dialogTitle="Адрес"
                 app:key="INF"
-                app:title="Дополнительная информация"
+                app:title="@string/address"
                 app:summary="Улица Пошкина дом Колотушкина">
-            </EditTextPreference>
+            </Preference>
         </PreferenceCategory>
 
     <PreferenceCategory
-        app:title="Аккаунт">
-        <EditTextPreference
-            app:enabled="false"
+        app:title="@string/account">
+        <Preference
             app:key="CATEGORY"
-            app:title="ТИП АККАУНТА">
-        </EditTextPreference>
+            app:title="@string/type_user"
+            app:summary="VETERAN">
+        </Preference>
     </PreferenceCategory>
 
     <!--    <PreferenceCategory-->

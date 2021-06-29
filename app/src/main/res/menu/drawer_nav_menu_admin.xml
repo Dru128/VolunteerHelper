@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_types_fragment"
+        android:title="@string/services" />
+
+    <item
+        android:id="@+id/navigation_users_fragment"
+        android:title="@string/users" />
+
+<!--    <item-->
+<!--        android:id="@+id/navigation_statistics_admin"-->
+<!--        android:icon="@drawable/ic_assignment_black_24dp"-->
+<!--        android:title="@string/statistics" />-->
+</menu>

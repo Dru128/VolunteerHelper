@@ -59,7 +59,7 @@ class MapVolonteerFragment : MapsFragment()
 
             val marker = google_map!!.addMarker(
                 MarkerOptions().position(
-                    Format.geoPoint_to_latLng(
+                    Format.geoPointTolatLng(
                         request.master.location!!
                     )
                 )
@@ -90,14 +90,13 @@ class MapVolonteerFragment : MapsFragment()
             text_title.text = title
             text_title.gravity = Gravity.CENTER
 
-            text_snippet.text = "${master.name} \n ${Format.makeMaskTextView(master.phone.toString())} \n ${master.inf} \n $date \n $comment"
+            text_snippet.text = "${master.name} \n ${Format.makeMaskPhone(master.phone.toString())} \n ${master.inf} \n $date \n $comment"
             text_snippet.gravity = Gravity.CENTER
             text_snippet.setTextColor(Color.GRAY)
             text_snippet.maxWidth = 600
         }
 
         // сделать заявку принятой
-
         layout.addView(text_title)
         layout.addView(text_snippet)
 

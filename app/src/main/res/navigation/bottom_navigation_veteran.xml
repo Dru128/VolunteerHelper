@@ -15,7 +15,11 @@
         android:id="@+id/navigation_request"
         android:name="com.arbonik.helper.ui.requestFragments.RequestFragment"
         android:label="@string/title_requestion"
-        tools:layout="@layout/fragment_reqests" />
+        tools:layout="@layout/fragment_reqests" >
+        <action
+            android:id="@+id/action_navigation_request_to_mapVeteranFragment2"
+            app:destination="@id/mapVeteranFragment2" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_notifications"
@@ -29,8 +33,5 @@
         android:id="@+id/mapVeteranFragment2"
         android:name="com.arbonik.helper.map.MapVeteranFragment"
         android:label="MapVeteranFragment" >
-        <action
-            android:id="@+id/action_map_veteran_fragment2_to_navigation_notifications"
-            app:destination="@id/navigation_notifications" />
     </fragment>
 </navigation>

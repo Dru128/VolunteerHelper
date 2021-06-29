@@ -5,11 +5,13 @@
     <color name="blue">#0000FF</color>
     <color name="black">#E6000000</color>
     <color name="white">#fff</color>
+    <color name="gray_bright">#E6E6E6</color>
+    <color name="gray_dark">#505050</color>
 
     <color name="colorPrimary">#ff5722</color>
     <color name="colorPrimaryDark">#e64a19</color>
     <color name="colorAccent">#ff9800</color>
-    <color name="layoutColorBlue">#ffccbc</color>
+    <color name="layoutColor">#ffccbc</color>
 
     <color name="logo_background">#FCECD2</color>
 
